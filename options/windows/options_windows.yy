@@ -1,5 +1,5 @@
 {
-  "option_windows_display_name": "Interstellar Miner",
+  "option_windows_display_name": "Planetary Defender",
   "option_windows_executable_name": "${project_name}.exe",
   "option_windows_version": "1.0.0.0",
   "option_windows_company_info": "YoYo Games Ltd",
