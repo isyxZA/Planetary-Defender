@@ -8,8 +8,6 @@ boostMax = 2;
 mxPrev = mouse_x;
 myPrev = mouse_y;
 
-canBounce = false;
-
 if !ds_list_empty(global.controllers)
 {
 	gamePad = global.controllers[| 0];

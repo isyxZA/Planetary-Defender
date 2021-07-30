@@ -8,6 +8,6 @@
 #macro NET_SHOOT 6
 
 
-#macro cellSize 24
-#macro mapWidth 3952
-#macro mapHeight 1760
+//#macro cellSize 24
+//#macro mapWidth 3952
+//#macro mapHeight 1760

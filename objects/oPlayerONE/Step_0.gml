@@ -32,7 +32,7 @@ if gamePad != -1
 	{
 		mTimer = 0;
 		var pdir = point_direction(0, 0, hPoint, -vPoint);
-		phy_rotation += angle_difference(pdir, phy_rotation) * 0.2;
+		phy_rotation += angle_difference(pdir, phy_rotation) * 0.1;
 	}
 	else
 	{
@@ -40,7 +40,7 @@ if gamePad != -1
 		if mTimer >= room_speed
 		{
 			var pdir = point_direction(0, 0, hAxis, -vAxis);
-			phy_rotation += angle_difference(pdir, phy_rotation) * 0.2;
+			phy_rotation += angle_difference(pdir, phy_rotation) * 0.1;
 		}
 	}
 	
@@ -54,6 +54,27 @@ if gamePad != -1
 		isBoosting = false;
 	}
 	
+	//Shoot weapons
+	//Fire main guns
+	if gamepad_button_check_pressed(gamePad, gp_shoulderrb)
+	{
+		shootPrimary = true;
+	}
+	if gamepad_button_check_released(gamePad, gp_shoulderrb)
+	{
+		shootPrimary = false;
+	}
+	
+	//Fire secondary guns
+	if gamepad_button_check_pressed(gamePad, gp_shoulderlb)
+	{
+		shootSecondary = true;
+	}
+	if gamepad_button_check_released(gamePad, gp_shoulderlb)
+	{
+		shootSecondary = false;
+	}
+	
 	//Set camera zoom level
 	if gamepad_button_check_pressed(gamePad, gp_padu)
 	{ 
@@ -65,13 +86,13 @@ if gamePad != -1
 			switch oControl.zoomLevel 
 			{
 			    case 1:
-			        oControl.targetWidth  = 640;
-			        break;
-			    case 2:
 			        oControl.targetWidth  = 960;
 			        break;
+			    case 2:
+			        oControl.targetWidth  = 1366;
+			        break;
 			    case 3:
-			        oControl.targetWidth  = 1280;
+			        oControl.targetWidth  = 1600;
 			        break;
 			}
 	    }
@@ -86,13 +107,13 @@ if gamePad != -1
 			switch oControl.zoomLevel 
 			{
 			    case 1:
-			        oControl.targetWidth  = 640;
-			        break;
-			    case 2:
 			        oControl.targetWidth  = 960;
 			        break;
+			    case 2:
+			        oControl.targetWidth  = 1366;
+			        break;
 			    case 3:
-			        oControl.targetWidth  = 1280;
+			        oControl.targetWidth  = 1600;
 			        break;
 			}
 	    }
@@ -117,7 +138,7 @@ else
 	
 	if hAxis != 0 || vAxis != 0
 	{
-		if global.netStatus == "SPLITSCREEN"
+		if global.netStatus == "COOP"
 		{
 			phy_rotation = point_direction(0, 0, hAxis, vAxis);
 		}
@@ -128,7 +149,7 @@ else
 		isMoving = false;
 	}
 	
-	if global.netStatus != "SPLITSCREEN"
+	if global.netStatus != "COOP"
 	{
 		if device_mouse_raw_x(0) == mxPrev && device_mouse_raw_y(0)	== myPrev
 		{
@@ -146,12 +167,12 @@ else
 		if mTimer < room_speed
 		{
 			var pdir = -point_direction(phy_position_x, phy_position_y, mouse_x, mouse_y);
-			phy_rotation += angle_difference(pdir, phy_rotation) * 0.2;
+			phy_rotation += angle_difference(pdir, phy_rotation) * 0.1;
 		}
 		else
 		{
 			var pdir = point_direction(0, 0, hAxis, -vAxis);
-			phy_rotation += angle_difference(pdir, phy_rotation) * 0.2;
+			phy_rotation += angle_difference(pdir, phy_rotation) * 0.1;
 		}
 	
 		mxPrev = device_mouse_raw_x(0);
@@ -179,13 +200,13 @@ else
 			switch oControl.zoomLevel 
 			{
 			    case 1:
-			        oControl.targetWidth  = 640;
-			        break;
-			    case 2:
 			        oControl.targetWidth  = 960;
 			        break;
+			    case 2:
+			        oControl.targetWidth  = 1366;
+			        break;
 			    case 3:
-			        oControl.targetWidth  = 1280;
+			        oControl.targetWidth  = 1600;
 			        break;
 			}
 	    }
@@ -200,13 +221,13 @@ else
 			switch oControl.zoomLevel 
 			{
 			    case 1:
-			        oControl.targetWidth  = 640;
-			        break;
-			    case 2:
 			        oControl.targetWidth  = 960;
 			        break;
+			    case 2:
+			        oControl.targetWidth  = 1366;
+			        break;
 			    case 3:
-			        oControl.targetWidth  = 1280;
+			        oControl.targetWidth  = 1600;
 			        break;
 			}
 	    }
@@ -226,14 +247,14 @@ if isMoving
 	{
 		if boostCurrent != boostMax
 		{
-			boostCurrent = lerp(boostCurrent, boostMax, 0.4)
+			boostCurrent = lerp(boostCurrent, boostMax, 0.2)
 		}
 	}
 	else
 	{
 		if boostCurrent != 0
 		{
-			boostCurrent = lerp(boostCurrent, 0, 0.1)
+			boostCurrent = lerp(boostCurrent, 0, 0.2)
 		}
 	}
 	
@@ -246,4 +267,43 @@ if isMoving
 	vSpeed = (vAxis * spd);
 	//Move
 	physics_apply_force(phy_position_x, phy_position_y, hSpeed, vSpeed);
+}
+
+if shootPrimary
+{
+	if firePrimary
+	{
+		firePrimary = false;
+		alarm[1] = room_speed * 0.3;
+		//Spawn a bullet
+		var tx = lengthdir_x(10000, image_angle);
+        var ty = lengthdir_y(10000, image_angle);
+		var bp = instance_create_layer(phy_position_x+(tx*0.002), phy_position_y+(ty*0.002), "Players", oBullet);
+		bp.bColor = choose(c_red, c_blue, c_green);
+		bp.rot = -phy_rotation;
+		bp.xForce = tx;
+		bp.yForce = ty;
+		bp.xScale = 0.6;
+		bp.yScale = 0.6;
+	}
+}
+
+if shootSecondary
+{
+	if fireSecondary
+	{
+		//Spawn a bullet
+		fireSecondary = false;
+		alarm[2] = room_speed * 0.5;
+		//Spawn a bullet
+		var tx = lengthdir_x(10000, image_angle);
+        var ty = lengthdir_y(10000, image_angle);
+		var bs = instance_create_layer(phy_position_x+(tx*0.002), phy_position_y+(ty*0.002), "Players", oBullet);
+		bs.bColor = choose(c_purple, c_yellow, c_fuchsia);
+		bs.rot = -phy_rotation;
+		bs.xForce = tx;
+		bs.yForce = ty;
+		bs.xScale = 1.2;
+		bs.yScale = 1.2;
+	}
 }

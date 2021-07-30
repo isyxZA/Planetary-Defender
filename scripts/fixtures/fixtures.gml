@@ -35,6 +35,19 @@ function FixtureCreateTriangle(fwidth, fheight, mass, bounce, slide, ldamp, adam
 	var fixture = physics_fixture_create();
 	physics_fixture_set_polygon_shape(fixture);
 	
+	p1x = -(fwidth * 0.5);
+	p1y = (fheight * 0.5);
+	physics_fixture_add_point(fixture, p1x, p1y);
+	
+	p2x = 0;
+	p2y = -(fheight * 0.5);
+	physics_fixture_add_point(fixture, p2x, p2y);
+	
+	p3x = (fwidth * 0.5);
+	p3y = (fheight * 0.5);
+	physics_fixture_add_point(fixture, p3x, p3y);
+	
+	/*
 	p1x = 0;
 	p1y = -(fheight * 0.5);
 	physics_fixture_add_point(fixture, p1x, p1y);
@@ -46,6 +59,7 @@ function FixtureCreateTriangle(fwidth, fheight, mass, bounce, slide, ldamp, adam
 	p3x = -(fwidth * 0.5);
 	p3y = (fheight * 0.5);
 	physics_fixture_add_point(fixture, p3x, p3y);
+	*/
 	
 	physics_fixture_set_density(fixture, mass);
 	physics_fixture_set_restitution(fixture, bounce);

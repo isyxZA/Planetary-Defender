@@ -40,6 +40,22 @@ function SetUI(overlay)
 			SpawnButton(192, 192, "Ready", "LOBBY");
 			SpawnButton(192, 448, "Back", "LOBBY");
 			break;
+		case buttonoverlay.gamesolo:
+			//Create the UI surfaces
+			//Bottom Center Main Panel
+			uiW = 300;
+			uiH = 150;
+			uiMainSurf = surface_create(uiW, uiH);
+            surface_set_target(uiMainSurf);
+            draw_clear(c_black);
+            surface_reset_target();
+			uiX = (display_get_gui_width() * 0.5) - (uiW * 0.5);
+			uiY =  display_get_gui_height() - uiH;
+			uimidX = (display_get_gui_width() * 0.5);
+			uimidY = display_get_gui_height() - (uiH * 0.5);
+			uiScaleX = sprite_get_width(sUI)/uiW;
+			uiScaleY = sprite_get_height(sUI)/uiH;
+			break;
 		case buttonoverlay.options:
 			break;
 	}
@@ -54,12 +70,6 @@ function SpawnButton(xpos, ypos, text, overlay)
 	var btn = instance_create_layer(xpos, ypos, "Buttons", oButton);
 	btn.txt = text;
 	btn.activeOverlay = overlay;
-}
-
-/// @description InitResource()
-function InitResource()
-{
-	rColour = choose(c_red, c_blue, c_orange, c_olive, c_lime, c_white, c_maroon, c_olive);
 }
 
 /// @description Chance(percent) Returns true or false depending on RNG
@@ -83,7 +93,7 @@ function InitCamera(view_width, view_height)
 		case rmGame:
 			//For camera follow
 			view_camera[view_current] = camera_create_view(playerSpawnX - (view_width * 0.5), playerSpawnY - (view_height * 0.5), 
-															view_width, view_height, 0, oPlayerONE, 3.5, 3.5, 1024, 1024);
+															view_width, view_height, 0, oPlayerONE, 5, 5, 1024, 1024);
 			break;
 	}
 	

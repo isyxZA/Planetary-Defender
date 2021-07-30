@@ -13,39 +13,12 @@ switch room
 		{
 			case "DISCONNECTED":
 				playerSpawnX = room_width * 0.5;
-				playerSpawnY = room_height * 0.5;
+				playerSpawnY = room_height * 0.55;
 				alarm[0] = room_speed;
-				InitCamera(960, 540);
-				/*
-				//Spawn the level
-				var hCells = mapWidth/cellSize;
-				var vCells = mapHeight/cellSize;
-				var oX = 520+(cellSize*0.5);
-				var oY = 520+(cellSize*0.5);
-				var cX;
-				var cY;
-				for (var i = 0; i < hCells; ++i)
-				{
-					cX = oX + (cellSize*i)
-					//Add resource
-					for (var ii = 0; ii < vCells; ++ii)
-					{
-						cY = oY + (cellSize*ii)
-						if Chance(0.1)
-						{
-							with instance_create_layer(cX, cY, "Resources", oResource)
-							{
-								InitResource();
-							}
-						}
-					}
-				}
-	
-				instance_deactivate_region(cam_x, cam_y, cam_w, cam_h, false, true);
-				instance_activate_region(cam_x, cam_y, cam_w, cam_h, true);
-				*/
+				InitCamera(1366, 768);
+				SetUI(buttonoverlay.gamesolo);
 				break;
-			case "SPLITSCREEN":
+			case "COOP":
 				break;
 			case "HOST":
 				break;

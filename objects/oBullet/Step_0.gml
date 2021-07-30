@@ -1,0 +1,1 @@
+physics_apply_force(phy_position_x, phy_position_y, xForce, yForce);

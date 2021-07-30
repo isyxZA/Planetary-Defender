@@ -1,1 +1,1 @@
-canBounce = true;
+firePrimary = true;

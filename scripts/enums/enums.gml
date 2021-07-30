@@ -5,5 +5,9 @@ enum buttonoverlay
 	hostgame,
 	findgame,
 	lobby,
-	options
+	options,
+	gamesolo,
+	gamecoop,
+	gamehost,
+	gameclient
 }

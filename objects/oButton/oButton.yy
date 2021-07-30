@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "sUI",
-    "path": "sprites/sUI/sUI.yy",
+    "name": "sButton",
+    "path": "sprites/sButton/sButton.yy",
   },
   "solid": false,
   "visible": true,
