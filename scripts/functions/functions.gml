@@ -42,19 +42,26 @@ function SetUI(overlay)
 			break;
 		case buttonoverlay.gamesolo:
 			//Create the UI surfaces
+			uimidX = (display_get_gui_width() * 0.5);
 			//Bottom Center Main Panel
-			uiW = 300;
-			uiH = 150;
-			uiMainSurf = surface_create(uiW, uiH);
-            surface_set_target(uiMainSurf);
+			uiW_1a = 400;
+			uiH_1a = 150;
+			uiSurf_1a = surface_create(uiW_1a, uiH_1a);
+            surface_set_target(uiSurf_1a);
             draw_clear(c_black);
             surface_reset_target();
-			uiX = (display_get_gui_width() * 0.5) - (uiW * 0.5);
-			uiY =  display_get_gui_height() - uiH;
-			uimidX = (display_get_gui_width() * 0.5);
-			uimidY = display_get_gui_height() - (uiH * 0.5);
-			uiScaleX = sprite_get_width(sUI)/uiW;
-			uiScaleY = sprite_get_height(sUI)/uiH;
+			uiX_1a = (display_get_gui_width() * 0.5) - (uiW_1a * 0.5);
+			uiY_1a =  display_get_gui_height() - uiH_1a;
+			//Side Panel
+			uiW_1b = 100;
+			uiH_1b = 600;
+			uiSurf_1b = surface_create(uiW_1b, uiH_1b);
+            surface_set_target(uiSurf_1b);
+            draw_clear(c_black);
+            surface_reset_target();
+			uiX_1b = 0;
+			uiY_1b =  display_get_gui_height() * 0.05;
+			uiH_1b = display_get_gui_height() - (uiY_1b * 2);
 			break;
 		case buttonoverlay.options:
 			break;
@@ -72,6 +79,29 @@ function SpawnButton(xpos, ypos, text, overlay)
 	btn.activeOverlay = overlay;
 }
 
+/// @description SpawnBullet(xpos, ypos, color, angle, hforce, vforce, scale, spawner)
+/// @param xpos
+/// @param ypos
+/// @param color
+/// @param angle
+/// @param hforce
+/// @param vforce
+/// @param scale
+/// @param damage
+/// @param spawner
+function SpawnBullet(xpos, ypos, color, angle, hforce, vforce, scale, damage, spawner)
+{
+	var blt = instance_create_layer(xpos, ypos, "Players", oBullet);
+	blt.bColor = color;
+	blt.rot    = angle;
+	blt.xForce = hforce;
+	blt.yForce = vforce;
+	blt.xScale = scale;
+	blt.yScale = scale;
+	blt.damage = damage;
+	blt.owner  = spawner;
+}
+
 /// @description Chance(percent) Returns true or false depending on RNG
 /// @param percent
 function Chance(percent)
@@ -81,18 +111,18 @@ function Chance(percent)
 
 //CAMERA\\
 /// @description InitCamera()
-function InitCamera(view_width, view_height)
+function InitCamera(xpos, ypos, view_width, view_height)
 {
 	switch room
 	{
 		case rmMenu:
 		case rmLobby:
 			//For camera follow
-			view_camera[view_current] = camera_create_view(0, 0, view_width, view_height);
+			view_camera[view_current] = camera_create_view(xpos, ypos, view_width, view_height);
 			break;
 		case rmGame:
 			//For camera follow
-			view_camera[view_current] = camera_create_view(playerSpawnX - (view_width * 0.5), playerSpawnY - (view_height * 0.5), 
+			view_camera[view_current] = camera_create_view(xpos - (view_width * 0.5), ypos - (view_height * 0.5), 
 															view_width, view_height, 0, oPlayerONE, 5, 5, 1024, 1024);
 			break;
 	}

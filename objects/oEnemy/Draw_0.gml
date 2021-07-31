@@ -4,7 +4,7 @@ switch shape
 		draw_circle_color(x, y, r * scale, eColor, eColor, true);
 		break;
 	case "Box":
-		draw_rectangle_color(x - (w * scale), y - (h * scale), x + (w * scale), y + (h * scale),
+		draw_rectangle_color(x - lengthdir_x(w, image_angle), y - lengthdir_y(h, image_angle), x + lengthdir_x(w, image_angle), y + lengthdir_y(h, image_angle),
 								eColor, eColor, eColor, eColor, true);
 		break;
 	case "Triangle":
@@ -17,4 +17,4 @@ switch shape
 		break;
 }
 
-//draw_line(phy_position_x, phy_position_y, phy_position_x + lengthdir_x(60, phy_rotation), phy_position_y + lengthdir_y(60,phy_rotation));
+//draw_line(x, y, x + lengthdir_x(60, image_angle), y + lengthdir_y(60,image_angle));

@@ -3,16 +3,13 @@ if room == rmGame
 	switch global.netStatus
 	{
 		case "DISCONNECTED":
-			if surface_exists(uiMainSurf) 
+			if surface_exists(uiSurf_1a) 
 			{
-	            draw_surface_stretched_ext(uiMainSurf, uiX, uiY, uiW, uiH, c_white, 1);
+	            draw_surface_stretched_ext(uiSurf_1a, uiX_1a, uiY_1a, uiW_1a, uiH_1a, c_white, 1);
 	        }
-	        else 
+			if surface_exists(uiSurf_1b) 
 			{
-	            uiMainSurf = surface_create(uiW, uiH);
-	            surface_set_target(uiMainSurf);
-	            draw_clear(c_black);
-	            surface_reset_target();
+	            draw_surface_stretched_ext(uiSurf_1b, uiX_1b, uiY_1b, uiW_1b, uiH_1b, c_white, 1);
 	        }
 			break;
 		case "COOP":

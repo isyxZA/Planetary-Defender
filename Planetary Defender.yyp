@@ -17,6 +17,7 @@
     {"id":{"name":"oPlayerONE","path":"objects/oPlayerONE/oPlayerONE.yy",},"order":5,},
     {"id":{"name":"sUI","path":"sprites/sUI/sUI.yy",},"order":2,},
     {"id":{"name":"sPlayer","path":"sprites/sPlayer/sPlayer.yy",},"order":1,},
+    {"id":{"name":"fnt8","path":"fonts/fnt8/fnt8.yy",},"order":1,},
     {"id":{"name":"macros","path":"scripts/macros/macros.yy",},"order":1,},
     {"id":{"name":"oLevels","path":"objects/oLevels/oLevels.yy",},"order":1,},
     {"id":{"name":"oEnemy","path":"objects/oEnemy/oEnemy.yy",},"order":8,},

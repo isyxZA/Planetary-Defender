@@ -1,21 +1,21 @@
 switch room
 {
 	case rmMenu:
-		InitCamera(1280, 720);
+		InitCamera(0, 0, 1280, 720);
 		SetUI(buttonoverlay.main);
 		break;
 	case rmLobby:
-		InitCamera(1280, 720);
+		InitCamera(0, 0, 1280, 720);
 		SetUI(buttonoverlay.lobby);
 		break;
 	case rmGame:
 		switch global.netStatus
 		{
 			case "DISCONNECTED":
-				playerSpawnX = room_width * 0.5;
-				playerSpawnY = room_height * 0.55;
+				spawnXP1 = room_width * 0.5;
+				spawnYP1 = room_height * 0.55;
 				alarm[0] = room_speed;
-				InitCamera(1366, 768);
+				InitCamera(spawnXP1, spawnYP1, 1366, 768);
 				SetUI(buttonoverlay.gamesolo);
 				break;
 			case "COOP":

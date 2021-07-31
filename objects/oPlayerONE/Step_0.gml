@@ -240,21 +240,21 @@ if isMoving
 	//Accelerate
 	if speedCurrent != speedMax 
 	{
-		speedCurrent = lerp(speedCurrent, speedMax, 0.2);
+		speedCurrent = lerp(speedCurrent, speedMax, speedAccel);
 	}
 	//Boost control
 	if isBoosting
 	{
 		if boostCurrent != boostMax
 		{
-			boostCurrent = lerp(boostCurrent, boostMax, 0.2)
+			boostCurrent = lerp(boostCurrent, boostMax, speedAccel)
 		}
 	}
 	else
 	{
 		if boostCurrent != 0
 		{
-			boostCurrent = lerp(boostCurrent, 0, 0.2)
+			boostCurrent = lerp(boostCurrent, 0, speedAccel)
 		}
 	}
 	
@@ -274,17 +274,14 @@ if shootPrimary
 	if firePrimary
 	{
 		firePrimary = false;
-		alarm[1] = room_speed * 0.3;
+		alarm[1] = room_speed * ratePrimary;
 		//Spawn a bullet
-		var tx = lengthdir_x(10000, image_angle);
-        var ty = lengthdir_y(10000, image_angle);
-		var bp = instance_create_layer(phy_position_x+(tx*0.002), phy_position_y+(ty*0.002), "Players", oBullet);
-		bp.bColor = choose(c_red, c_blue, c_green);
-		bp.rot = -phy_rotation;
-		bp.xForce = tx;
-		bp.yForce = ty;
-		bp.xScale = 0.6;
-		bp.yScale = 0.6;
+		var ptx = lengthdir_x(10000, image_angle);
+        var pty = lengthdir_y(10000, image_angle);
+		var psx = phy_position_x+(ptx*0.002);
+		var psy = phy_position_y+(pty*0.002);
+		var pbc = choose(c_red, c_blue, c_green);
+		SpawnBullet(psx, psy, pbc, -phy_rotation, ptx, pty, 0.6, damagePrimary, id);
 	}
 }
 
@@ -294,16 +291,13 @@ if shootSecondary
 	{
 		//Spawn a bullet
 		fireSecondary = false;
-		alarm[2] = room_speed * 0.5;
+		alarm[2] = room_speed * rateSecondary;
 		//Spawn a bullet
-		var tx = lengthdir_x(10000, image_angle);
-        var ty = lengthdir_y(10000, image_angle);
-		var bs = instance_create_layer(phy_position_x+(tx*0.002), phy_position_y+(ty*0.002), "Players", oBullet);
-		bs.bColor = choose(c_purple, c_yellow, c_fuchsia);
-		bs.rot = -phy_rotation;
-		bs.xForce = tx;
-		bs.yForce = ty;
-		bs.xScale = 1.2;
-		bs.yScale = 1.2;
+		var stx = lengthdir_x(10000, image_angle);
+        var sty = lengthdir_y(10000, image_angle);
+		var ssx = phy_position_x+(stx*0.002);
+		var ssy = phy_position_y+(sty*0.002);
+		var sbc = choose(c_purple, c_yellow, c_fuchsia);
+		SpawnBullet(ssx, ssy, sbc, -phy_rotation, stx, sty, 1.2, damageSecondary, id);
 	}
 }

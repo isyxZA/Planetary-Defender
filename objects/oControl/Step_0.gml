@@ -32,19 +32,30 @@ if camera_get_view_width(myCamera) != targetWidth
 	cam_y = camera_get_view_y(myCamera);
 	cam_w = camera_get_view_width(myCamera);
 	cam_h = camera_get_view_height(myCamera);
-	//instance_deactivate_region(cam_x, cam_y, cam_w, cam_h, false, true);
-	//instance_activate_region(cam_x, cam_y, cam_w, cam_h, true);
-	//instance_activate_object(oPlayerONE);
 }
 
-if instance_exists(oPlayerONE) && oPlayerONE.isMoving
+if room == rmGame
 {
-	cam_x = camera_get_view_x(myCamera);
-	cam_y = camera_get_view_y(myCamera);
-	cam_w = camera_get_view_width(myCamera);
-	cam_h = camera_get_view_height(myCamera);
-	
-	//instance_deactivate_region(cam_x, cam_y, cam_w, cam_h, false, true);
-	//instance_activate_region(cam_x, cam_y, cam_w, cam_h, true);
-	//instance_activate_object(oPlayerONE);
+	switch global.netStatus
+	{
+		case "DISCONNECTED":
+			if instance_exists(oPlayerONE) 
+			{ 
+				if scoreP1 > global.highScoreP1 { global.highScoreP1 = scoreP1; }
+				if oPlayerONE.isMoving
+				{
+					cam_x = camera_get_view_x(myCamera);
+					cam_y = camera_get_view_y(myCamera);
+					cam_w = camera_get_view_width(myCamera);
+					cam_h = camera_get_view_height(myCamera);
+				}
+			}
+			break;
+		case "COOP":
+			break;
+		case "CLIENT":
+			break;
+		case "HOST":
+			break;
+	}
 }
