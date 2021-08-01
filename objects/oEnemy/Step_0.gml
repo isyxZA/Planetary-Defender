@@ -8,11 +8,16 @@ if canMove
 }
 
 var pd = point_distance(phy_position_x, phy_position_y, oPlanet.x, oPlanet.y)*0.004;
-scale = lerp(scale, min(1, max(0.2,pd)), 0.05);
+var scaleAdj = min(1, 0.1+pd);
+scale = lerp(scale, scaleAdj, 0.15);
 
 switch shape
 {
 	case "Circle":
+
+		if rCurrent >= r*1.5 { rTarget = r*-2; }
+		if rCurrent <= r*-1.5 { rTarget = r*2; }
+		rCurrent = lerp(rCurrent, rTarget, 0.015);
 		break;
 	case "Box":
 		physics_apply_torque(size*0.25);

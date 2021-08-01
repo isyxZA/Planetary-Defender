@@ -1,1 +1,2 @@
-fireSecondary = true;
+/// @description Secondary weapon trigger
+canSecondary = true;

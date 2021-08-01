@@ -47,11 +47,22 @@ if gamePad != -1
 	//Activate speed boost
 	if gamepad_button_check_pressed(gamePad, gp_shoulderl)
 	{
-		isBoosting = true;
+		if boostCurTime < boostMaxTime { isBoosting = true; }
 	}
 	if gamepad_button_check_released(gamePad, gp_shoulderl)
 	{
 		isBoosting = false;
+	}
+	
+	//Activate AOE Burst
+	if gamepad_button_check_pressed(gamePad, gp_shoulderr)
+	{
+		if canBurst 
+		{
+			canBurst = false;
+			burstCurTime = 0;
+			alarm[5] = 1;
+		}
 	}
 	
 	//Shoot weapons
@@ -64,7 +75,6 @@ if gamePad != -1
 	{
 		shootPrimary = false;
 	}
-	
 	//Fire secondary guns
 	if gamepad_button_check_pressed(gamePad, gp_shoulderlb)
 	{
@@ -73,6 +83,51 @@ if gamePad != -1
 	if gamepad_button_check_released(gamePad, gp_shoulderlb)
 	{
 		shootSecondary = false;
+	}
+	//Fire auto turret
+	if gamepad_button_check_pressed(gamePad, gp_face3)
+	{
+		if canTurret
+		{
+			canTurret = false;
+			shootTurret = true;
+			turretCurTime = 0;
+			turretCurVolley = 0;
+			alarm[3] = turretRate;
+		}
+	}
+	//Fire lazer
+	if gamepad_button_check_pressed(gamePad, gp_face4)
+	{
+		if canLazer
+		{
+			canLazer = false;
+			shootLazer = true;
+			//Spawn lazer
+			SpawnLazer(phy_position_x, phy_position_y, c_blue, id);
+		}
+	}
+	//Fire homing missiles
+	if gamepad_button_check_pressed(gamePad, gp_face1)
+	{
+		if canMissile
+		{
+			canMissile = false;
+			shootMissile = true;
+			missileCurTime = 0;
+			missileCurVolley = 0;
+			alarm[4] = room_speed * 0.5;
+		}
+	}
+	//Lay a mine
+	if gamepad_button_check_pressed(gamePad, gp_face2)
+	{
+		if minesActive < minesMax
+		{
+			//Spawn a mine
+			++minesActive;
+			SpawnBomb(phy_position_x, phy_position_y, c_red, minesRadius, id);
+		}
 	}
 	
 	//Set camera zoom level
@@ -234,6 +289,38 @@ else
 	}
 }
 
+//Boost control
+if isBoosting
+{
+	if boostCurrent != boostMax
+	{
+		boostCurrent = lerp(boostCurrent, boostMax, speedAccel)
+	}
+	
+	if boostCurTime < boostMaxTime
+	{
+		//Increase time spent boosting
+		boostCurTime += 2;
+	}
+	else
+	{
+		isBoosting = false;
+	}
+}
+else
+{
+	if boostCurrent != 0
+	{
+		boostCurrent = lerp(boostCurrent, 0, speedAccel)
+	}
+	
+	if boostCurTime > 0
+	{
+		boostCurTime -= boostChargeRate;
+	}
+}
+
+
 if isMoving
 {
 	//Speed control
@@ -241,21 +328,6 @@ if isMoving
 	if speedCurrent != speedMax 
 	{
 		speedCurrent = lerp(speedCurrent, speedMax, speedAccel);
-	}
-	//Boost control
-	if isBoosting
-	{
-		if boostCurrent != boostMax
-		{
-			boostCurrent = lerp(boostCurrent, boostMax, speedAccel)
-		}
-	}
-	else
-	{
-		if boostCurrent != 0
-		{
-			boostCurrent = lerp(boostCurrent, 0, speedAccel)
-		}
 	}
 	
 	//Movement and Collision Detection\\
@@ -271,33 +343,96 @@ if isMoving
 
 if shootPrimary
 {
-	if firePrimary
+	if canPrimary
 	{
-		firePrimary = false;
-		alarm[1] = room_speed * ratePrimary;
+		canPrimary = false;
+		alarm[1] = room_speed * primaryRate;
 		//Spawn a bullet
 		var ptx = lengthdir_x(10000, image_angle);
         var pty = lengthdir_y(10000, image_angle);
 		var psx = phy_position_x+(ptx*0.002);
 		var psy = phy_position_y+(pty*0.002);
-		var pbc = choose(c_red, c_blue, c_green);
-		SpawnBullet(psx, psy, pbc, -phy_rotation, ptx, pty, 0.6, damagePrimary, id);
+		var pbc = c_red;
+		SpawnBullet(psx, psy, pbc, -phy_rotation, ptx, pty, 0.6, primaryDamage, id);
 	}
 }
 
 if shootSecondary
 {
-	if fireSecondary
+	if canSecondary
 	{
 		//Spawn a bullet
-		fireSecondary = false;
-		alarm[2] = room_speed * rateSecondary;
+		canSecondary = false;
+		alarm[2] = room_speed * secondaryRate;
 		//Spawn a bullet
 		var stx = lengthdir_x(10000, image_angle);
         var sty = lengthdir_y(10000, image_angle);
 		var ssx = phy_position_x+(stx*0.002);
 		var ssy = phy_position_y+(sty*0.002);
-		var sbc = choose(c_purple, c_yellow, c_fuchsia);
-		SpawnBullet(ssx, ssy, sbc, -phy_rotation, stx, sty, 1.2, damageSecondary, id);
+		var sbc = c_purple;
+		SpawnBullet(ssx, ssy, sbc, -phy_rotation, stx, sty, 1.2, secondaryDamage, id);
+	}
+}
+
+if shootLazer
+{
+	if lazerCurLife > 0 
+	{
+		lazerCurLife -= 2;
+	}
+	else
+	{
+		shootLazer = false;
+		//Destroy existing lazer
+		with oLazer
+		{
+			if owner == oPlayerONE.id
+			{
+				instance_destroy();
+			}
+		}
+	}
+}
+else
+{
+	if lazerCurLife < lazerMaxLife
+	{
+		lazerCurLife += lazerChargeRate;
+	}
+	else
+	{
+		if canLazer == false 
+		{ 
+			canLazer = true; 
+			lazerCurLife = lazerMaxLife;
+		}
+	}
+}
+
+if shootMissile
+{
+	shootMissile = false;
+	//Spawn a missile
+	++missileCurVolley;
+	var mt = instance_nearest(phy_position_x, phy_position_y, oEnemy);
+	SpawnMissile(phy_position_x, phy_position_y, c_yellow, mt, id);
+}
+
+if shootTurret
+{
+	shootTurret = false;
+	//Spawn a bullet
+	++turretCurVolley;
+	//Get target direction
+	var tgt = instance_nearest(phy_position_x, phy_position_y, oEnemy);
+	if tgt != noone
+	{
+		var tda = point_direction(phy_position_x, phy_position_y, tgt.phy_position_x, tgt.phy_position_y);
+		var ttx = lengthdir_x(10000, tda);
+        var tty = lengthdir_y(10000, tda);
+		var tsx = phy_position_x+(ttx*0.002);
+		var tsy = phy_position_y+(tty*0.002);
+		var tbc = c_green;
+		SpawnBullet(tsx, tsy, tbc, tda, ttx, tty, 0.4, turretDamage, id);
 	}
 }

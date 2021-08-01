@@ -19,6 +19,8 @@ function FixtureCreateCircle(fwidth, mass, bounce, slide, ldamp, adamp)
 {
 	var fixture = physics_fixture_create();
 	r = (fwidth * 0.5);
+	rCurrent = r;
+	rTarget = choose(r*-2, r*2);
 	physics_fixture_set_circle_shape(fixture, r);
 	physics_fixture_set_density(fixture, mass);
 	physics_fixture_set_restitution(fixture, bounce);

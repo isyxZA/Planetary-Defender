@@ -1,48 +1,88 @@
+//Movement Speed
 isMoving = false;
+hSpeed = 0;
+vSpeed = 0;
+hAxis = 0;
+vAxis = 0;
+dir = "E";
 speedCurrent = 0;
 speedMax = 40;
-speedAccel = 0.2;
 
+speedAccel = 0.2;
+//Speed Boost
 isBoosting = false;
 boostCurrent = 0;
 boostMax = 40;
-boostCooldown = room_speed * 2;
-boostChargeRate = 0.1;
+boostMaxTime = room_speed * 2;
+boostCurTime = 0;
+boostChargeRate = 2;
 
+//Primary Weapon
+shootPrimary = false;
+canPrimary = true;
+primaryRate = 0.3;
+primaryDamage = 7;
+
+//Secondary Weapon
+shootSecondary = false;
+canSecondary = true;
+secondaryRate = 0.5;
+secondaryDamage = 14;
+
+//AOE Burst Weapon
+canBurst = true;
 burstRadius = 128;
-burstCooldown = room_speed * 8;
-burstChargeRate = 0.1;
+burstCooldown = room_speed * 10;
+burstCurTime = burstCooldown;
 
+//Missiles Weapon
+shootMissile = false;
+canMissile = true;
 missileVolley = 4;
+missileCurVolley = 0;
 missileDamage = 20;
+missileCooldown = room_speed * 10;
+missileCurTime = missileCooldown;
 
-lazerLife = room_speed * 4;
+//Lazer Weapon
+shootLazer = false;
+canLazer = true;
+lazerMaxLife = room_speed * 10;
+lazerCurLife = lazerMaxLife;
 lazerChargeRate = 0.1;
 
-turretRate = 0.2;
+//Turret Weapon
+shootTurret = false;
+canTurret = true;
+turretVolley = 24;
+turretCurVolley = 0;
+turretRate = room_speed * 0.2;
 turretDamage = 5;
+turretCooldown = room_speed * 10;
+turretCurTime = turretCooldown;
 
-minesMax = 2;
-minesRadius = 128;
+//Mines Weapon
+minesMax = 1;
+minesRadius = 96;
+minesActive = 0;
 
-mxPrev = mouse_x;
-myPrev = mouse_y;
-
-canDamage = true;
-dTimer = room_speed;
-
-shootPrimary = false;
-firePrimary = true;
-ratePrimary = 0.3;
-damagePrimary = 7;
-shootSecondary = false;
-fireSecondary = true;
-rateSecondary = 0.5;
-damageSecondary = 14;
-
+//Shield
 shieldHealth = 10;
 shieldChargeRate = 0.1;
 
+//Hull
+hHealth = 100;
+
+//Mouse previous tracking
+mxPrev = mouse_x;
+myPrev = mouse_y;
+mTimer = 0;
+
+//Damage control
+canDamage = true;
+dTimer = room_speed;
+
+//Assign Controller
 if !ds_list_empty(global.controllers)
 {
 	gamePad = global.controllers[| 0];
@@ -52,44 +92,38 @@ else
 	gamePad = -1;
 }
 
-hSpeed = 0;
-vSpeed = 0;
-hAxis = 0;
-vAxis = 0;
-dir = "E";
-
-mTimer = 0;
-
+//Sprite animation
 aImage = 0;
 alarm[0] = room_speed * 0.1;
 
+//Feed stats to UI control
 //Primary Weapon Stats
-oControl.pRateP1 = ratePrimary;
-oControl.pDamageP1 = damagePrimary;
+oControl.pRateP1   = primaryRate;
+oControl.pDamageP1 = primaryDamage;
 //Secondary Weapon Stats
-oControl.sRateP1 = rateSecondary;
-oControl.sDamageP1 = damageSecondary;
+oControl.sRateP1   = secondaryRate;
+oControl.sDamageP1 = secondaryDamage;
 //Speed Stats
-oControl.sMaxP1 = speedMax;
+oControl.sMaxP1   = speedMax;
 oControl.sAccelP1 = speedAccel;
 //Boost Stats
-oControl.bRateP1 = boostChargeRate;
-oControl.bPowerP1 = boostMax;
+oControl.bRateP1  = boostChargeRate;
+oControl.bTimeP1  = boostMaxTime;
 //Shield Stats
 oControl.sStrengthP1 = shieldHealth;
 oControl.sRechargeP1 = shieldChargeRate;
 //Burst Stats
-oControl.bRadiusP1 = burstRadius;
-oControl.bCooldownP1 = burstChargeRate;
+oControl.bRadiusP1   = burstRadius;
+oControl.bCooldownP1 = burstCooldown;
 //Missiles Stats
 oControl.mVolleyP1 = missileVolley;
 oControl.mDamageP1 = missileDamage;
 //Lazer Stats
-oControl.lTimeP1 = lazerLife;
+oControl.lTimeP1     = lazerMaxLife;
 oControl.lCooldownP1 = lazerChargeRate;
 //Turret Stats
-oControl.tRateP1 = turretRate;
+oControl.tRateP1   = turretRate;
 oControl.tDamageP1 = turretDamage;
 //Mines Stats
-oControl.mMaxP1 = minesMax;
+oControl.mMaxP1    = minesMax;
 oControl.mRadiusP1 = minesRadius;

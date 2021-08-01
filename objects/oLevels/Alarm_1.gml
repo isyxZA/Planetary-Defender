@@ -12,7 +12,7 @@ if oControl.enemyCount < 200
 			case 0:
 				shape = "Circle";
 				mass = 0.5;
-				size = irandom_range(12, 86);
+				size = irandom_range(24, 86);
 				FixtureCreateCircle(size, mass, 0.8, 0.1, 0.2, 0.2);
 				var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
 				targetX = lengthdir_x(size*mass, dd);
@@ -21,7 +21,7 @@ if oControl.enemyCount < 200
 			case 1:
 				shape = "Box";
 				mass = 0.5;
-				size = irandom_range(12, 72);
+				size = irandom_range(24, 72);
 				FixtureCreateBox(size, size, mass, 0.7, 0.1, 0.2, 0.2);
 				var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
 				targetX = lengthdir_x(size*mass, dd);
@@ -30,7 +30,7 @@ if oControl.enemyCount < 200
 			case 2:
 				shape = "Triangle";
 				mass = 0.5;
-				size = irandom_range(12, 96);
+				size = irandom_range(24, 96);
 				FixtureCreateTriangle(size, size, mass, 0.5, 0.1, 0.2, 0.2);
 				var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
 				targetX = lengthdir_x(size*mass, dd);

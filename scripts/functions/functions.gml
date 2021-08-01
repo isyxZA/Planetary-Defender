@@ -44,7 +44,7 @@ function SetUI(overlay)
 			//Create the UI surfaces
 			uimidX = (display_get_gui_width() * 0.5);
 			//Bottom Center Main Panel
-			uiW_1a = 400;
+			uiW_1a = 500;
 			uiH_1a = 150;
 			uiSurf_1a = surface_create(uiW_1a, uiH_1a);
             surface_set_target(uiSurf_1a);
@@ -79,7 +79,7 @@ function SpawnButton(xpos, ypos, text, overlay)
 	btn.activeOverlay = overlay;
 }
 
-/// @description SpawnBullet(xpos, ypos, color, angle, hforce, vforce, scale, spawner)
+/// @description SpawnBullet(type, xpos, ypos, color, angle, hforce, vforce, scale, damage, spawner)
 /// @param xpos
 /// @param ypos
 /// @param color
@@ -100,6 +100,47 @@ function SpawnBullet(xpos, ypos, color, angle, hforce, vforce, scale, damage, sp
 	blt.yScale = scale;
 	blt.damage = damage;
 	blt.owner  = spawner;
+	blt.phy_fixed_rotation = true;
+}
+
+/// @description SpawnLazer(xpos, ypos, color, spawner)
+/// @param xpos
+/// @param ypos
+/// @param color
+/// @param spawner
+function SpawnLazer(xpos, ypos, color, spawner)
+{
+	var lzr = instance_create_layer(xpos, ypos, "Players", oLazer);
+	lzr.bColor = color;
+	lzr.owner  = spawner;
+}
+
+/// @description SpawnBomb(xpos, ypos, color, radius, spawner)
+/// @param xpos
+/// @param ypos
+/// @param color
+/// @param radius
+/// @param spawner
+function SpawnBomb(xpos, ypos, color, radius, spawner)
+{
+	var bmb = instance_create_layer(xpos, ypos, "Players", oBomb);
+	bmb.bColor = color;
+	bmb.bRadius = radius;
+	bmb.owner  = spawner;
+}
+
+/// @description SpawnMissile(xpos, ypos, color, target, spawner)
+/// @param xpos
+/// @param ypos
+/// @param color
+/// @param target
+/// @param spawner
+function SpawnMissile(xpos, ypos, color, target, spawner)
+{
+	var msl = instance_create_layer(xpos, ypos, "Players", oMissile);
+	msl.bColor = color;
+	msl.target = target;
+	msl.owner  = spawner;
 }
 
 /// @description Chance(percent) Returns true or false depending on RNG

@@ -1,0 +1,13 @@
+bColor = c_white;
+damage = 50;
+rot = 0;
+xScale = 0.7;
+yScale = 0.7;
+xForce = 0;
+yForce = 0;
+canTrack = false;
+target = -1;
+owner = -1;
+alarm[1] = room_speed * 1.5;
+var a = random(360);
+physics_apply_impulse(phy_position_x, phy_position_y, lengthdir_x(10, a), lengthdir_y(10, a));

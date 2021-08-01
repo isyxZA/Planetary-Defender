@@ -1,7 +1,7 @@
 switch shape
 {
 	case "Circle":
-		draw_circle_color(x, y, r * scale, eColor, eColor, true);
+		draw_circle_color(x, y, rCurrent * scale, eColor, eColor, true);
 		break;
 	case "Box":
 		draw_rectangle_color(x - lengthdir_x(w, image_angle), y - lengthdir_y(h, image_angle), x + lengthdir_x(w, image_angle), y + lengthdir_y(h, image_angle),

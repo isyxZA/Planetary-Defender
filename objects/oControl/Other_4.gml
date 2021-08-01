@@ -9,6 +9,7 @@ switch room
 		SetUI(buttonoverlay.lobby);
 		break;
 	case rmGame:
+		alarm[1] = room_speed;
 		switch global.netStatus
 		{
 			case "DISCONNECTED":

@@ -3,36 +3,61 @@ if room == rmGame
 	switch global.netStatus
 	{
 		case "DISCONNECTED":
-			var cw_t = gpu_get_colorwriteenable();
-			cw_t[3] = false;
-			gpu_set_colorwriteenable(cw_t);
+			//var cw_t = gpu_get_colorwriteenable();
+			//cw_t[3] = false;
+			//gpu_set_colorwriteenable(cw_t);
 			if surface_exists(uiSurf_1a) 
 			{
 				//MAIN PANEL\\
 	            surface_set_target(uiSurf_1a);
-	            draw_clear_alpha(c_black, 0.6);
+	            draw_clear_alpha(c_black, 0);
 				draw_set_halign(fa_center);
 				draw_set_valign(fa_middle);
 				draw_set_font(fnt12);
+				//Turret && Missile Bar
+				draw_sprite_ext(sButton, 0, 0, 75, 0.25, 0.35, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 0, 113, 0.25, 0.35, 0, c_white, 1);
+				draw_sprite_ext(sUI, 0, 0, 75, 0.5, 1.5, 0, c_white, 1);
+				draw_text(25, 87, "Turret");
+				draw_text(25, 125, "Missile");
+				//Lazer && Mines Bar
+				draw_sprite_ext(sButton, 0, 450, 75, 0.25, 0.35, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 450, 113, 0.25, 0.35, 0, c_white, 1);
+				draw_sprite_ext(sUI, 0, 450, 75, 0.5, 1.5, 0, c_white, 1);
+				draw_text(475, 87, "Lazer");
+				draw_text(475, 125, "Mines");
 				//Boost Bar
-				draw_sprite_ext(sButton, 0, 0, 50, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 0, 50, 0.5, 1.5, 0, c_white, 1);
-				draw_text(25, 62, "Boost");
-				//Hull Health
-				draw_sprite_ext(sButton, 0, 50, 25, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 50, 25, 0.5, 1.5, 0, c_white, 1);
-				draw_text(75, 38, "Hull");
-				//Commmunications Panel
-				draw_sprite_ext(sUI, 0, 100, 0, 2, 1.5, 0, c_white, 1);
-				draw_text(200, 16, "-----------");
-				//Shield Level
-				draw_sprite_ext(sButton, 0, 300, 25, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 300, 25, 0.5, 1.5, 0, c_white, 1);
-				draw_text(325, 38, "Shield");
+				draw_sprite_ext(sButton, 0, 50, 50, 0.25, 0.35, 0, c_white, 1);
+				draw_sprite_ext(sUI, 0, 50, 50, 0.5, 1.5, 0, c_white, 1);
+				draw_text(75, 62, "Boost");
+				//draw_text(75, 100, string(bBarP1));
 				//AOE Burst
-				draw_sprite_ext(sButton, 0, 350, 50, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 350, 50, 0.5, 1.5, 0, c_white, 1);
-				draw_text(375, 62, "Burst");
+				draw_sprite_ext(sButton, 0, 400, 50, 0.25, 0.35, 0, c_white, 1);
+				draw_sprite_ext(sUI, 0, 400, 50, 0.5, 1.5, 0, c_white, 1);
+				draw_text(425, 62, "Burst");
+				//Commmunications Panel
+				draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+				draw_text(250, 16, "-----------");
+				//Hull Health
+				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
+				draw_sprite_ext(sUI, 0, 100, 25, 0.5, 1.5, 0, c_white, 1);
+				draw_text(125, 38, "Hull");
+				//Shield Level
+				draw_sprite_ext(sButton, 0, 350, 25, 0.25, 0.35, 0, c_white, 1);
+				draw_sprite_ext(sUI, 0, 350, 25, 0.5, 1.5, 0, c_white, 1);
+				draw_text(375, 38, "Shield");
+				
+				draw_set_alpha(0.5);
+				draw_healthbar(452, 112, 497, 99, lBarP1, c_black, c_red, c_green, 0, false, false);
+				draw_healthbar(452, 149, 497, 137, mmBarP1, c_black, c_red, c_green, 0, false, false);
+				draw_healthbar(2, 112, 47, 99, tBarP1, c_black, c_red, c_green, 1, false, false);
+				draw_healthbar(2, 149, 47, 137, mBarP1, c_black, c_red, c_green, 1, false, false);
+				draw_healthbar(402, 149, 447, 74, bbBarP1, c_black, c_red, c_green, 2, false, false);
+				draw_healthbar(52, 149, 97, 74, bBarP1, c_black, c_red, c_green, 2, false, false);
+				draw_healthbar(102, 149, 147, 49, hBarP1, c_black, c_red, c_green, 2, false, false);
+				draw_healthbar(352, 149, 397, 49, sBarP1, c_black, c_red, c_green, 2, false, false);
+				draw_set_alpha(1);
+				
 				surface_reset_target();
 			}
 			else
@@ -46,7 +71,7 @@ if room == rmGame
 			{
 				//SIDE PANEL\\
 				surface_set_target(uiSurf_1b);
-	            draw_clear_alpha(c_black, 0.6);
+	            draw_clear_alpha(c_black, 0);
 				draw_sprite_ext(sUI, 0, 0, 0, 1, 6, 0, c_white, 1);
 				draw_set_halign(fa_center);
 				draw_set_valign(fa_middle);
@@ -67,7 +92,7 @@ if room == rmGame
 				draw_sprite_ext(sButton, 0, 0, vsep1 * 8, 0.5, 0.35, 0, c_white, 1);
 				draw_sprite_ext(sButton, 0, 0, vsep1 * 9, 0.5, 0.35, 0, c_white, 1);
 				
-				draw_set_color(c_gray);
+				draw_set_color(c_white);
 				draw_text(50 - 1, vsep1b, "Primary");
 				draw_text(50 - 1, vsep1 + vsep1b, "Secondary");
 				draw_text(50 - 1, (vsep1 * 2) + vsep1b, "Speed");
@@ -109,7 +134,7 @@ if room == rmGame
 				draw_text(8, vsep1 + (vsep1a * 4), "Damage: " + string(sDamageP1));
 				draw_text(8, (vsep1 * 2) + (vsep1a * 3), "Max: " + string(sMaxP1));
 				draw_text(8, (vsep1 * 2) + (vsep1a * 4), "Acceleration: " + string(sAccelP1));
-				draw_text(8, (vsep1 * 3) + (vsep1a * 3), "Power: " + string(bPowerP1));
+				draw_text(8, (vsep1 * 3) + (vsep1a * 3), "Duration: " + string(bTimeP1));
 				draw_text(8, (vsep1 * 3) + (vsep1a * 4), "Cooldown: " + string(bRateP1));
 				draw_text(8, (vsep1 * 4) + (vsep1a * 3), "Strength: " + string(sStrengthP1));
 				draw_text(8, (vsep1 * 4) + (vsep1a * 4), "Recharge: " + string(sRateP1));
@@ -117,7 +142,7 @@ if room == rmGame
 				draw_text(8, (vsep1 * 5) + (vsep1a * 4), "Cooldown: " + string(bCooldownP1));
 				draw_text(8, (vsep1 * 6) + (vsep1a * 3), "Volley Size: " + string(mVolleyP1));
 				draw_text(8, (vsep1 * 6) + (vsep1a * 4), "Damage: " + string(mDamageP1));
-				draw_text(8, (vsep1 * 7) + (vsep1a * 3), "Max Time: " + string(lTimeP1));
+				draw_text(8, (vsep1 * 7) + (vsep1a * 3), "Duration: " + string(lTimeP1));
 				draw_text(8, (vsep1 * 7) + (vsep1a * 4), "Cooldown: " + string(lCooldownP1));
 				draw_text(8, (vsep1 * 8) + (vsep1a * 3), "Fire Rate: " + string(tRateP1));
 				draw_text(8, (vsep1 * 8) + (vsep1a * 4), "Damage: " + string(tDamageP1));
@@ -133,8 +158,8 @@ if room == rmGame
 	            draw_clear(c_black);
 	            surface_reset_target();
 			}
-			cw_t[3] = true;
-			gpu_set_colorwriteenable(cw_t);
+			//cw_t[3] = true;
+			//gpu_set_colorwriteenable(cw_t);
 			draw_set_halign(fa_center);
 			draw_set_valign(fa_middle);
 			draw_set_font(fnt12);
