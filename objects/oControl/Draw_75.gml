@@ -1,8 +1,8 @@
 if room == rmGame
 {
-	switch global.netStatus
+	switch global.gameMode
 	{
-		case "DISCONNECTED":
+		case "SOLO":
 			if surface_exists(uiSurf_1a) 
 			{
 	            draw_surface_stretched_ext(uiSurf_1a, uiX_1a, uiY_1a, uiW_1a, uiH_1a, c_white, 1);

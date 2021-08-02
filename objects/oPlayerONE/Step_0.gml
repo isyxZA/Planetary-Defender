@@ -1,292 +1,384 @@
 /// @description Player Inputs
-if gamePad != -1
+switch playerInput
 {
-	//Game Pad Inputs\\
-	//Determine movement direction
-	var hxa = gamepad_axis_value(gamePad, gp_axislh);
-	var hya = gamepad_axis_value(gamePad, gp_axislv);
+	case "GAMEPAD":
+		if gamePad != -1
+		{
+			//Game Pad Inputs\\
+			//Determine movement direction
+			var hxa = gamepad_axis_value(gamePad, gp_axislh);
+			var hya = gamepad_axis_value(gamePad, gp_axislv);
 	
-	var tRatio;
-	if isBoosting { tRatio = 0.05; }
-	else { tRatio = 0.1; }
+			var tRatio;
+			if isBoosting { tRatio = 0.05; }
+			else { tRatio = 0.1; }
 	
-	if hAxis != hxa { hAxis = lerp(hAxis, hxa, tRatio); }
-	if vAxis != hya { vAxis = lerp(vAxis, hya, tRatio); }
+			if hAxis != hxa { hAxis = lerp(hAxis, hxa, tRatio); }
+			if vAxis != hya { vAxis = lerp(vAxis, hya, tRatio); }
 
-	if hAxis != 0 || vAxis != 0
-	{
-
-		//phy_rotation = point_direction(0, 0, hAxis, vAxis);
-		isMoving = true;
-	}
-	else
-	{
-		isMoving = false;
-	}
-	
-	//Determine look angle
-	var hPoint = gamepad_axis_value(gamePad, gp_axisrh);
-	var vPoint = gamepad_axis_value(gamePad, gp_axisrv);
-
-	if hPoint != 0 || vPoint != 0
-	{
-		mTimer = 0;
-		var pdir = point_direction(0, 0, hPoint, -vPoint);
-		phy_rotation += angle_difference(pdir, phy_rotation) * 0.1;
-	}
-	else
-	{
-		if mTimer < room_speed { ++mTimer; }
-		if mTimer >= room_speed
-		{
-			var pdir = point_direction(0, 0, hAxis, -vAxis);
-			phy_rotation += angle_difference(pdir, phy_rotation) * 0.1;
-		}
-	}
-	
-	//Activate speed boost
-	if gamepad_button_check_pressed(gamePad, gp_shoulderl)
-	{
-		if boostCurTime < boostMaxTime { isBoosting = true; }
-	}
-	if gamepad_button_check_released(gamePad, gp_shoulderl)
-	{
-		isBoosting = false;
-	}
-	
-	//Activate AOE Burst
-	if gamepad_button_check_pressed(gamePad, gp_shoulderr)
-	{
-		if canBurst 
-		{
-			canBurst = false;
-			burstCurTime = 0;
-			alarm[5] = 1;
-		}
-	}
-	
-	//Shoot weapons
-	//Fire main guns
-	if gamepad_button_check_pressed(gamePad, gp_shoulderrb)
-	{
-		shootPrimary = true;
-	}
-	if gamepad_button_check_released(gamePad, gp_shoulderrb)
-	{
-		shootPrimary = false;
-	}
-	//Fire secondary guns
-	if gamepad_button_check_pressed(gamePad, gp_shoulderlb)
-	{
-		shootSecondary = true;
-	}
-	if gamepad_button_check_released(gamePad, gp_shoulderlb)
-	{
-		shootSecondary = false;
-	}
-	//Fire auto turret
-	if gamepad_button_check_pressed(gamePad, gp_face3)
-	{
-		if canTurret
-		{
-			canTurret = false;
-			shootTurret = true;
-			turretCurTime = 0;
-			turretCurVolley = 0;
-			alarm[3] = turretRate;
-		}
-	}
-	//Fire lazer
-	if gamepad_button_check_pressed(gamePad, gp_face4)
-	{
-		if canLazer
-		{
-			canLazer = false;
-			shootLazer = true;
-			//Spawn lazer
-			SpawnLazer(phy_position_x, phy_position_y, c_blue, id);
-		}
-	}
-	//Fire homing missiles
-	if gamepad_button_check_pressed(gamePad, gp_face1)
-	{
-		if canMissile
-		{
-			canMissile = false;
-			shootMissile = true;
-			missileCurTime = 0;
-			missileCurVolley = 0;
-			alarm[4] = room_speed * 0.5;
-		}
-	}
-	//Lay a mine
-	if gamepad_button_check_pressed(gamePad, gp_face2)
-	{
-		if minesActive < minesMax
-		{
-			//Spawn a mine
-			++minesActive;
-			SpawnBomb(phy_position_x, phy_position_y, c_red, minesRadius, id);
-		}
-	}
-	
-	//Set camera zoom level
-	if gamepad_button_check_pressed(gamePad, gp_padu)
-	{ 
-	    if oControl.zoomLevel != 1
-		{
-	        oControl.zoomLevel -= 1;
-	        if oControl.zoomLevel < 1 { oControl.zoomLevel = 1; }
-			//Set target width according to zoom level
-			switch oControl.zoomLevel 
+			if hAxis != 0 || vAxis != 0
 			{
-			    case 1:
-			        oControl.targetWidth  = 960;
-			        break;
-			    case 2:
-			        oControl.targetWidth  = 1366;
-			        break;
-			    case 3:
-			        oControl.targetWidth  = 1600;
-			        break;
+
+				//phy_rotation = point_direction(0, 0, hAxis, vAxis);
+				isMoving = true;
 			}
-	    }
-	} 
-	else if gamepad_button_check_pressed(gamePad, gp_padd)
-	{ 
-	    if oControl.zoomLevel != 3
-		{
-	        oControl.zoomLevel += 1;
-	        if oControl.zoomLevel > 3 { oControl.zoomLevel = 3; }
-			//Set target width according to zoom level
-			switch oControl.zoomLevel 
+			else
 			{
-			    case 1:
-			        oControl.targetWidth  = 960;
-			        break;
-			    case 2:
-			        oControl.targetWidth  = 1366;
-			        break;
-			    case 3:
-			        oControl.targetWidth  = 1600;
-			        break;
+				isMoving = false;
 			}
-	    }
-	}
-}
-else
-{
-	//Keyboard and Mouse Inputs\\
-	//Determine movement direction
-	var up    = 0;
-	var down  = 0;
-	var left  = 0;
-	var right = 0;
 	
-	if keyboard_check(ord("W")) { up    = -1; } 
-	if keyboard_check(ord("S")) { down  =  1; }
-	if keyboard_check(ord("A")) { left  = -1; }
-	if keyboard_check(ord("D")) { right =  1; } 
+			//Determine look angle
+			var hPoint = gamepad_axis_value(gamePad, gp_axisrh);
+			var vPoint = gamepad_axis_value(gamePad, gp_axisrv);
+
+			if hPoint != 0 || vPoint != 0
+			{
+				mTimer = 0;
+				var pdir = point_direction(0, 0, hPoint, -vPoint);
+				phy_rotation += angle_difference(pdir, phy_rotation) * 0.1;
+			}
+			else
+			{
+				if mTimer < room_speed { ++mTimer; }
+				if mTimer >= room_speed
+				{
+					var pdir = point_direction(0, 0, hAxis, -vAxis);
+					phy_rotation += angle_difference(pdir, phy_rotation) * 0.1;
+				}
+			}
 	
-	hAxis = left + right;
-	vAxis = up + down;
+			//Activate speed boost
+			if gamepad_button_check_pressed(gamePad, gp_shoulderl)
+			{
+				if boostCurTime < boostMaxTime { isBoosting = true; }
+			}
+			if gamepad_button_check_released(gamePad, gp_shoulderl)
+			{
+				isBoosting = false;
+			}
 	
-	if hAxis != 0 || vAxis != 0
-	{
-		if global.netStatus == "COOP"
+			//Activate AOE Burst
+			if gamepad_button_check_pressed(gamePad, gp_shoulderr)
+			{
+				if canBurst 
+				{
+					canBurst = false;
+					burstCurTime = 0;
+					alarm[5] = 1;
+				}
+			}
+	
+			//Shoot weapons
+			//Fire main guns
+			if gamepad_button_check_pressed(gamePad, gp_shoulderrb)
+			{
+				shootPrimary = true;
+			}
+			if gamepad_button_check_released(gamePad, gp_shoulderrb)
+			{
+				shootPrimary = false;
+			}
+			//Fire secondary guns
+			if gamepad_button_check_pressed(gamePad, gp_shoulderlb)
+			{
+				shootSecondary = true;
+			}
+			if gamepad_button_check_released(gamePad, gp_shoulderlb)
+			{
+				shootSecondary = false;
+			}
+			//Fire auto turret
+			if gamepad_button_check_pressed(gamePad, gp_face3)
+			{
+				if canTurret
+				{
+					canTurret = false;
+					shootTurret = true;
+					turretCurTime = 0;
+					turretCurVolley = 0;
+					alarm[3] = turretRate;
+				}
+			}
+			//Fire lazer
+			if gamepad_button_check_pressed(gamePad, gp_face4)
+			{
+				if canLazer
+				{
+					canLazer = false;
+					shootLazer = true;
+					//Spawn lazer
+					SpawnLazer(phy_position_x, phy_position_y, c_blue, id);
+				}
+			}
+			//Fire homing missiles
+			if gamepad_button_check_pressed(gamePad, gp_face1)
+			{
+				if canMissile
+				{
+					canMissile = false;
+					shootMissile = true;
+					missileCurTime = 0;
+					missileCurVolley = 0;
+					alarm[4] = room_speed * 0.5;
+				}
+			}
+			//Lay a mine
+			if gamepad_button_check_pressed(gamePad, gp_face2)
+			{
+				if minesActive < minesMax
+				{
+					//Spawn a mine
+					++minesActive;
+					SpawnBomb(phy_position_x, phy_position_y, c_red, minesRadius, id);
+				}
+			}
+	
+			//Set camera zoom level
+			if gamepad_button_check_pressed(gamePad, gp_padu)
+			{ 
+			    if oControl.zoomLevel != 1
+				{
+			        oControl.zoomLevel -= 1;
+			        if oControl.zoomLevel < 1 { oControl.zoomLevel = 1; }
+					//Set target width according to zoom level
+					switch oControl.zoomLevel 
+					{
+					    case 1:
+					        oControl.targetWidth  = 960;
+					        break;
+					    case 2:
+					        oControl.targetWidth  = 1366;
+					        break;
+					    case 3:
+					        oControl.targetWidth  = 1600;
+					        break;
+					}
+			    }
+			} 
+			else if gamepad_button_check_pressed(gamePad, gp_padd)
+			{ 
+			    if oControl.zoomLevel != 3
+				{
+			        oControl.zoomLevel += 1;
+			        if oControl.zoomLevel > 3 { oControl.zoomLevel = 3; }
+					//Set target width according to zoom level
+					switch oControl.zoomLevel 
+					{
+					    case 1:
+					        oControl.targetWidth  = 960;
+					        break;
+					    case 2:
+					        oControl.targetWidth  = 1366;
+					        break;
+					    case 3:
+					        oControl.targetWidth  = 1600;
+					        break;
+					}
+			    }
+			}
+		}
+		else
 		{
+			playerInput = "KEYBOARD";
+		}
+		break;
+	case "KEYBOARD":
+		//Keyboard and Mouse Inputs\\
+		var pkey;
+		var skey;
+		var up    = 0;
+		var down  = 0;
+		var left  = 0;
+		var right = 0;
+	
+		if keyboard_check(ord("W")) { up    = -1; } 
+		if keyboard_check(ord("S")) { down  =  1; }
+		if keyboard_check(ord("A")) { left  = -1; }
+		if keyboard_check(ord("D")) { right =  1; } 
+		
+		//Determine movement direction
+		hAxis = left + right;
+		vAxis = up + down;
+	
+		if hAxis != 0 || vAxis != 0
+		{
+			//if splitKeyboard { phy_rotation = point_direction(0, 0, hAxis, vAxis); }
+			isMoving = true;
+		}
+		else 
+		{
+			isMoving = false;
+		}
+	
+		if !splitKeyboard
+		{
+			pkey = mb_left;
+			skey = mb_right;
+			if device_mouse_raw_x(0) == mxPrev && device_mouse_raw_y(0)	== myPrev
+			{
+				if mTimer <= room_speed 
+				{ 
+					++mTimer; 
+				}
+			}
+			else
+			{
+				mTimer = 0;
+			}
+
+			//Determine look angle
+			if mTimer < room_speed
+			{
+				var pdir = -point_direction(phy_position_x, phy_position_y, mouse_x, mouse_y);
+				phy_rotation += angle_difference(pdir, phy_rotation) * 0.1;
+			}
+			else
+			{
+				var pdir = point_direction(0, 0, hAxis, -vAxis);
+				phy_rotation += angle_difference(pdir, phy_rotation) * 0.1;
+			}
+	
+			mxPrev = device_mouse_raw_x(0);
+			myPrev = device_mouse_raw_y(0);
+		}
+		//Playing with a split keyboardd
+		else
+		{
+			pkey = vk_shift;
+			skey = vk_control;
 			phy_rotation = point_direction(0, 0, hAxis, vAxis);
 		}
-		isMoving = true;
-	}
-	else 
-	{
-		isMoving = false;
-	}
 	
-	if global.netStatus != "COOP"
-	{
-		if device_mouse_raw_x(0) == mxPrev && device_mouse_raw_y(0)	== myPrev
+		//Activate speed boost
+		if keyboard_check_pressed(vk_space)
 		{
-			if mTimer <= room_speed 
-			{ 
-				++mTimer; 
-			}
+			if boostCurTime < boostMaxTime { isBoosting = true; }
 		}
-		else
+		if keyboard_check_released(vk_space)
 		{
-			mTimer = 0;
-		}
-
-		//Determine look angle
-		if mTimer < room_speed
-		{
-			var pdir = -point_direction(phy_position_x, phy_position_y, mouse_x, mouse_y);
-			phy_rotation += angle_difference(pdir, phy_rotation) * 0.1;
-		}
-		else
-		{
-			var pdir = point_direction(0, 0, hAxis, -vAxis);
-			phy_rotation += angle_difference(pdir, phy_rotation) * 0.1;
+			isBoosting = false;
 		}
 	
-		mxPrev = device_mouse_raw_x(0);
-		myPrev = device_mouse_raw_y(0);
-	}
-	
-	//Activate speed boost
-	if keyboard_check_pressed(vk_space)
-	{
-		isBoosting = true;
-	}
-	if keyboard_check_released(vk_space)
-	{
-		isBoosting = false;
-	}
-	
-	//Set camera zoom level
-	if mouse_wheel_up() || keyboard_check_pressed(vk_add) 
-	{ 
-	    if oControl.zoomLevel != 1
+		//Activate AOE Burst
+		if keyboard_check_pressed(vk_lalt)
 		{
-	        oControl.zoomLevel -= 1;
-	        if oControl.zoomLevel < 1 { oControl.zoomLevel = 1; }
-			//Set target width according to zoom level
-			switch oControl.zoomLevel 
+			if canBurst 
 			{
-			    case 1:
-			        oControl.targetWidth  = 960;
-			        break;
-			    case 2:
-			        oControl.targetWidth  = 1366;
-			        break;
-			    case 3:
-			        oControl.targetWidth  = 1600;
-			        break;
+				canBurst = false;
+				burstCurTime = 0;
+				alarm[5] = 1;
 			}
-	    }
-	} 
-	else if mouse_wheel_down() || keyboard_check_pressed(vk_subtract) 
-	{ 
-	    if oControl.zoomLevel != 3
+		}
+	
+		//Shoot weapons
+		//Fire main guns
+		if keyboard_check_pressed(pkey)
 		{
-	        oControl.zoomLevel += 1;
-	        if oControl.zoomLevel > 3 { oControl.zoomLevel = 3; }
-			//Set target width according to zoom level
-			switch oControl.zoomLevel 
+			shootPrimary = true;
+		}
+		if keyboard_check_released(pkey)
+		{
+			shootPrimary = false;
+		}
+		//Fire secondary guns
+		if keyboard_check_pressed(skey)
+		{
+			shootSecondary = true;
+		}
+		if keyboard_check_released(skey)
+		{
+			shootSecondary = false;
+		}
+		//Fire auto turret
+		if keyboard_check_pressed(ord("Q"))
+		{
+			if canTurret
 			{
-			    case 1:
-			        oControl.targetWidth  = 960;
-			        break;
-			    case 2:
-			        oControl.targetWidth  = 1366;
-			        break;
-			    case 3:
-			        oControl.targetWidth  = 1600;
-			        break;
+				canTurret = false;
+				shootTurret = true;
+				turretCurTime = 0;
+				turretCurVolley = 0;
+				alarm[3] = turretRate;
 			}
-	    }
-	}
+		}
+		//Fire lazer
+		if keyboard_check_pressed(ord("R"))
+		{
+			if canLazer
+			{
+				canLazer = false;
+				shootLazer = true;
+				//Spawn lazer
+				SpawnLazer(phy_position_x, phy_position_y, c_blue, id);
+			}
+		}
+		//Fire homing missiles
+		if keyboard_check_pressed(ord("E"))
+		{
+			if canMissile
+			{
+				canMissile = false;
+				shootMissile = true;
+				missileCurTime = 0;
+				missileCurVolley = 0;
+				alarm[4] = room_speed * 0.5;
+			}
+		}
+		//Lay a mine
+		if keyboard_check_pressed(ord("F"))
+		{
+			if minesActive < minesMax
+			{
+				//Spawn a mine
+				++minesActive;
+				SpawnBomb(phy_position_x, phy_position_y, c_red, minesRadius, id);
+			}
+		}
+		
+		//Set camera zoom level
+		if mouse_wheel_up() || keyboard_check_pressed(vk_add) 
+		{ 
+			if oControl.zoomLevel != 1
+			{
+			    oControl.zoomLevel -= 1;
+			    if oControl.zoomLevel < 1 { oControl.zoomLevel = 1; }
+				//Set target width according to zoom level
+				switch oControl.zoomLevel 
+				{
+					case 1:
+					    oControl.targetWidth  = 960;
+					    break;
+					case 2:
+					    oControl.targetWidth  = 1366;
+					    break;
+					case 3:
+					    oControl.targetWidth  = 1600;
+					    break;
+				}
+			}
+		} 
+		else if mouse_wheel_down() || keyboard_check_pressed(vk_subtract) 
+		{ 
+			if oControl.zoomLevel != 3
+			{
+			    oControl.zoomLevel += 1;
+			    if oControl.zoomLevel > 3 { oControl.zoomLevel = 3; }
+				//Set target width according to zoom level
+				switch oControl.zoomLevel 
+				{
+					case 1:
+					    oControl.targetWidth  = 960;
+					    break;
+					case 2:
+					    oControl.targetWidth  = 1366;
+					    break;
+					case 3:
+					    oControl.targetWidth  = 1600;
+					    break;
+				}
+			}
+		}
+		break;
 }
 
 //Boost control

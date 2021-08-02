@@ -4,7 +4,8 @@ if cnum > 0
 {
 	for (var i = 0; i < cnum; ++i;)
 	{
-		oControl.scoreP1 += 10;
+		oControl.scoreP1 += 100;
+		with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "+ 100"; tColor = c_yellow; }
 		with clist[| i] 
 		{
 			eHealth -= other.damage;

@@ -1,8 +1,8 @@
 if room == rmGame
 {
-	switch global.netStatus
+	switch global.gameMode
 	{
-		case "DISCONNECTED":
+		case "SOLO":
 			//var cw_t = gpu_get_colorwriteenable();
 			//cw_t[3] = false;
 			//gpu_set_colorwriteenable(cw_t);
@@ -37,7 +37,12 @@ if room == rmGame
 				draw_text(425, 62, "Burst");
 				//Commmunications Panel
 				draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
-				draw_text(250, 16, "-----------");
+				draw_text(250, 16, "--CONSOLE--");
+				draw_set_color(c_yellow);
+				draw_text(250, 40, "Planet Status");
+				draw_text(250, 56, string(oPlanet.pHealth));
+				draw_set_color(c_white);
+				draw_text(250, 72, string(timeMusic));
 				//Hull Health
 				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
 				draw_sprite_ext(sUI, 0, 100, 25, 0.5, 1.5, 0, c_white, 1);
@@ -176,10 +181,6 @@ if room == rmGame
 			draw_set_color(c_white);
 			break;
 		case "COOP":
-			break;
-		case "CLIENT":
-			break;
-		case "HOST":
 			break;
 	}
 }

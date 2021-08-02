@@ -8,13 +8,13 @@ switch iColor
 		{ 
 			other.primaryDamage += 0.5; 
 			oControl.pDamageP1 = other.primaryDamage; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "PRIMARY DMG ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "PRIMARY DMG ++"; tColor = other.iColor; }
 		}
 		else 
 		{ 
 			other.primaryRate -= 0.05; 
 			oControl.pRateP1 = other.primaryRate; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "PRIMARY DMG ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "PRIMARY DMG ++"; tColor = other.iColor; }
 		}
 		break;
 	case c_blue://Secondary
@@ -22,13 +22,13 @@ switch iColor
 		{ 
 			other.secondaryDamage += 0.5; 
 			oControl.sDamageP1 = other.secondaryDamage; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "SECONDARY DMG ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "SECONDARY DMG ++"; tColor = other.iColor; }
 		}
 		else 
 		{ 
 			other.secondaryRate -= 0.05;
 			oControl.sRateP1 = other.secondaryRate; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "SECONDARY RATE ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "SECONDARY RATE ++"; tColor = other.iColor; }
 		}
 		break;
 	case c_fuchsia://Speed
@@ -36,13 +36,13 @@ switch iColor
 		{ 
 			other.speedMax += 0.05; 
 			oControl.sMaxP1 = other.speedMax; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "SPEED MAX ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "SPEED MAX ++"; tColor = other.iColor; }
 		}
 		else 
 		{ 
 			other.speedAccel += 0.01; 
 			oControl.sAccelP1 = other.speedAccel; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "SPEED ACCEL ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "SPEED ACCEL ++"; tColor = other.iColor; }
 		}
 		break;
 	case c_green://Boost
@@ -50,13 +50,13 @@ switch iColor
 		{ 
 			other.boostMaxTime += 0.05; 
 			oControl.bTimeP1 = other.boostMaxTime; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "BOOST TIME ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "BOOST TIME ++"; tColor = other.iColor; }
 		}
 		else 
 		{ 
 			other.boostChargeRate += 0.05; 
 			oControl.bRateP1 = other.boostChargeRate; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "BOOST RATE ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "BOOST RATE ++"; tColor = other.iColor; }
 		}
 		break;
 	case c_maroon://Shield
@@ -64,13 +64,13 @@ switch iColor
 		{ 
 			other.shieldHealth += 0.5; 
 			oControl.sStrengthP1 = other.shieldHealth; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "SHIELD MAX ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "SHIELD MAX ++"; tColor = other.iColor; }
 		}
 		else 
 		{ 
 			other.shieldChargeRate += 0.05; 
 			oControl.sRechargeP1 = other.shieldChargeRate; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "SHIELD RATE ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "SHIELD RATE ++"; tColor = other.iColor; }
 		}
 		break;
 	case c_orange://Burst
@@ -78,13 +78,13 @@ switch iColor
 		{ 
 			other.burstRadius += 2; 
 			oControl.bRadiusP1 = other.burstRadius; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "BURST RADIUS ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "BURST RADIUS ++"; tColor = other.iColor; }
 		}
 		else 
 		{ 
 			other.burstCooldown -= 10; 
 			oControl.bCooldownP1 = other.burstCooldown; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "BURST RATE ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "BURST RATE ++"; tColor = other.iColor; }
 		}
 		break;
 	case c_purple://Missiles
@@ -92,13 +92,13 @@ switch iColor
 		{ 
 			other.missileDamage += 0.5; 
 			oControl.mDamageP1 = other.missileDamage; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "MISSILE DMG ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "MISSILE DMG ++"; tColor = other.iColor; }
 		}
 		else 
 		{ 
 			other.missileVolley += 1; 
 			oControl.mVolleyP1 = other.missileVolley; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "MISSILE AMT ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "MISSILE AMT ++"; tColor = other.iColor; }
 		}
 		break;
 	case c_silver://Lazer
@@ -106,13 +106,13 @@ switch iColor
 		{ 
 			other.lazerMaxLife += 10; 
 			oControl.lTimeP1 = other.lazerMaxLife; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "LAZER TIME ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "LAZER TIME ++"; tColor = other.iColor; }
 		}
 		else 
 		{ 
 			other.lazerChargeRate += 0.1; 
 			oControl.lCooldownP1 = other.lazerChargeRate; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "LAZER RATE ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "LAZER RATE ++"; tColor = other.iColor; }
 		}
 		break;
 	case c_teal://Turrets
@@ -120,13 +120,13 @@ switch iColor
 		{ 
 			other.turretDamage += 0.5; 
 			oControl.tDamageP1 = other.turretDamage; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "TURRET DMG ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "TURRET DMG ++"; tColor = other.iColor; }
 		}
 		else 
 		{ 
 			other.turretRate -= 1; 
 			oControl.tRateP1 = other.turretRate; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "TURRET RATE ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "TURRET RATE ++"; tColor = other.iColor; }
 		}
 		break;
 	case c_yellow://Mines
@@ -134,13 +134,13 @@ switch iColor
 		{ 
 			other.minesMax += 1; 
 			oControl.mMaxP1 = other.minesMax; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "MINES MAX ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "MINES MAX ++"; tColor = other.iColor; }
 		}
 		else 
 		{ 
 			other.minesRadius += 5; 
 			oControl.mRadiusP1 = other.minesRadius; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "MINE RADIUS ++"; }
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "MINE RADIUS ++"; tColor = other.iColor; }
 		}
 		break;
 }

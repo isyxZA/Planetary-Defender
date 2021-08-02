@@ -1,13 +1,9 @@
 enum buttonoverlay
 {
     main,
-	multiplayer,
-	hostgame,
-	findgame,
-	lobby,
+	sololobby,
+	cooplobby,
 	options,
 	gamesolo,
-	gamecoop,
-	gamehost,
-	gameclient
+	gamecoop
 }

@@ -47,7 +47,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "oPlayerTWO",
+  "name": "oPlayerONE",
   "tags": [],
   "resourceType": "GMObject",
 }

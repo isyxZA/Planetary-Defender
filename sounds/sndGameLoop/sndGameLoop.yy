@@ -11,7 +11,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "sndGameLoop.mp3",
-  "duration": 233.784,
+  "duration": 200.202454,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",

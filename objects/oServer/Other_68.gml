@@ -1,2 +1,0 @@
-/// @description Recieves data.
-ServerConnections();

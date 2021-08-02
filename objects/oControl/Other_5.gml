@@ -7,9 +7,9 @@ camera_destroy(myCamera);
 
 if room == rmGame
 {
-	switch global.netStatus
+	switch global.gameMode
 	{
-		case "DISCONNECTED":
+		case "SOLO":
 			if surface_exists(uiSurf_1a) 
 			{
 	           surface_free(uiSurf_1a);

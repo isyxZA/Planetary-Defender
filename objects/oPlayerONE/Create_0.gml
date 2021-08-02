@@ -1,3 +1,6 @@
+playerInput = "";
+splitKeyboard = false;
+
 //Movement Speed
 isMoving = false;
 hSpeed = 0;

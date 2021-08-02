@@ -1,1 +1,0 @@
-if instance_exists(oGetLAN) { with oGetLAN { instance_destroy(); } }
