@@ -6,3 +6,8 @@ enemyCount = 0;
 
 playMusic = false;
 timeMusic = 12300;
+
+uiScale = 1;
+
+InitPlayerOne();
+InitPlayerTwo();

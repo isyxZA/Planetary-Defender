@@ -4,14 +4,17 @@ if cnum > 0
 {
 	for (var i = 0; i < cnum; ++i;)
 	{
-		oControl.scoreP1 += 100;
+		if instance_exists(owner)
+		{
+			if owner == oPlayerONE.id { oControl.scoreP1 += 100; }
+			else { oControl.scoreP2 += 100; }
+		}
 		with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "+ 100"; tColor = c_yellow; }
 		with clist[| i] 
 		{
 			eHealth -= other.damage;
 			if eHealth <= 0 
 			{
-				oControl.scoreP1 += 10;
 				if Chance(0.2)
 				{
 					var item = instance_create_layer(phy_position_x, phy_position_y, "Players", oItem)

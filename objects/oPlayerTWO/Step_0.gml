@@ -107,7 +107,7 @@ switch playerInput
 					canLazer = false;
 					shootLazer = true;
 					//Spawn lazer
-					SpawnLazer(phy_position_x, phy_position_y, c_blue, id);
+					SpawnLazer(phy_position_x, phy_position_y, pColor, id);
 				}
 			}
 			//Fire homing missiles
@@ -153,7 +153,7 @@ switch playerInput
 		var key5;//Lazer
 		var key6;//Mines
 		
-		if splitKeyboard
+		if global.splitKeyboard
 		{ 
 			ukey = vk_up;//Up
 			dkey = vk_down;//Down
@@ -208,7 +208,7 @@ switch playerInput
 			isMoving = false;
 		}
 	
-		if !splitKeyboard
+		if !global.splitKeyboard
 		{
 			if device_mouse_raw_x(0) == mxPrev && device_mouse_raw_y(0)	== myPrev
 			{
@@ -236,11 +236,49 @@ switch playerInput
 	
 			mxPrev = device_mouse_raw_x(0);
 			myPrev = device_mouse_raw_y(0);
+			
+			//Fire main guns
+			if mouse_check_button_pressed(pkey)
+			{
+				shootPrimary = true;
+			}
+			if mouse_check_button_released(pkey)
+			{
+				shootPrimary = false;
+			}
+			//Fire secondary guns
+			if mouse_check_button_pressed(skey)
+			{
+				shootSecondary = true;
+			}
+			if mouse_check_button_released(skey)
+			{
+				shootSecondary = false;
+			}
 		}
 		//Playing with a split keyboard
 		else
 		{
 			phy_rotation = point_direction(0, 0, hAxis, vAxis);
+			
+			//Fire main guns
+			if keyboard_check_pressed(pkey)
+			{
+				shootPrimary = true;
+			}
+			if keyboard_check_released(pkey)
+			{
+				shootPrimary = false;
+			}
+			//Fire secondary guns
+			if keyboard_check_pressed(skey)
+			{
+				shootSecondary = true;
+			}
+			if keyboard_check_released(skey)
+			{
+				shootSecondary = false;
+			}
 		}
 	
 		//Activate speed boost
@@ -265,24 +303,6 @@ switch playerInput
 		}
 	
 		//Shoot weapons
-		//Fire main guns
-		if keyboard_check_pressed(pkey)
-		{
-			shootPrimary = true;
-		}
-		if keyboard_check_released(pkey)
-		{
-			shootPrimary = false;
-		}
-		//Fire secondary guns
-		if keyboard_check_pressed(skey)
-		{
-			shootSecondary = true;
-		}
-		if keyboard_check_released(skey)
-		{
-			shootSecondary = false;
-		}
 		//Fire auto turret
 		if keyboard_check_pressed(key3)
 		{
@@ -315,7 +335,7 @@ switch playerInput
 				canLazer = false;
 				shootLazer = true;
 				//Spawn lazer
-				SpawnLazer(phy_position_x, phy_position_y, c_blue, id);
+				SpawnLazer(phy_position_x, phy_position_y, pColor, id);
 			}
 		}
 		//Lay a mine

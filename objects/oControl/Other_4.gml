@@ -11,22 +11,23 @@ switch room
 		switch global.gameMode
 		{
 			case "SOLO":
-				var spx = room_width * 0.5;
-				var spy = room_height * 0.55;
-				InitPlayerOne(spx, spy);
+				spawnXP1 = room_width * 0.5;
+				spawnYP1 = room_height * 0.55;
 				alarm[0] = room_speed;
-				InitCamera(spx, spy, 1366, 768);
+				x = spawnXP1;
+				y = spawnYP1;
+				InitCamera(spawnXP1, spawnYP1, 1366, 768);
 				SetUI(buttonoverlay.gamesolo);
 				break;
 			case "COOP":
-				var spx1 = room_width * 0.45;
-				var spy1 = room_height * 0.55;
-				var spx2 = room_width * 0.45;
-				var spy2 = room_height * 0.55;
-				InitPlayerOne(spx1, spy1);
-				InitPlayerTwo(spx2, spy2);
+				spawnXP1 = room_width * 0.45;
+				spawnYP1 = room_height * 0.55;
+				spawnXP2 = room_width * 0.55;
+				spawnYP2 = room_height * 0.55;
 				alarm[0] = room_speed;
-				InitCamera(spx1, spy1, 1366, 768);
+				x = room_width * 0.5;
+				y = room_height * 0.55;
+				InitCamera(room_width * 0.5, room_height * 0.5, 1366, 768);
 				SetUI(buttonoverlay.gamecoop);
 				break;
 		}

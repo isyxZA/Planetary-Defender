@@ -1,7 +1,12 @@
+if instance_exists(owner)
+{
+	if owner == oPlayerONE.id { oControl.scoreP1 += 200; }
+	else { oControl.scoreP2 += 200; }
+}
+
 with other 
 { 
 	effect_create_above(ef_flare, phy_position_x, phy_position_y, 1, c_silver);
-	oControl.scoreP1 += 200;
 	with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "+ 200"; tColor = c_yellow; }
 	if Chance(0.2)
 	{

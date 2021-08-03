@@ -19,35 +19,30 @@ if global.canClick
                 case "Singleplayer":
 					global.gameMode = "SOLO";
 					with oButton { instance_destroy(); }
+					global.canClick = false;
+					oControl.alarm[2] = room_speed * 2;
 					SetUI(buttonoverlay.sololobby);
-                    //global.canClick = false;
-					//room_goto(rmGame);
                     break;
 				case "Multiplayer":
 					global.gameMode = "COOP";
 					with oButton { instance_destroy(); }
+					global.canClick = false;
+					oControl.alarm[2] = room_speed * 2;
 					SetUI(buttonoverlay.cooplobby);
-                    //global.canClick = false;
                     break;
                 case "Main Menu":
 					with oButton { instance_destroy(); }
 					room_goto(rmMenu);
-                    //global.canClick = false;
                     break;
                 case "Resume":
 					with oButton { instance_destroy(); }
-                    //global.canClick = false;
                     break;
                 case "Back":
 					with oButton { instance_destroy(); }
+					global.canClick = false;
+					oControl.alarm[2] = room_speed * 2;
 					switch activeOverlay
 					{
-						case "OPTIONS":
-							SetUI(buttonoverlay.sololobby);
-							break;
-						case "OPTIONSCOOP":
-							SetUI(buttonoverlay.cooplobby);
-							break;
 						case "LOBBY":
 							with oButton    { instance_destroy(); }
 							with oPlayerONE { instance_destroy(); }
@@ -66,8 +61,34 @@ if global.canClick
 					SetUI(buttonoverlay.options);
 					break;
 				case "Ready":
-					with oButton { instance_destroy(); }
-					room_goto(rmGame);
+					switch activeOverlay
+					{
+						case "LOBBY":
+							if oControl.inputP1 == ""
+							{
+								show_debug_message("No Player Input Selected!");
+							}
+							else
+							{
+								with oButton    { instance_destroy(); }
+								with oPlayerONE { instance_destroy(); }
+								room_goto(rmGame);
+							}
+							break;
+						case "LOBBYCOOP":
+							if oControl.inputP1 == "" || oControl.inputP2 == ""
+							{
+								show_debug_message("No Player Input Selected!");
+							}
+							else
+							{
+								with oButton    { instance_destroy(); }
+								with oPlayerONE { instance_destroy(); }
+								with oPlayerTWO { instance_destroy(); }
+								room_goto(rmGame);
+							}
+							break;
+					}
 					break;
 				case "Restart":
 					break;

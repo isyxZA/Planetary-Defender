@@ -5,7 +5,11 @@ with other
 	eHealth -= other.damage;
 	if eHealth <= 0 
 	{
-		oControl.scoreP1 += 50;
+		if instance_exists(other.owner)
+		{
+			if other.owner == oPlayerONE.id { oControl.scoreP1 += 50; }
+			else { oControl.scoreP2 += 50; }
+		}
 		with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "+ 50"; tColor = c_yellow; }
 		if Chance(0.2)
 		{

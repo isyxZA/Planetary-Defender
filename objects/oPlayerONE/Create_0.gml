@@ -1,5 +1,6 @@
-playerInput = "";
-splitKeyboard = false;
+playerInput = oControl.inputP1;
+//Assign Controller
+gamePad = global.controllerP1;
 
 //Movement Speed
 isMoving = false;
@@ -85,19 +86,11 @@ mTimer = 0;
 canDamage = true;
 dTimer = room_speed;
 
-//Assign Controller
-if !ds_list_empty(global.controllers)
-{
-	gamePad = global.controllers[| 0];
-}
-else
-{
-	gamePad = -1;
-}
-
 //Sprite animation
 aImage = 0;
 alarm[0] = room_speed * 0.1;
+
+pColor = c_green;
 
 //Feed stats to UI control
 //Primary Weapon Stats

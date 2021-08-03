@@ -1,13 +1,13 @@
 if canMove
 {
-	var pa = point_direction(phy_position_x, phy_position_y, oPlanet.x, oPlanet.y);
+	var pa = point_direction(phy_position_x, phy_position_y, tX, tY);
 	//phy_rotation += 0.125;
 	targetX = lengthdir_x(size*mass, pa);
 	targetY = lengthdir_y(size*mass, pa);
 	physics_apply_force(phy_position_x, phy_position_y, targetX, targetY);
 }
 
-var pd = point_distance(phy_position_x, phy_position_y, oPlanet.x, oPlanet.y)*0.004;
+var pd = point_distance(phy_position_x, phy_position_y, tX, tY)*0.004;
 var scaleAdj = min(1, 0.1+pd);
 scale = lerp(scale, scaleAdj, 0.15);
 

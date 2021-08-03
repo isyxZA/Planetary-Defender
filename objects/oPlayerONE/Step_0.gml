@@ -107,7 +107,7 @@ switch playerInput
 					canLazer = false;
 					shootLazer = true;
 					//Spawn lazer
-					SpawnLazer(phy_position_x, phy_position_y, c_blue, id);
+					SpawnLazer(phy_position_x, phy_position_y, pColor, id);
 				}
 			}
 			//Fire homing missiles
@@ -210,7 +210,7 @@ switch playerInput
 			isMoving = false;
 		}
 	
-		if !splitKeyboard
+		if !global.splitKeyboard
 		{
 			pkey = mb_left;
 			skey = mb_right;
@@ -309,7 +309,7 @@ switch playerInput
 				canLazer = false;
 				shootLazer = true;
 				//Spawn lazer
-				SpawnLazer(phy_position_x, phy_position_y, c_blue, id);
+				SpawnLazer(phy_position_x, phy_position_y, pColor, id);
 			}
 		}
 		//Fire homing missiles

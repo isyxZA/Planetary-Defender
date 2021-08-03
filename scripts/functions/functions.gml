@@ -1,12 +1,10 @@
-/// @description InitPlayerOne(xpos, ypos)
-/// @param xpos
-/// @param ypos
-function InitPlayerOne(xpos, ypos)
+/// @description InitPlayerOne()
+function InitPlayerOne()
 {
 	//PLAYER ONE SETUP\\
 	inputP1 = "";
-	spawnXP1 = xpos;
-	spawnYP1 = ypos;
+	spawnXP1 = 0;
+	spawnYP1 = 0;
 	scoreP1 = 0;
 	hBarP1 = 0;
 	//Primary Weapon Stats
@@ -48,7 +46,7 @@ function InitPlayerOne(xpos, ypos)
 	mmBarP1 = 0;
 	
 	//Player UI
-	uimidX = 0;
+	uictrXP1 = 0;
 	//Bottom Center Main Panel
 	uiW_1a = 0;
 	uiH_1a = 0;
@@ -63,15 +61,13 @@ function InitPlayerOne(xpos, ypos)
 	uiY_1b = 0;
 }
 
-/// @description InitPlayerTwo(xpos, ypos)
-/// @param xpos
-/// @param ypos
-function InitPlayerTwo(xpos, ypos)
+/// @description InitPlayerTwo()
+function InitPlayerTwo()
 {
 	//PLAYER TWO STATS\\
 	inputP2 = "";
-	spawnXP2 = xpos;
-	spawnYP2 = ypos;
+	spawnXP2 = 0;
+	spawnYP2 = 0;
 	scoreP2 = 0;
 	hBarP2 = 0;
 	//Primary Weapon Stats
@@ -112,6 +108,8 @@ function InitPlayerTwo(xpos, ypos)
 	mRadiusP2 = 0;
 	mmBarP2 = 0;
 	
+	//Player UI
+	uictrXP2 = 0;
 	//Bottom Center Main Panel
 	uiW_2a = 0;
 	uiH_2a = 0;
@@ -133,23 +131,40 @@ function SetUI(overlay)
 	switch overlay
 	{
 		case buttonoverlay.main:
-			SpawnButton(192, 192, "Singleplayer", "MAIN");
-			SpawnButton(192, 320, "Multiplayer", "MAIN");
-			SpawnButton(192, 448, "Exit", "MAIN");
+			SpawnButton(192, 192, 1, "Singleplayer", "MAIN");
+			SpawnButton(192, 320, 1, "Multiplayer", "MAIN");
+			SpawnButton(192, 448, 1, "Exit", "MAIN");
 			break;
 		case buttonoverlay.sololobby:
-			SpawnButton(192, 192, "Ready", "LOBBY");
-			SpawnButton(192, 320, "Options", "LOBBY");
-			SpawnButton(192, 448, "Back", "LOBBY");
+			SpawnButton(192, 192, 1, "Ready", "LOBBY");
+			SpawnButton(192, 320, 1, "Back", "LOBBY");
+			SpawnButton(192, 448, 1, "Exit", "LOBBY");
+			//Spawn Player
+			oControl.inputP1 = "GAMEPAD";
+			global.controllerP1 = global.controllers[| 0];
+			oControl.spawnXP1 = room_width * 0.5;
+			oControl.spawnYP1 = room_height * 0.5;
+			oControl.alarm[0] = room_speed;
+			//Spawn input selection
 			break;
 		case buttonoverlay.cooplobby:
-			SpawnButton(192, 192, "Ready", "LOBBYCOOP");
-			SpawnButton(192, 320, "Options", "LOBBYCOOP");
-			SpawnButton(192, 448, "Back", "LOBBYCOOP");
+			SpawnButton(192, 192, 1, "Ready", "LOBBYCOOP");
+			SpawnButton(192, 320, 1, "Back", "LOBBYCOOP");
+			SpawnButton(192, 448, 1, "Exit", "LOBBYCOOP");
+			//Spawn Players
+			oControl.inputP1 = "GAMEPAD";
+			oControl.inputP2 = "KEYBOARD";
+			global.controllerP1 = global.controllers[| 0];
+			oControl.spawnXP1 = room_width * 0.5;
+			oControl.spawnYP1 = room_height * 0.5;
+			oControl.spawnXP2 = room_width * 0.65;
+			oControl.spawnYP2 = room_height * 0.5;
+			oControl.alarm[0] = room_speed;
+			//Spawn input selection
 			break;
 		case buttonoverlay.gamesolo:
 			//Create the UI surfaces
-			uimidX = (display_get_gui_width() * 0.5);
+			uictrXP1 = (display_get_gui_width() * 0.5);//UI X Center
 			//Bottom Center Main Panel
 			uiW_1a = 500;
 			uiH_1a = 150;
@@ -172,47 +187,49 @@ function SetUI(overlay)
 			break;
 		case buttonoverlay.gamecoop:
 			//Create the UI surfaces
-			uimidX = (display_get_gui_width() * 0.5);
+			uiScale = 0.8;
 			//PLAYER ONE\\
+			uictrXP1 = (display_get_gui_width() * 0.25);//UI X Center
 			//Bottom Center Main Panel
-			uiW_1a = 500;
-			uiH_1a = 150;
+			uiW_1a = 500;//Width
+			uiH_1a = 150;//Height
 			uiSurf_1a = surface_create(uiW_1a, uiH_1a);
             surface_set_target(uiSurf_1a);
             draw_clear(c_black);
             surface_reset_target();
-			uiX_1a = (display_get_gui_width() * 0.5) - (uiW_1a * 0.5);
-			uiY_1a =  display_get_gui_height() - uiH_1a;
+			uiX_1a = (display_get_gui_width() * 0.25) - ((uiW_1a * uiScale) * 0.5);//X Origin
+			uiY_1a =  display_get_gui_height() - (uiH_1a * uiScale);//Y Origin
 			//Side Panel
-			uiW_1b = 100;
-			uiH_1b = 600;
+			uiW_1b = 100;//Width
+			uiH_1b = 600;//Height
 			uiSurf_1b = surface_create(uiW_1b, uiH_1b);
             surface_set_target(uiSurf_1b);
             draw_clear(c_black);
             surface_reset_target();
-			uiX_1b = 0;
-			uiY_1b =  display_get_gui_height() * 0.05;
-			uiH_1b = display_get_gui_height() - (uiY_1b * 2);
+			uiX_1b = 0;//X Origin
+			uiY_1b =  display_get_gui_height() * 0.05;//Y Origin
+			uiH_1b = display_get_gui_height() - (uiY_1b * 2);//Adjust display height
 			//PLAYER TWO\\
+			uictrXP2 = (display_get_gui_width() * 0.75);
 			//Bottom Center Main Panel
-			uiW_2a = 500;
-			uiH_2a = 150;
+			uiW_2a = 500;//Width
+			uiH_2a = 150;//Height
 			uiSurf_2a = surface_create(uiW_2a, uiH_2a);
             surface_set_target(uiSurf_2a);
             draw_clear(c_black);
             surface_reset_target();
-			uiX_2a = (display_get_gui_width() * 0.5) - (uiW_2a * 0.5);
-			uiY_2a =  display_get_gui_height() - uiH_2a;
+			uiX_2a = (display_get_gui_width() * 0.75) - ((uiW_2a * uiScale) * 0.5);//X Origin
+			uiY_2a =  display_get_gui_height() - (uiH_2a * uiScale);//Y Origin
 			//Side Panel
-			uiW_2b = 100;
-			uiH_2b = 600;
+			uiW_2b = 100;//Width
+			uiH_2b = 600;//Height
 			uiSurf_2b = surface_create(uiW_2b, uiH_2b);
             surface_set_target(uiSurf_2b);
             draw_clear(c_black);
             surface_reset_target();
-			uiX_2b = 0;
-			uiY_2b =  display_get_gui_height() * 0.05;
-			uiH_2b = display_get_gui_height() - (uiY_2b * 2);
+			uiX_2b = display_get_gui_width() - (uiW_2b * uiScale);//X Origin
+			uiY_2b = display_get_gui_height() * 0.05;//Y Origin
+			uiH_2b = display_get_gui_height() - (uiY_2b * 2);//Adjust display height
 			break;
 		case buttonoverlay.options:
 			break;
@@ -222,12 +239,17 @@ function SetUI(overlay)
 /// @description SpawnButton(xpos, ypos, text, hsize, vsize)
 /// @param xpos
 /// @param ypos
+/// @param scale
 /// @param text
-function SpawnButton(xpos, ypos, text, overlay)
+function SpawnButton(xpos, ypos, scale, text, overlay)
 {
 	var btn = instance_create_layer(xpos, ypos, "Buttons", oButton);
 	btn.txt = text;
 	btn.activeOverlay = overlay;
+	btn.image_xscale = scale;
+	btn.image_yscale = scale;
+	btn.xmid = xpos + ((sprite_get_width(sButton) * scale) * 0.5);
+	btn.ymid = ypos + ((sprite_get_height(sButton) * scale) * 0.5);
 }
 
 /// @description SpawnBullet(type, xpos, ypos, color, angle, hforce, vforce, scale, damage, spawner)
@@ -308,14 +330,13 @@ function InitCamera(xpos, ypos, view_width, view_height)
 	switch room
 	{
 		case rmMenu:
-		case rmLobby:
 			//For camera follow
 			view_camera[view_current] = camera_create_view(xpos, ypos, view_width, view_height);
 			break;
 		case rmGame:
 			//For camera follow
 			view_camera[view_current] = camera_create_view(xpos - (view_width * 0.5), ypos - (view_height * 0.5), 
-															view_width, view_height, 0, oPlayerONE, 5, 5, 1024, 1024);
+															view_width, view_height, 0, oControl, 5, 5, 1024, 1024);
 			break;
 	}
 	

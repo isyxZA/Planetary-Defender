@@ -1,8 +1,6 @@
 txt = "";
-xscale = 1;
-yscale = 1;
-xmid = x + (sprite_get_width(sprite_index) * 0.5);
-ymid = y + (sprite_get_height(sprite_index) * 0.5);;
+xmid = 0;
+ymid = 0;
 c1 = c_silver;
 playTouch = true;
 highlight = false;
