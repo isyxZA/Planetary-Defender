@@ -9,4 +9,7 @@ else if global.gameMode == "COOP"
 	instance_create_layer(spawnXP2, spawnYP2, "Players", oPlayerTWO);
 }
 
-instance_create_layer(0, 0, "UIControl", oLevels);
+if room == rmGame 
+{
+	instance_create_layer(0, 0, "Level", oLevels);
+}

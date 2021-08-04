@@ -3,7 +3,7 @@ global.canClick = true;
 switch room
 {
 	case rmMenu:
-		InitCamera(0, 0, 1280, 720);
+		SpawnCamera(0, 0, 1280, 720);
 		SetUI(buttonoverlay.main);
 		break;
 	case rmGame:
@@ -16,7 +16,7 @@ switch room
 				alarm[0] = room_speed;
 				x = spawnXP1;
 				y = spawnYP1;
-				InitCamera(spawnXP1, spawnYP1, 1366, 768);
+				SpawnCamera(spawnXP1, spawnYP1, 0, 0);
 				SetUI(buttonoverlay.gamesolo);
 				break;
 			case "COOP":
@@ -27,7 +27,7 @@ switch room
 				alarm[0] = room_speed;
 				x = room_width * 0.5;
 				y = room_height * 0.55;
-				InitCamera(room_width * 0.5, room_height * 0.5, 1366, 768);
+				SpawnCamera(room_width * 0.5, room_height * 0.55, 0, 0);
 				SetUI(buttonoverlay.gamecoop);
 				break;
 		}

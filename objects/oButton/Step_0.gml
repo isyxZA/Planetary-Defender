@@ -64,29 +64,15 @@ if global.canClick
 					switch activeOverlay
 					{
 						case "LOBBY":
-							if oControl.inputP1 == ""
-							{
-								show_debug_message("No Player Input Selected!");
-							}
-							else
-							{
-								with oButton    { instance_destroy(); }
-								with oPlayerONE { instance_destroy(); }
-								room_goto(rmGame);
-							}
+							with oButton    { instance_destroy(); }
+							with oPlayerONE { instance_destroy(); }
+							room_goto(rmGame);
 							break;
 						case "LOBBYCOOP":
-							if oControl.inputP1 == "" || oControl.inputP2 == ""
-							{
-								show_debug_message("No Player Input Selected!");
-							}
-							else
-							{
-								with oButton    { instance_destroy(); }
-								with oPlayerONE { instance_destroy(); }
-								with oPlayerTWO { instance_destroy(); }
-								room_goto(rmGame);
-							}
+							with oButton    { instance_destroy(); }
+							with oPlayerONE { instance_destroy(); }
+							with oPlayerTWO { instance_destroy(); }
+							room_goto(rmGame);
 							break;
 					}
 					break;

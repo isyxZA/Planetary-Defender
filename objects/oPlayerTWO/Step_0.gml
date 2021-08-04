@@ -2,7 +2,7 @@
 switch playerInput
 {
 	case "GAMEPAD":
-		if gamePad != -1
+		if gamePad != -1 && gamePad != undefined
 		{
 			//Game Pad Inputs\\
 			//Determine movement direction
@@ -63,6 +63,7 @@ switch playerInput
 				if canBurst 
 				{
 					canBurst = false;
+					burstCurRadius = 0;
 					burstCurTime = 0;
 					alarm[5] = 1;
 				}
@@ -161,8 +162,8 @@ switch playerInput
 			rkey = vk_right;//Right
 			pkey = vk_numpad1;//Primary
 			skey = vk_numpad2;//Secondary
-			key1 = vk_enter;//Boost
-			key2 = vk_delete;//Burst
+			key1 = vk_numpad0;//Boost
+			key2 = vk_decimal;//Burst
 			key3 = vk_numpad3;//Turret
 			key4 = vk_numpad4;//Missile
 			key5 = vk_numpad5;//Lazer
@@ -177,7 +178,7 @@ switch playerInput
 			pkey = mb_left;//Primary
 			skey = mb_right//Secondary
 			key1 = vk_space;//Boost
-			key2 = vk_lalt;//Burst
+			key2 = ord("C");//Burst
 			key3 = ord("Q");//Turret
 			key4 = ord("E");//Missile
 			key5 = ord("R");//Lazer
@@ -297,12 +298,12 @@ switch playerInput
 			if canBurst 
 			{
 				canBurst = false;
+				burstCurRadius = 0;
 				burstCurTime = 0;
 				alarm[5] = 1;
 			}
 		}
 	
-		//Shoot weapons
 		//Fire auto turret
 		if keyboard_check_pressed(key3)
 		{
@@ -315,6 +316,7 @@ switch playerInput
 				alarm[3] = turretRate;
 			}
 		}
+		
 		//Fire homing missiles
 		if keyboard_check_pressed(key4)
 		{
@@ -327,6 +329,7 @@ switch playerInput
 				alarm[4] = room_speed * 0.5;
 			}
 		}
+		
 		//Fire lazer
 		if keyboard_check_pressed(key5)
 		{
@@ -338,6 +341,7 @@ switch playerInput
 				SpawnLazer(phy_position_x, phy_position_y, pColor, id);
 			}
 		}
+		
 		//Lay a mine
 		if keyboard_check_pressed(key6)
 		{

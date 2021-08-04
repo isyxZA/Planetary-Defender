@@ -140,8 +140,6 @@ function SetUI(overlay)
 			SpawnButton(192, 320, 1, "Back", "LOBBY");
 			SpawnButton(192, 448, 1, "Exit", "LOBBY");
 			//Spawn Player
-			oControl.inputP1 = "GAMEPAD";
-			global.controllerP1 = global.controllers[| 0];
 			oControl.spawnXP1 = room_width * 0.5;
 			oControl.spawnYP1 = room_height * 0.5;
 			oControl.alarm[0] = room_speed;
@@ -152,9 +150,6 @@ function SetUI(overlay)
 			SpawnButton(192, 320, 1, "Back", "LOBBYCOOP");
 			SpawnButton(192, 448, 1, "Exit", "LOBBYCOOP");
 			//Spawn Players
-			oControl.inputP1 = "GAMEPAD";
-			oControl.inputP2 = "KEYBOARD";
-			global.controllerP1 = global.controllers[| 0];
 			oControl.spawnXP1 = room_width * 0.5;
 			oControl.spawnYP1 = room_height * 0.5;
 			oControl.spawnXP2 = room_width * 0.65;
@@ -325,38 +320,45 @@ function Chance(percent)
 
 //CAMERA\\
 /// @description InitCamera()
-function InitCamera(xpos, ypos, view_width, view_height)
+function InitCamera()
+{
+	//Camera
+	myCamera = -1;
+	//Default for 16:9
+	viewRatio = 1.777777777777778;
+	//Zoom level
+	zoomLevel = 0;
+	//zZoom speed
+	zoomSpeed = 2;
+	//Speed adjustment ratio
+	zSpeedAdj = 0.025;
+	//Position and size
+	targetWidth = 0;
+	cam_x = 0;
+	cam_y = 0;
+	cam_w = 0;
+	cam_h = 0;
+}
+
+/// @description SpawnCamera()
+function SpawnCamera(xpos, ypos, view_width, view_height)
 {
 	switch room
 	{
 		case rmMenu:
 			//For camera follow
-			view_camera[view_current] = camera_create_view(xpos, ypos, view_width, view_height);
+			view_camera[0] = camera_create_view(xpos, ypos, view_width, view_height);
+			//Assign the camera to the active view
+			myCamera = view_camera[0];
 			break;
 		case rmGame:
 			//For camera follow
-			view_camera[view_current] = camera_create_view(xpos - (view_width * 0.5), ypos - (view_height * 0.5), 
+			view_camera[0] = camera_create_view(xpos - (view_width * 0.5), ypos - (view_height * 0.5), 
 															view_width, view_height, 0, oControl, 5, 5, 1024, 1024);
+			//Assign the camera to the active view
+			myCamera = view_camera[0];
+			zoomLevel = 2;
+			targetWidth = 1366;
 			break;
 	}
-	
-
-	//Assign the camera to the active view
-	myCamera = view_camera[view_current];
-	//Default for 16:9
-	viewRatio = 1.777777777777778;
-	//Start zoom level
-	zoomLevel = 2;
-	//Adjust zoom speed here
-	zoomSpeed = 2;
-	//Speed adjustment ratio
-	zSpeedAdj = 0.025;
-	//Set camera initial position and size
-	targetWidth  = camera_get_view_width(myCamera);
-	var start_view_x  = camera_get_view_x(myCamera);
-	var start_view_y  = camera_get_view_y(myCamera);
-	cam_x = start_view_x;
-	cam_y = start_view_y;
-	cam_w = targetWidth;
-	cam_h = targetWidth/viewRatio;
 }

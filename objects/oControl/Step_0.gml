@@ -1,44 +1,14 @@
-/// @description Camera Controls
-//Zoom the view to target width and height
-if camera_get_view_width(myCamera) != targetWidth 
-{
-    var view_dif = (camera_get_view_width(myCamera)-targetWidth);
-    start_view_x = camera_get_view_width(myCamera);
-    start_view_y = camera_get_view_height(myCamera);
-    if camera_get_view_width(myCamera) < targetWidth 
-	{
-		camera_set_view_size(myCamera, camera_get_view_width(myCamera)-(view_dif*(zoomSpeed*zSpeedAdj)), camera_get_view_height(myCamera));
-		camera_set_view_size(myCamera, camera_get_view_width(myCamera), camera_get_view_width(myCamera)/viewRatio);
-        //Center the view
-		camera_set_view_pos(myCamera, camera_get_view_x(myCamera)-(abs(camera_get_view_width(myCamera) -start_view_x)/2), 
-				                        camera_get_view_y(myCamera)-(abs(camera_get_view_height(myCamera)-start_view_y)/2));
-    }
-    else if camera_get_view_width(myCamera) > targetWidth 
-	{ 
-		camera_set_view_size(myCamera, camera_get_view_width(myCamera)+(view_dif*-(zoomSpeed*zSpeedAdj)), camera_get_view_height(myCamera));
-		camera_set_view_size(myCamera, camera_get_view_width(myCamera), camera_get_view_width(myCamera)/viewRatio);
-        //Center the view
-		camera_set_view_pos(myCamera, camera_get_view_x(myCamera)+(abs(camera_get_view_width(myCamera) -start_view_x)/2), 
-				                        camera_get_view_y(myCamera)+(abs(camera_get_view_height(myCamera)-start_view_y)/2));
-    }
-
-	//Keeps the view inside the room
-	camera_set_view_pos(myCamera, clamp(camera_get_view_x(myCamera), 256, room_width - (camera_get_view_width(myCamera) + 256)),
-									clamp(camera_get_view_y(myCamera), 256, room_height- (camera_get_view_height(myCamera) + 256)));
-										
-
-	cam_x = camera_get_view_x(myCamera);
-	cam_y = camera_get_view_y(myCamera);
-	cam_w = camera_get_view_width(myCamera);
-	cam_h = camera_get_view_height(myCamera);
-}
-
+/// @description Stat Tracking, Camera
 if room == rmGame
 {
+	var tw;//Camera target width
 	if global.gameMode == "SOLO"
 	{
+		tw = targetWidth;
 		if instance_exists(oPlayerONE) 
 		{ 
+			//Player controls
+			inputP1 = oPlayerONE.playerInput;
 			//Boost Bar
 			bBarP1 = 100 - (100 * (oPlayerONE.boostCurTime/oPlayerONE.boostMaxTime));
 			//AOE Burst Bar
@@ -65,10 +35,13 @@ if room == rmGame
 	else if global.gameMode == "COOP"
 	{
 		var pone = false;
-		var ptwo = false;;
+		var ptwo = false;
+		
 		if instance_exists(oPlayerONE) 
 		{ 
 			pone = true;
+			//Player controls
+			inputP1 = oPlayerONE.playerInput;
 			//Boost Bar
 			bBarP1 = 100 - (100 * (oPlayerONE.boostCurTime/oPlayerONE.boostMaxTime));
 			//AOE Burst Bar
@@ -88,9 +61,12 @@ if room == rmGame
 			//Track the player high score
 			if scoreP1 > global.highScoreP1 { global.highScoreP1 = scoreP1; }
 		}
+		
 		if instance_exists(oPlayerTWO) 
 		{ 
 			ptwo = true;
+			//Player controls
+			inputP2 = oPlayerTWO.playerInput;
 			//Boost Bar
 			bBarP2 = 100 - (100 * (oPlayerTWO.boostCurTime/oPlayerTWO.boostMaxTime));
 			//AOE Burst Bar
@@ -110,21 +86,63 @@ if room == rmGame
 			//Track the player high score
 			if scoreP2 > global.highScoreP2 { global.highScoreP2 = scoreP2; }
 		}
+		
 		if pone && ptwo 
 		{ 
+			if oPlayerONE.playerInput == "KEYBOARD" && oPlayerTWO.playerInput == "KEYBOARD" { global.splitKeyboard = true; }
+			else { global.splitKeyboard = false; }
+			
 			x = (oPlayerONE.phy_position_x + oPlayerTWO.phy_position_x) * 0.5; 
 			y = (oPlayerONE.phy_position_y + oPlayerTWO.phy_position_y) * 0.5;
+			
+			tw = max(targetWidth, abs(oPlayerONE.x - oPlayerTWO.x) + 512, (abs(oPlayerONE.y - oPlayerTWO.y) + 490) * viewRatio);
 		}
 		else if pone 
 		{  
 			x = oPlayerONE.phy_position_x; 
 			y = oPlayerONE.phy_position_y;
+			
+			tw = targetWidth;
 		}
 		else if ptwo 
 		{ 
 			x = oPlayerTWO.phy_position_x; 
 			y = oPlayerTWO.phy_position_y;
+			
+			tw = targetWidth;
 		}
+		else
+		{
+			tw = targetWidth;
+		}
+	}
+	
+	//Camera width and height control
+	if camera_get_view_width(myCamera) != tw 
+	{
+		var view_dif = (camera_get_view_width(myCamera)-tw);
+		var start_view_x = camera_get_view_width(myCamera);
+		var start_view_y = camera_get_view_height(myCamera);
+		if camera_get_view_width(myCamera) < tw 
+		{
+			camera_set_view_size(myCamera, camera_get_view_width(myCamera) - (view_dif*(zoomSpeed*zSpeedAdj)), camera_get_view_height(myCamera));
+			camera_set_view_size(myCamera, camera_get_view_width(myCamera), camera_get_view_width(myCamera) / viewRatio);
+			//Center the view
+			camera_set_view_pos(myCamera, camera_get_view_x(myCamera)-(abs(camera_get_view_width(myCamera) - start_view_x)/2), 
+							                camera_get_view_y(myCamera)-(abs(camera_get_view_height(myCamera)- start_view_y)/2));
+		}
+		else if camera_get_view_width(myCamera) > tw 
+		{ 
+			camera_set_view_size(myCamera, camera_get_view_width(myCamera) + (view_dif*-(zoomSpeed*zSpeedAdj)), camera_get_view_height(myCamera));
+			camera_set_view_size(myCamera, camera_get_view_width(myCamera), camera_get_view_width(myCamera)/viewRatio);
+			//Center the view
+			camera_set_view_pos(myCamera, camera_get_view_x(myCamera)+(abs(camera_get_view_width(myCamera) - start_view_x)/2), 
+							                camera_get_view_y(myCamera)+(abs(camera_get_view_height(myCamera)- start_view_y)/2));
+		}
+
+		//Keeps the view inside the room
+		camera_set_view_pos(myCamera, clamp(camera_get_view_x(myCamera), 256, room_width - (camera_get_view_width(myCamera) + 256)),
+										clamp(camera_get_view_y(myCamera), 256, room_height - (camera_get_view_height(myCamera) + 256)));
 	}
 	
 	//Track camera projection
@@ -132,4 +150,24 @@ if room == rmGame
 	cam_y = camera_get_view_y(myCamera);
 	cam_w = camera_get_view_width(myCamera);
 	cam_h = camera_get_view_height(myCamera);
+}
+else if room == rmMenu
+{
+	var p1 = false;
+	var p2 = false;
+	
+	if instance_exists(oPlayerONE) { p1 = true; }
+	if instance_exists(oPlayerTWO) { p2 = true; }
+	
+	if p1 && p2
+	{
+		if oPlayerONE.playerInput == "KEYBOARD" && oPlayerTWO.playerInput == "KEYBOARD"
+		{
+			global.splitKeyboard = true;
+		}
+		else 
+		{
+			global.splitKeyboard = false;
+		}
+	}
 }

@@ -9,5 +9,6 @@ timeMusic = 12300;
 
 uiScale = 1;
 
+InitCamera();
 InitPlayerOne();
 InitPlayerTwo();

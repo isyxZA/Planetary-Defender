@@ -39,10 +39,10 @@ if room == rmGame
 				draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
 				draw_text(250, 16, "--CONSOLE--");
 				draw_set_color(c_yellow);
-				draw_text(250, 40, "Planet Status");
+				draw_text(250, 38, "Planet Status");
 				draw_text(250, 56, string(oPlanet.pHealth));
 				draw_set_color(c_white);
-				draw_text(250, 72, string(timeMusic));
+				draw_text(250, 140, string(inputP1));
 				//Hull Health
 				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
 				draw_sprite_ext(sUI, 0, 100, 25, 0.5, 1.5, 0, c_white, 1);
@@ -132,7 +132,7 @@ if room == rmGame
 				draw_set_color(c_white);
 				
 				draw_set_halign(fa_left);
-				draw_set_font(fnt8);
+				draw_set_font(fnt10);
 				draw_text(8, vsep1a * 3, "Fire Rate: " + string(pRateP1));
 				draw_text(8, vsep1a * 4, "Damage: " + string(pDamageP1));
 				draw_text(8, vsep1 + (vsep1a * 3), "Fire Rate: " + string(sRateP1));
@@ -217,10 +217,11 @@ if room == rmGame
 				draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
 				draw_text(250, 16, "--CONSOLE--");
 				draw_set_color(c_yellow);
-				draw_text(250, 40, "Planet Status");
+				draw_text(250, 38, "Planet Status");
 				draw_text(250, 56, string(oPlanet.pHealth));
+				draw_text(250, 76, string(cam_w));
 				draw_set_color(c_white);
-				draw_text(250, 72, string(timeMusic));
+				draw_text(250, 140, string(inputP1));
 				//Hull Health
 				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
 				draw_sprite_ext(sUI, 0, 100, 25, 0.5, 1.5, 0, c_white, 1);
@@ -310,7 +311,7 @@ if room == rmGame
 				draw_set_color(c_white);
 				
 				draw_set_halign(fa_left);
-				draw_set_font(fnt8);
+				draw_set_font(fnt10);
 				draw_text(8, vsep1a * 3, "Fire Rate: " + string(pRateP1));
 				draw_text(8, vsep1a * 4, "Damage: " + string(pDamageP1));
 				draw_text(8, vsep1 + (vsep1a * 3), "Fire Rate: " + string(sRateP1));
@@ -395,10 +396,10 @@ if room == rmGame
 				draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
 				draw_text(250, 16, "--CONSOLE--");
 				draw_set_color(c_yellow);
-				draw_text(250, 40, "Planet Status");
+				draw_text(250, 38, "Planet Status");
 				draw_text(250, 56, string(oPlanet.pHealth));
 				draw_set_color(c_white);
-				draw_text(250, 72, string(timeMusic));
+				draw_text(250, 140, string(inputP2));
 				//Hull Health
 				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
 				draw_sprite_ext(sUI, 0, 100, 25, 0.5, 1.5, 0, c_white, 1);
@@ -488,7 +489,7 @@ if room == rmGame
 				draw_set_color(c_white);
 				
 				draw_set_halign(fa_left);
-				draw_set_font(fnt8);
+				draw_set_font(fnt10);
 				draw_text(8, vsep1a * 3, "Fire Rate: " + string(pRateP2));
 				draw_text(8, vsep1a * 4, "Damage: " + string(pDamageP2));
 				draw_text(8, vsep1 + (vsep1a * 3), "Fire Rate: " + string(sRateP2));
@@ -536,5 +537,17 @@ if room == rmGame
 			draw_text(uictrXP2, 68, string(scoreP2));
 			draw_set_color(c_white);
 			break;
+	}
+}
+else if room == rmMenu
+{
+	if instance_exists(oPlayerONE) 
+	{
+		draw_text(150, 32, string(ds_list_size(global.controllers)));
+		draw_text(150, 64, string(oPlayerONE.playerInput));
+	}
+	if instance_exists(oPlayerTWO) 
+	{
+		draw_text(150, 80, string(oPlayerTWO.playerInput));
 	}
 }

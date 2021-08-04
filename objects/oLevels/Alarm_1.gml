@@ -1,3 +1,4 @@
+/// @description Spawn the enemy UFOs
 if oControl.enemyCount < 200
 {
 	var rd = random(360);

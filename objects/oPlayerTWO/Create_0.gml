@@ -1,6 +1,14 @@
-playerInput = oControl.inputP2;
 //Assign Controller
-gamePad = global.controllerP2;
+if !ds_list_empty(global.controllers) && ds_list_size(global.controllers > 1)
+{
+	gamePad = global.controllers[| 1];
+	playerInput = "GAMEPAD";
+}
+else
+{
+	gamePad = -1;
+	playerInput = "KEYBOARD";
+}
 
 //Movement Speed
 isMoving = false;
@@ -11,8 +19,8 @@ vAxis = 0;
 dir = "E";
 speedCurrent = 0;
 speedMax = 40;
-
 speedAccel = 0.2;
+
 //Speed Boost
 isBoosting = false;
 boostCurrent = 0;
@@ -35,9 +43,12 @@ secondaryDamage = 14;
 
 //AOE Burst Weapon
 canBurst = true;
-burstRadius = 128;
+burstRadius = 96;
+burstCurRadius = 0;
+burstRadTime = room_speed * 0.75;
 burstCooldown = room_speed * 10;
 burstCurTime = burstCooldown;
+burstDraw = false;
 
 //Missiles Weapon
 shootMissile = false;

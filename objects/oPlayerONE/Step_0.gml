@@ -2,7 +2,7 @@
 switch playerInput
 {
 	case "GAMEPAD":
-		if gamePad != -1
+		if gamePad != -1 && gamePad != undefined
 		{
 			//Game Pad Inputs\\
 			//Determine movement direction
@@ -63,12 +63,12 @@ switch playerInput
 				if canBurst 
 				{
 					canBurst = false;
+					burstCurRadius = 0;
 					burstCurTime = 0;
 					alarm[5] = 1;
 				}
 			}
-	
-			//Shoot weapons
+
 			//Fire main guns
 			if gamepad_button_check_pressed(gamePad, gp_shoulderrb)
 			{
@@ -78,6 +78,7 @@ switch playerInput
 			{
 				shootPrimary = false;
 			}
+			
 			//Fire secondary guns
 			if gamepad_button_check_pressed(gamePad, gp_shoulderlb)
 			{
@@ -87,6 +88,7 @@ switch playerInput
 			{
 				shootSecondary = false;
 			}
+			
 			//Fire auto turret
 			if gamepad_button_check_pressed(gamePad, gp_face3)
 			{
@@ -99,6 +101,7 @@ switch playerInput
 					alarm[3] = turretRate;
 				}
 			}
+			
 			//Fire lazer
 			if gamepad_button_check_pressed(gamePad, gp_face4)
 			{
@@ -110,6 +113,7 @@ switch playerInput
 					SpawnLazer(phy_position_x, phy_position_y, pColor, id);
 				}
 			}
+			
 			//Fire homing missiles
 			if gamepad_button_check_pressed(gamePad, gp_face1)
 			{
@@ -122,6 +126,7 @@ switch playerInput
 					alarm[4] = room_speed * 0.5;
 				}
 			}
+			
 			//Lay a mine
 			if gamepad_button_check_pressed(gamePad, gp_face2)
 			{
@@ -240,6 +245,25 @@ switch playerInput
 	
 			mxPrev = device_mouse_raw_x(0);
 			myPrev = device_mouse_raw_y(0);
+			
+			//Fire main guns
+			if mouse_check_button_pressed(pkey)
+			{
+				shootPrimary = true;
+			}
+			if mouse_check_button_released(pkey)
+			{
+				shootPrimary = false;
+			}
+			//Fire secondary guns
+			if mouse_check_button_pressed(skey)
+			{
+				shootSecondary = true;
+			}
+			if mouse_check_button_released(skey)
+			{
+				shootSecondary = false;
+			}
 		}
 		//Playing with a split keyboardd
 		else
@@ -247,6 +271,25 @@ switch playerInput
 			pkey = vk_shift;
 			skey = vk_control;
 			phy_rotation = point_direction(0, 0, hAxis, vAxis);
+			
+			//Fire main guns
+			if keyboard_check_pressed(pkey)
+			{
+				shootPrimary = true;
+			}
+			if keyboard_check_released(pkey)
+			{
+				shootPrimary = false;
+			}
+			//Fire secondary guns
+			if keyboard_check_pressed(skey)
+			{
+				shootSecondary = true;
+			}
+			if keyboard_check_released(skey)
+			{
+				shootSecondary = false;
+			}
 		}
 	
 		//Activate speed boost
@@ -260,35 +303,18 @@ switch playerInput
 		}
 	
 		//Activate AOE Burst
-		if keyboard_check_pressed(vk_lalt)
+		if keyboard_check_pressed(ord("C"))
 		{
 			if canBurst 
 			{
 				canBurst = false;
+				burstCurRadius = 0;
 				burstCurTime = 0;
 				alarm[5] = 1;
 			}
 		}
 	
 		//Shoot weapons
-		//Fire main guns
-		if keyboard_check_pressed(pkey)
-		{
-			shootPrimary = true;
-		}
-		if keyboard_check_released(pkey)
-		{
-			shootPrimary = false;
-		}
-		//Fire secondary guns
-		if keyboard_check_pressed(skey)
-		{
-			shootSecondary = true;
-		}
-		if keyboard_check_released(skey)
-		{
-			shootSecondary = false;
-		}
 		//Fire auto turret
 		if keyboard_check_pressed(ord("Q"))
 		{
@@ -312,6 +338,7 @@ switch playerInput
 				SpawnLazer(phy_position_x, phy_position_y, pColor, id);
 			}
 		}
+		
 		//Fire homing missiles
 		if keyboard_check_pressed(ord("E"))
 		{
@@ -324,6 +351,7 @@ switch playerInput
 				alarm[4] = room_speed * 0.5;
 			}
 		}
+		
 		//Lay a mine
 		if keyboard_check_pressed(ord("F"))
 		{
