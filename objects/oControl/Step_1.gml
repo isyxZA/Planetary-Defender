@@ -3,8 +3,8 @@ if playMusic
 	playMusic = false;
 	if audio_system_is_available() && audio_sound_is_playable(sndGameLoop)
 	{
-		audio_play_sound(sndGameLoop, 10, false);
-		alarm[1] = timeMusic;
+		audio_play_sound(sndGameLoop, 10, true);
+		//alarm[1] = timeMusic;
 	}
 	else 
 	{

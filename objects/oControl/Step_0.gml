@@ -1,6 +1,29 @@
 /// @description Stat Tracking, Camera
 if room == rmGame
 {
+	if instance_exists(oLevels)
+	{
+		levelLevel = oLevels.gameLevel;
+		switch oLevels.spawnType
+		{
+			case spawntypes.randomcircle:
+				levelWave = "Random Wave";
+				break;
+			case spawntypes.syncedcircle:
+				levelWave = "Synced Circle";
+				break;
+			case spawntypes.staggeredcircle:
+				levelWave = "Staggered Circle";
+				break;
+			case spawntypes.syncedlines:
+				levelWave = "Synced Lines";
+				break;
+			case spawntypes.staggeredlines:
+				levelWave = "Staggered Line";
+				break;
+		}
+	}
+	
 	var tw;//Camera target width
 	if global.gameMode == "SOLO"
 	{

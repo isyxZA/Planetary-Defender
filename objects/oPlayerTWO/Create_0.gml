@@ -48,7 +48,7 @@ burstCurRadius = 0;
 burstRadTime = room_speed * 0.75;
 burstCooldown = room_speed * 10;
 burstCurTime = burstCooldown;
-burstDraw = false;
+burstActive = false;
 
 //Missiles Weapon
 shootMissile = false;

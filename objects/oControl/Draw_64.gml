@@ -36,13 +36,27 @@ if room == rmGame
 				draw_sprite_ext(sUI, 0, 400, 50, 0.5, 1.5, 0, c_white, 1);
 				draw_text(425, 62, "Burst");
 				//Commmunications Panel
-				draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
-				draw_text(250, 16, "--CONSOLE--");
-				draw_set_color(c_yellow);
-				draw_text(250, 38, "Planet Status");
-				draw_text(250, 56, string(oPlanet.pHealth));
-				draw_set_color(c_white);
-				draw_text(250, 140, string(inputP1));
+				if !enemyWaveAlert 
+				{
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_text(250, 16, "--CONSOLE--");
+					draw_set_color(c_yellow);
+					draw_text(250, 38, "Planet Status");
+					draw_text(250, 56, string(oPlanet.pHealth));
+					draw_set_color(c_white);
+					draw_text(250, 80, string(levelLevel));
+					draw_text(250, 96, levelWave);
+					draw_text(250, 140, string(inputP1));
+				}
+				else
+				{
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, aColor, 0.7);
+					draw_text(250 - 1, 75 + 1, enemyWaveText);
+					draw_set_color(c_yellow);
+					draw_text(250, 75, enemyWaveText);
+					draw_set_color(c_white);
+				}
 				//Hull Health
 				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
 				draw_sprite_ext(sUI, 0, 100, 25, 0.5, 1.5, 0, c_white, 1);
@@ -137,8 +151,8 @@ if room == rmGame
 				draw_text(8, vsep1a * 4, "Damage: " + string(pDamageP1));
 				draw_text(8, vsep1 + (vsep1a * 3), "Fire Rate: " + string(sRateP1));
 				draw_text(8, vsep1 + (vsep1a * 4), "Damage: " + string(sDamageP1));
-				draw_text(8, (vsep1 * 2) + (vsep1a * 3), "Max: " + string(sMaxP1));
-				draw_text(8, (vsep1 * 2) + (vsep1a * 4), "Acceleration: " + string(sAccelP1));
+				draw_text(8, (vsep1 * 2) + (vsep1a * 3), "Speed: " + string(sMaxP1));
+				draw_text(8, (vsep1 * 2) + (vsep1a * 4), "Accel: " + string(sAccelP1));
 				draw_text(8, (vsep1 * 3) + (vsep1a * 3), "Duration: " + string(bTimeP1));
 				draw_text(8, (vsep1 * 3) + (vsep1a * 4), "Cooldown: " + string(bRateP1));
 				draw_text(8, (vsep1 * 4) + (vsep1a * 3), "Strength: " + string(sStrengthP1));
@@ -214,14 +228,26 @@ if room == rmGame
 				draw_sprite_ext(sUI, 0, 400, 50, 0.5, 1.5, 0, c_white, 1);
 				draw_text(425, 62, "Burst");
 				//Commmunications Panel
-				draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
-				draw_text(250, 16, "--CONSOLE--");
-				draw_set_color(c_yellow);
-				draw_text(250, 38, "Planet Status");
-				draw_text(250, 56, string(oPlanet.pHealth));
-				draw_text(250, 76, string(cam_w));
-				draw_set_color(c_white);
-				draw_text(250, 140, string(inputP1));
+				if !enemyWaveAlert
+				{
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_text(250, 16, "--CONSOLE--");
+					draw_set_color(c_yellow);
+					draw_text(250, 38, "Planet Status");
+					draw_text(250, 56, string(oPlanet.pHealth));
+					draw_text(250, 76, string(cam_w));
+					draw_set_color(c_white);
+					draw_text(250, 140, string(inputP1));
+				}
+				else
+				{
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, aColor, 0.7);
+					draw_text(250 - 1, 75 + 1, enemyWaveText);
+					draw_set_color(c_yellow);
+					draw_text(250, 75, enemyWaveText);
+					draw_set_color(c_white);
+				}
 				//Hull Health
 				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
 				draw_sprite_ext(sUI, 0, 100, 25, 0.5, 1.5, 0, c_white, 1);
@@ -316,8 +342,8 @@ if room == rmGame
 				draw_text(8, vsep1a * 4, "Damage: " + string(pDamageP1));
 				draw_text(8, vsep1 + (vsep1a * 3), "Fire Rate: " + string(sRateP1));
 				draw_text(8, vsep1 + (vsep1a * 4), "Damage: " + string(sDamageP1));
-				draw_text(8, (vsep1 * 2) + (vsep1a * 3), "Max: " + string(sMaxP1));
-				draw_text(8, (vsep1 * 2) + (vsep1a * 4), "Acceleration: " + string(sAccelP1));
+				draw_text(8, (vsep1 * 2) + (vsep1a * 3), "Speed: " + string(sMaxP1));
+				draw_text(8, (vsep1 * 2) + (vsep1a * 4), "Accel: " + string(sAccelP1));
 				draw_text(8, (vsep1 * 3) + (vsep1a * 3), "Duration: " + string(bTimeP1));
 				draw_text(8, (vsep1 * 3) + (vsep1a * 4), "Cooldown: " + string(bRateP1));
 				draw_text(8, (vsep1 * 4) + (vsep1a * 3), "Strength: " + string(sStrengthP1));
@@ -393,13 +419,25 @@ if room == rmGame
 				draw_sprite_ext(sUI, 0, 400, 50, 0.5, 1.5, 0, c_white, 1);
 				draw_text(425, 62, "Burst");
 				//Commmunications Panel
-				draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
-				draw_text(250, 16, "--CONSOLE--");
-				draw_set_color(c_yellow);
-				draw_text(250, 38, "Planet Status");
-				draw_text(250, 56, string(oPlanet.pHealth));
-				draw_set_color(c_white);
-				draw_text(250, 140, string(inputP2));
+				if !enemyWaveAlert
+				{
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_text(250, 16, "--CONSOLE--");
+					draw_set_color(c_yellow);
+					draw_text(250, 38, "Planet Status");
+					draw_text(250, 56, string(oPlanet.pHealth));
+					draw_set_color(c_white);
+					draw_text(250, 140, string(inputP2));
+				}
+				else
+				{
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, aColor, 0.7);
+					draw_text(250 - 1, 75 + 1, enemyWaveText);
+					draw_set_color(c_yellow);
+					draw_text(250, 75, enemyWaveText);
+					draw_set_color(c_white);
+				}
 				//Hull Health
 				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
 				draw_sprite_ext(sUI, 0, 100, 25, 0.5, 1.5, 0, c_white, 1);
@@ -494,8 +532,8 @@ if room == rmGame
 				draw_text(8, vsep1a * 4, "Damage: " + string(pDamageP2));
 				draw_text(8, vsep1 + (vsep1a * 3), "Fire Rate: " + string(sRateP2));
 				draw_text(8, vsep1 + (vsep1a * 4), "Damage: " + string(sDamageP2));
-				draw_text(8, (vsep1 * 2) + (vsep1a * 3), "Max: " + string(sMaxP2));
-				draw_text(8, (vsep1 * 2) + (vsep1a * 4), "Acceleration: " + string(sAccelP2));
+				draw_text(8, (vsep1 * 2) + (vsep1a * 3), "Speed: " + string(sMaxP2));
+				draw_text(8, (vsep1 * 2) + (vsep1a * 4), "Accel: " + string(sAccelP2));
 				draw_text(8, (vsep1 * 3) + (vsep1a * 3), "Duration: " + string(bTimeP2));
 				draw_text(8, (vsep1 * 3) + (vsep1a * 4), "Cooldown: " + string(bRateP2));
 				draw_text(8, (vsep1 * 4) + (vsep1a * 3), "Strength: " + string(sStrengthP2));

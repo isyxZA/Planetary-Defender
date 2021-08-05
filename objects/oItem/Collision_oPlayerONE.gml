@@ -144,4 +144,10 @@ switch iColor
 		}
 		break;
 }
+
+if audio_system_is_available() && audio_sound_is_playable(sndItem)
+{
+	audio_play_sound(sndItem, 0, false);
+}
+		
 instance_destroy();

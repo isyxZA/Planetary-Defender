@@ -6,7 +6,7 @@ if burstCurTime < burstCooldown
 	alarm[5] = 1;
 	if burstCurTime < burstRadTime
 	{
-		burstDraw = true;
+		burstActive = true;
 		//Expanding burst radius
 		if burstCurRadius < burstRadius { burstCurRadius += 16; } 
 		//Repeat expanding radius
@@ -14,12 +14,12 @@ if burstCurTime < burstCooldown
 	}
 	else
 	{
-		burstDraw = false;
+		burstActive = false;
 	}
 }
 else
 {
-	burstDraw = false;
+	burstActive = false;
 	burstCurRadius = 0;
 	burstCurTime = burstCooldown;
 	canBurst = true;

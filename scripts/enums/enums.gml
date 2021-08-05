@@ -7,3 +7,12 @@ enum buttonoverlay
 	gamesolo,
 	gamecoop
 }
+
+enum spawntypes
+{
+	randomcircle,
+	syncedcircle,
+	staggeredcircle,
+	syncedlines,
+	staggeredlines
+}

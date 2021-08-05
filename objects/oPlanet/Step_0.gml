@@ -1,4 +1,4 @@
-phy_rotation += 0.125;
+if rot < 360 { rot += 0.125; } else { rot = 0; }
 
 if instance_exists(oPlayerONE)
 {
@@ -8,3 +8,6 @@ else
 {
 	scale = 1;
 }
+
+a1 = pHealth/100;
+a2 = 0.6 - a1;

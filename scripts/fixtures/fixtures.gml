@@ -10,6 +10,7 @@ function FixtureCreateBox(fwidth, fheight, mass, bounce, slide, ldamp, adamp)
 	physics_fixture_set_friction(fixture, slide);
 	physics_fixture_set_linear_damping(fixture, ldamp);
 	physics_fixture_set_angular_damping(fixture, adamp);
+	physics_fixture_set_collision_group(fixture, -2);
 	physics_fixture_bind(fixture, id);
 	physics_fixture_delete(fixture);
 }
@@ -27,6 +28,7 @@ function FixtureCreateCircle(fwidth, mass, bounce, slide, ldamp, adamp)
 	physics_fixture_set_friction(fixture, slide);
 	physics_fixture_set_linear_damping(fixture, ldamp);
 	physics_fixture_set_angular_damping(fixture, adamp);
+	physics_fixture_set_collision_group(fixture, -2);
 	physics_fixture_bind(fixture, id);
 	physics_fixture_delete(fixture);
 }
@@ -49,25 +51,12 @@ function FixtureCreateTriangle(fwidth, fheight, mass, bounce, slide, ldamp, adam
 	p3y = (fheight * 0.5);
 	physics_fixture_add_point(fixture, p3x, p3y);
 	
-	/*
-	p1x = 0;
-	p1y = -(fheight * 0.5);
-	physics_fixture_add_point(fixture, p1x, p1y);
-	
-	p2x = (fwidth * 0.5);
-	p2y = (fheight * 0.5);
-	physics_fixture_add_point(fixture, p2x, p2y);
-	
-	p3x = -(fwidth * 0.5);
-	p3y = (fheight * 0.5);
-	physics_fixture_add_point(fixture, p3x, p3y);
-	*/
-	
 	physics_fixture_set_density(fixture, mass);
 	physics_fixture_set_restitution(fixture, bounce);
 	physics_fixture_set_friction(fixture, slide);
 	physics_fixture_set_linear_damping(fixture, ldamp);
 	physics_fixture_set_angular_damping(fixture, adamp);
+	physics_fixture_set_collision_group(fixture, -2);
 	physics_fixture_bind(fixture, id);
 	physics_fixture_delete(fixture);
 }

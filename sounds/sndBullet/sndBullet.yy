@@ -10,14 +10,14 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "sndGameLoop.ogg",
-  "duration": 72.0,
+  "soundFile": "sndBullet.ogg",
+  "duration": 0.239206,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",
   },
   "resourceVersion": "1.0",
-  "name": "sndGameLoop",
+  "name": "sndBullet",
   "tags": [],
   "resourceType": "GMSound",
 }

@@ -10,14 +10,14 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "sndGameLoop.ogg",
-  "duration": 72.0,
+  "soundFile": "sndTurret.ogg",
+  "duration": 0.414331,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",
   },
   "resourceVersion": "1.0",
-  "name": "sndGameLoop",
+  "name": "sndTurret",
   "tags": [],
   "resourceType": "GMSound",
 }

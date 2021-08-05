@@ -420,6 +420,10 @@ if shootPrimary
 		var psy = phy_position_y+(pty*0.002);
 		var pbc = c_red;
 		SpawnBullet(psx, psy, pbc, -phy_rotation, ptx, pty, 0.6, primaryDamage, id);
+		if audio_system_is_available() && audio_sound_is_playable(sndBullet)
+		{
+			audio_play_sound(sndBullet, 0, false);
+		}
 	}
 }
 
@@ -437,6 +441,10 @@ if shootSecondary
 		var ssy = phy_position_y+(sty*0.002);
 		var sbc = c_purple;
 		SpawnBullet(ssx, ssy, sbc, -phy_rotation, stx, sty, 1.2, secondaryDamage, id);
+		if audio_system_is_available() && audio_sound_is_playable(sndBullet)
+		{
+			audio_play_sound(sndBullet, 0, false);
+		}
 	}
 }
 
@@ -482,6 +490,10 @@ if shootMissile
 	++missileCurVolley;
 	var mt = instance_nearest(phy_position_x, phy_position_y, oEnemy);
 	SpawnMissile(phy_position_x, phy_position_y, c_yellow, mt, id);
+	if audio_system_is_available() && audio_sound_is_playable(sndMissile)
+	{
+		audio_play_sound(sndMissile, 0, false);
+	}
 }
 
 if shootTurret
@@ -500,5 +512,30 @@ if shootTurret
 		var tsy = phy_position_y+(tty*0.002);
 		var tbc = c_green;
 		SpawnBullet(tsx, tsy, tbc, tda, ttx, tty, 0.4, turretDamage, id);
+		if audio_system_is_available() && audio_sound_is_playable(sndTurret)
+		{
+			audio_play_sound(sndTurret, 0, false);
+		}
+	}
+}
+
+if burstActive
+{
+	var ecc = collision_circle(phy_position_x, phy_position_y, burstRadius, oEnemy, false, true);
+	if ecc != noone
+	{
+		with ecc
+		{
+			oControl.scoreP2 += 100;
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "+ 100"; tColor = c_yellow; }
+			if Chance(0.2)
+			{
+				var item = instance_create_layer(phy_position_x, phy_position_y, "Players", oItem);
+				item.iColor = eColor;
+				effect_create_above(ef_spark, phy_position_x, phy_position_y, 1, eColor);
+				effect_create_above(ef_ellipse, phy_position_x, phy_position_y, 1, eColor);
+			}
+			instance_destroy();
+		}
 	}
 }

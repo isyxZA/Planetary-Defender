@@ -1,8 +1,8 @@
 draw_sprite_ext(sAura, aImage, phy_position_x, phy_position_y, 1.5, 1.5, 0, pColor, 1);
 
-if burstDraw
+if burstActive
 {
-	draw_set_alpha(0.1);
+	draw_set_alpha(0.2);
 	draw_set_color(c_red);
 	draw_circle(phy_position_x, phy_position_y, burstCurRadius, false);
 	draw_circle(phy_position_x, phy_position_y, burstCurRadius-25, false);
