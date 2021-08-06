@@ -15,6 +15,12 @@ enemyWaveText = "";
 aColor = c_red;
 
 uiScale = 1;
+uiOverlay = buttonoverlay.main;
+
+doTransition = false;
+flipTransition = false;
+tCurX1 = 0;
+tCurX2 = 0;
 
 InitCamera();
 InitPlayerOne();

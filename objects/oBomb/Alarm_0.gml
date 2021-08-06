@@ -15,7 +15,7 @@ if cnum > 0
 			eHealth -= other.damage;
 			if eHealth <= 0 
 			{
-				if Chance(0.2)
+				if Chance(DROPRATE)
 				{
 					var item = instance_create_layer(phy_position_x, phy_position_y, "Players", oItem);
 					item.iColor = eColor;

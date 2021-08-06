@@ -136,24 +136,26 @@ function SetUI(overlay)
 			SpawnButton(192, 448, 1, "Exit", "MAIN");
 			break;
 		case buttonoverlay.sololobby:
-			SpawnButton(192, 192, 1, "Ready", "LOBBY");
-			SpawnButton(192, 320, 1, "Back", "LOBBY");
-			SpawnButton(192, 448, 1, "Exit", "LOBBY");
+			SpawnButton((room_width * 0.5) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Ready", "LOBBY");
+			SpawnButton((room_width * 0.75) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Back", "LOBBY");
+			SpawnButton((room_width * 0.25) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Exit", "LOBBY");
+			instance_create_layer(0, 0, "Level", oLobby);
 			//Spawn Player
 			oControl.spawnXP1 = room_width * 0.5;
-			oControl.spawnYP1 = room_height * 0.5;
+			oControl.spawnYP1 = room_height * 0.45;
 			oControl.alarm[0] = room_speed;
 			//Spawn input selection
 			break;
 		case buttonoverlay.cooplobby:
-			SpawnButton(192, 192, 1, "Ready", "LOBBYCOOP");
-			SpawnButton(192, 320, 1, "Back", "LOBBYCOOP");
-			SpawnButton(192, 448, 1, "Exit", "LOBBYCOOP");
+			SpawnButton((room_width * 0.5) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Ready", "LOBBYCOOP");
+			SpawnButton((room_width * 0.75) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Back", "LOBBYCOOP");
+			SpawnButton((room_width * 0.25) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Exit", "LOBBYCOOP");
+			instance_create_layer(0, 0, "Level", oLobby);
 			//Spawn Players
-			oControl.spawnXP1 = room_width * 0.5;
-			oControl.spawnYP1 = room_height * 0.5;
-			oControl.spawnXP2 = room_width * 0.65;
-			oControl.spawnYP2 = room_height * 0.5;
+			oControl.spawnXP1 = room_width * 0.4;
+			oControl.spawnYP1 = room_height * 0.45;
+			oControl.spawnXP2 = room_width * 0.6;
+			oControl.spawnYP2 = room_height * 0.45;
 			oControl.alarm[0] = room_speed;
 			//Spawn input selection
 			break;
@@ -247,6 +249,18 @@ function SpawnButton(xpos, ypos, scale, text, overlay)
 	btn.ymid = ypos + ((sprite_get_height(sButton) * scale) * 0.5);
 }
 
+/// @description SpawnBoundary(xpos, ypos, xscale, yscale)
+/// @param xpos
+/// @param ypos
+/// @param xscale
+/// @param yscale
+function SpawnBoundary(xpos, ypos, xscale, yscale)
+{
+	var bdr = instance_create_layer(xpos, ypos, "Players", oBoundary);
+	bdr.image_xscale = xscale;
+	bdr.image_yscale = yscale;
+}
+
 /// @description SpawnBullet(type, xpos, ypos, color, angle, hforce, vforce, scale, damage, spawner)
 /// @param xpos
 /// @param ypos
@@ -309,6 +323,15 @@ function SpawnMissile(xpos, ypos, color, target, spawner)
 	msl.bColor = color;
 	msl.target = target;
 	msl.owner  = spawner;
+}
+
+/// @description SpawnFlare(xpos, ypos, xSize, ySize, color)
+function SpawnFlare(xpos, ypos, xSize, ySize, color)
+{
+	var flr = instance_create_layer(xpos, ypos, "Players", oFlares);
+	flr.fColor = color;
+	flr.xTarget = xSize;
+	flr.yTarget = ySize;
 }
 
 /// @description Chance(percent) Returns true or false depending on RNG

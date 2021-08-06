@@ -539,3 +539,8 @@ if burstActive
 		}
 	}
 }
+
+if shieldHealth < shieldMax && shieldCanCharge
+{
+	shieldHealth = lerp(shieldHealth, shieldMax, shieldChargeRate);
+}

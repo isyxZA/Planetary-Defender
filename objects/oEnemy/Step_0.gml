@@ -4,11 +4,11 @@ if canMove
 	targetX = lengthdir_x(size*mass, pa);
 	targetY = lengthdir_y(size*mass, pa);
 	physics_apply_force(phy_position_x, phy_position_y, targetX, targetY);
+	
+	var pd = point_distance(phy_position_x, phy_position_y, tX, tY)*0.004;
+	var scaleAdj = min(1, 0.1+pd);
+	scale = lerp(scale, scaleAdj, 0.15);
 }
-
-var pd = point_distance(phy_position_x, phy_position_y, tX, tY)*0.004;
-var scaleAdj = min(1, 0.1+pd);
-scale = lerp(scale, scaleAdj, 0.15);
 
 switch shape
 {
@@ -18,7 +18,7 @@ switch shape
 		rCurrent = lerp(rCurrent, rTarget, 0.015);
 		break;
 	case "Box":
-		physics_apply_torque(size*0.25);
+		phy_rotation += 2;
 		break;
 	case "Triangle":
 		break;

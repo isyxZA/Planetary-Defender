@@ -21,6 +21,9 @@ if global.canClick
 					with oButton { instance_destroy(); }
 					global.canClick = false;
 					oControl.alarm[2] = room_speed * 2;
+					oControl.alarm[5] = 1;
+					oControl.alarm[6] = 2;
+					oControl.uiOverlay = buttonoverlay.sololobby;
 					SetUI(buttonoverlay.sololobby);
                     break;
 				case "Multiplayer":
@@ -28,6 +31,9 @@ if global.canClick
 					with oButton { instance_destroy(); }
 					global.canClick = false;
 					oControl.alarm[2] = room_speed * 2;
+					oControl.alarm[5] = 1;
+					oControl.alarm[6] = 2;
+					oControl.uiOverlay = buttonoverlay.cooplobby;
 					SetUI(buttonoverlay.cooplobby);
                     break;
                 case "Main Menu":
@@ -41,17 +47,23 @@ if global.canClick
 					with oButton { instance_destroy(); }
 					global.canClick = false;
 					oControl.alarm[2] = room_speed * 2;
+					oControl.alarm[5] = 1;
+					oControl.uiOverlay = buttonoverlay.main;
 					switch activeOverlay
 					{
 						case "LOBBY":
 							with oButton    { instance_destroy(); }
 							with oPlayerONE { instance_destroy(); }
+							with oEnemy     { instance_destroy(); }
+							with oLobby     { instance_destroy(); }
 							SetUI(buttonoverlay.main);
 							break;
 						case "LOBBYCOOP":
 							with oButton    { instance_destroy(); }
 							with oPlayerONE { instance_destroy(); }
 							with oPlayerTWO { instance_destroy(); }
+							with oEnemy     { instance_destroy(); }
+							with oLobby     { instance_destroy(); }
 							SetUI(buttonoverlay.main);
 							break;
 					}

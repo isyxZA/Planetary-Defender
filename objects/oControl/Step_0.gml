@@ -194,3 +194,17 @@ else if room == rmMenu
 		}
 	}
 }
+
+if doTransition
+{
+	if !flipTransition
+	{
+		if tCurX2 < room_width { tCurX2 = lerp(tCurX2, room_width*2, 0.02); }
+		else { flipTransition = true; }
+	}
+	else
+	{
+		if tCurX1 < room_width { tCurX1 = lerp(tCurX1, room_width*2, 0.02); }
+		else { doTransition = false; }
+	}
+}

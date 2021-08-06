@@ -1,4 +1,4 @@
-//Assign Controller
+/// @description Assign Controller
 if !ds_list_empty(global.controllers)
 {
 	gamePad = global.controllers[| 0];

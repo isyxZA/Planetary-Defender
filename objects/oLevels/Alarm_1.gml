@@ -48,7 +48,7 @@ if spawnPauseCount <= 1
 				}
 				
 				if global.gameMode == "SOLO" { alarm[1] = max(room_speed*0.1, room_speed-gameLevel); }
-				else { alarm[1] = max(room_speed*0.1, (room_speed * 0.5)-gameLevel); }
+				else { alarm[1] = max(room_speed*0.1, (room_speed * 0.8)-gameLevel); }
 				break;
 			case spawntypes.syncedcircle:
 				var mx = 360/spawnCycleMax;
@@ -75,7 +75,7 @@ if spawnPauseCount <= 1
 				spawnType = spawntypes.randomcircle;
 				spawnCycleCount = 0;
 				alarm[3] = room_speed * 10;
-				alarm[1] = room_speed * 5;
+				alarm[1] = room_speed * 3;
 				break;
 			case spawntypes.staggeredcircle:
 				++spawnCycleCount;
@@ -103,7 +103,7 @@ if spawnPauseCount <= 1
 					spawnType = spawntypes.randomcircle;
 					spawnCycleCount = 0;
 					alarm[3] = room_speed * 10; 
-					alarm[1] = room_speed * 5;
+					alarm[1] = room_speed * 3;
 				}
 				else 
 				{ 
@@ -152,7 +152,7 @@ if spawnPauseCount <= 1
 					spawnType = spawntypes.randomcircle;
 					spawnCycleCount = 0;
 					alarm[3] = room_speed * 10; 
-					alarm[1] = room_speed * 5;
+					alarm[1] = room_speed * 3;
 				}
 				else 
 				{ 

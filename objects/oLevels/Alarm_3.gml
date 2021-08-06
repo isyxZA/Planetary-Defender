@@ -4,11 +4,11 @@ if Chance(0.25)
 	enemySize = irandom_range(30, 60);
 	spawnType = choose(spawntypes.syncedcircle, spawntypes.staggeredcircle, spawntypes.staggeredlines, spawntypes.syncedlines);
 	spawnCycleCount = 0;
-	spawnPauseCount = 8;
-	oControl.alarm[3] = room_speed * 6;
+	spawnPauseCount = 5;
+	oControl.alarm[3] = room_speed * 5;
 }
 else
 {
 	spawnType = spawntypes.randomcircle;
-	alarm[3] = room_speed * 5;
+	alarm[3] = room_speed * irandom_range(5, 20);
 }

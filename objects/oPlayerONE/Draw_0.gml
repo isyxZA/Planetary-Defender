@@ -1,3 +1,4 @@
+if room == rmMenu { draw_sprite_ext(sAura, aImage, phy_position_x-3, phy_position_y+3, 1.55, 1.55, 0, c_dkgray, 1); }
 draw_sprite_ext(sAura, aImage, phy_position_x, phy_position_y, 1.5, 1.5, 0, pColor, 1);
 
 if burstActive

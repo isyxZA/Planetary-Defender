@@ -1,2 +1,2 @@
-/// @description Can click trigger
+/// @description Can Click Trigger
 global.canClick = true;

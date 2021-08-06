@@ -4,22 +4,27 @@ switch room
 {
 	case rmMenu:
 		SpawnCamera(0, 0, 1280, 720);
-		SetUI(buttonoverlay.main);
+		uiOverlay = buttonoverlay.main;
+		SetUI(uiOverlay);
 		break;
 	case rmGame:
 		playMusic = true;
 		switch global.gameMode
 		{
 			case "SOLO":
+				scoreP1 = 0;
 				spawnXP1 = room_width * 0.5;
 				spawnYP1 = room_height * 0.55;
 				alarm[0] = room_speed;
 				x = spawnXP1;
 				y = spawnYP1;
 				SpawnCamera(spawnXP1, spawnYP1, 0, 0);
-				SetUI(buttonoverlay.gamesolo);
+				uiOverlay = buttonoverlay.gamesolo;
+				SetUI(uiOverlay);
 				break;
 			case "COOP":
+				scoreP1 = 0;
+				scoreP2 = 0;
 				spawnXP1 = room_width * 0.45;
 				spawnYP1 = room_height * 0.55;
 				spawnXP2 = room_width * 0.55;
@@ -28,7 +33,8 @@ switch room
 				x = room_width * 0.5;
 				y = room_height * 0.55;
 				SpawnCamera(room_width * 0.5, room_height * 0.55, 0, 0);
-				SetUI(buttonoverlay.gamecoop);
+				uiOverlay = buttonoverlay.gamecoop;
+				SetUI(uiOverlay);
 				break;
 		}
 		break;

@@ -153,7 +153,7 @@ if room == rmGame
 				draw_text(8, vsep1 + (vsep1a * 4), "Damage: " + string(sDamageP1));
 				draw_text(8, (vsep1 * 2) + (vsep1a * 3), "Speed: " + string(sMaxP1));
 				draw_text(8, (vsep1 * 2) + (vsep1a * 4), "Accel: " + string(sAccelP1));
-				draw_text(8, (vsep1 * 3) + (vsep1a * 3), "Duration: " + string(bTimeP1));
+				draw_text(8, (vsep1 * 3) + (vsep1a * 3), "Time: " + string(bTimeP1));
 				draw_text(8, (vsep1 * 3) + (vsep1a * 4), "Cooldown: " + string(bRateP1));
 				draw_text(8, (vsep1 * 4) + (vsep1a * 3), "Strength: " + string(sStrengthP1));
 				draw_text(8, (vsep1 * 4) + (vsep1a * 4), "Recharge: " + string(sRateP1));
@@ -344,7 +344,7 @@ if room == rmGame
 				draw_text(8, vsep1 + (vsep1a * 4), "Damage: " + string(sDamageP1));
 				draw_text(8, (vsep1 * 2) + (vsep1a * 3), "Speed: " + string(sMaxP1));
 				draw_text(8, (vsep1 * 2) + (vsep1a * 4), "Accel: " + string(sAccelP1));
-				draw_text(8, (vsep1 * 3) + (vsep1a * 3), "Duration: " + string(bTimeP1));
+				draw_text(8, (vsep1 * 3) + (vsep1a * 3), "Time: " + string(bTimeP1));
 				draw_text(8, (vsep1 * 3) + (vsep1a * 4), "Cooldown: " + string(bRateP1));
 				draw_text(8, (vsep1 * 4) + (vsep1a * 3), "Strength: " + string(sStrengthP1));
 				draw_text(8, (vsep1 * 4) + (vsep1a * 4), "Recharge: " + string(sRateP1));
@@ -534,7 +534,7 @@ if room == rmGame
 				draw_text(8, vsep1 + (vsep1a * 4), "Damage: " + string(sDamageP2));
 				draw_text(8, (vsep1 * 2) + (vsep1a * 3), "Speed: " + string(sMaxP2));
 				draw_text(8, (vsep1 * 2) + (vsep1a * 4), "Accel: " + string(sAccelP2));
-				draw_text(8, (vsep1 * 3) + (vsep1a * 3), "Duration: " + string(bTimeP2));
+				draw_text(8, (vsep1 * 3) + (vsep1a * 3), "Time: " + string(bTimeP2));
 				draw_text(8, (vsep1 * 3) + (vsep1a * 4), "Cooldown: " + string(bRateP2));
 				draw_text(8, (vsep1 * 4) + (vsep1a * 3), "Strength: " + string(sStrengthP2));
 				draw_text(8, (vsep1 * 4) + (vsep1a * 4), "Recharge: " + string(sRateP2));
@@ -575,17 +575,5 @@ if room == rmGame
 			draw_text(uictrXP2, 68, string(scoreP2));
 			draw_set_color(c_white);
 			break;
-	}
-}
-else if room == rmMenu
-{
-	if instance_exists(oPlayerONE) 
-	{
-		draw_text(150, 32, string(ds_list_size(global.controllers)));
-		draw_text(150, 64, string(oPlayerONE.playerInput));
-	}
-	if instance_exists(oPlayerTWO) 
-	{
-		draw_text(150, 80, string(oPlayerTWO.playerInput));
 	}
 }

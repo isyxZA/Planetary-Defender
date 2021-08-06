@@ -82,8 +82,10 @@ minesRadius = 96;
 minesActive = 0;
 
 //Shield
-shieldHealth = 10;
-shieldChargeRate = 0.1;
+shieldMax = 10;
+shieldHealth = shieldMax;
+shieldChargeRate = 0.01;
+shieldCanCharge = true;
 
 //Hull
 hHealth = 100;
@@ -96,6 +98,8 @@ mTimer = 0;
 //Damage control
 canDamage = true;
 dTimer = room_speed;
+
+canBeDamaged = true;
 
 //Sprite animation
 aImage = 0;

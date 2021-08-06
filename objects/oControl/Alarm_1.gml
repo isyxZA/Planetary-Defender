@@ -1,2 +1,2 @@
-/// @description Audio trigger
+/// @description Audio Trigger
 playMusic = true;

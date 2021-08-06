@@ -11,7 +11,7 @@ with other
 			else { oControl.scoreP2 += 100; }
 		}
 		with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "+ 100"; tColor = c_yellow; }
-		if Chance(0.2)
+		if Chance(DROPRATE)
 		{
 			var item = instance_create_layer(phy_position_x, phy_position_y, "Players", oItem)
 			item.iColor = eColor;
