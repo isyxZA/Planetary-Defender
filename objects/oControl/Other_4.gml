@@ -3,12 +3,16 @@ global.canClick = true;
 switch room
 {
 	case rmMenu:
+		playMusic = true;
+		global.gameOver = false;
 		SpawnCamera(0, 0, 1280, 720);
 		uiOverlay = buttonoverlay.main;
 		SetUI(uiOverlay);
 		break;
 	case rmGame:
 		playMusic = true;
+		global.gameOver = false;
+		playerTracking = false;
 		switch global.gameMode
 		{
 			case "SOLO":

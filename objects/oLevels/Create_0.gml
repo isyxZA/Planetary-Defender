@@ -12,4 +12,4 @@ enemySize = irandom_range(20, 80);
 
 alarm[1] = room_speed * 2;
 alarm[2] = levelTimer;
-alarm[3] = room_speed * 60;
+alarm[3] = room_speed * 30;

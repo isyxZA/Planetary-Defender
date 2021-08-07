@@ -131,9 +131,13 @@ function SetUI(overlay)
 	switch overlay
 	{
 		case buttonoverlay.main:
-			SpawnButton(192, 192, 1, "Singleplayer", "MAIN");
-			SpawnButton(192, 320, 1, "Multiplayer", "MAIN");
-			SpawnButton(192, 448, 1, "Exit", "MAIN");
+			SpawnButton((room_width * 0.25) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Singleplayer", "MAIN");
+			SpawnButton((room_width * 0.5) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Multiplayer", "MAIN");
+			SpawnButton((room_width * 0.75) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Exit", "MAIN");
+			if audio_is_playing(sndMenuLoop)
+			{
+				audio_sound_gain(sndMenuLoop, 1, 1000);
+			}
 			break;
 		case buttonoverlay.sololobby:
 			SpawnButton((room_width * 0.5) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Ready", "LOBBY");
@@ -144,6 +148,10 @@ function SetUI(overlay)
 			oControl.spawnXP1 = room_width * 0.5;
 			oControl.spawnYP1 = room_height * 0.45;
 			oControl.alarm[0] = room_speed;
+			if audio_is_playing(sndMenuLoop)
+			{
+				audio_sound_gain(sndMenuLoop, 0.3, 1000);
+			}
 			//Spawn input selection
 			break;
 		case buttonoverlay.cooplobby:
@@ -157,6 +165,10 @@ function SetUI(overlay)
 			oControl.spawnXP2 = room_width * 0.6;
 			oControl.spawnYP2 = room_height * 0.45;
 			oControl.alarm[0] = room_speed;
+			if audio_is_playing(sndMenuLoop)
+			{
+				audio_sound_gain(sndMenuLoop, 0.3, 1000);
+			}
 			//Spawn input selection
 			break;
 		case buttonoverlay.gamesolo:
@@ -249,18 +261,6 @@ function SpawnButton(xpos, ypos, scale, text, overlay)
 	btn.ymid = ypos + ((sprite_get_height(sButton) * scale) * 0.5);
 }
 
-/// @description SpawnBoundary(xpos, ypos, xscale, yscale)
-/// @param xpos
-/// @param ypos
-/// @param xscale
-/// @param yscale
-function SpawnBoundary(xpos, ypos, xscale, yscale)
-{
-	var bdr = instance_create_layer(xpos, ypos, "Players", oBoundary);
-	bdr.image_xscale = xscale;
-	bdr.image_yscale = yscale;
-}
-
 /// @description SpawnBullet(type, xpos, ypos, color, angle, hforce, vforce, scale, damage, spawner)
 /// @param xpos
 /// @param ypos
@@ -325,10 +325,11 @@ function SpawnMissile(xpos, ypos, color, target, spawner)
 	msl.owner  = spawner;
 }
 
-/// @description SpawnFlare(xpos, ypos, xSize, ySize, color)
-function SpawnFlare(xpos, ypos, xSize, ySize, color)
+/// @description SpawnFlare(xpos, ypos, sprite, xSize, ySize, color)
+function SpawnFlare(xpos, ypos, sprite, xSize, ySize, color)
 {
 	var flr = instance_create_layer(xpos, ypos, "Players", oFlares);
+	flr.fSprite = sprite;
 	flr.fColor = color;
 	flr.xTarget = xSize;
 	flr.yTarget = ySize;

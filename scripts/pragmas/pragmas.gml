@@ -1,0 +1,1 @@
+gml_pragma("PNGCrush");

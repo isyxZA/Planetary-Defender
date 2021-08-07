@@ -1,1 +1,1 @@
-draw_sprite_ext(sFlare, 0, x, y, xScale, yScale, 0, fColor, 1);
+draw_sprite_ext(fSprite, 0, x, y, xScale, yScale, 0, fColor, 1);

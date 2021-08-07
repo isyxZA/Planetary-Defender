@@ -35,7 +35,7 @@ switch playerInput
 			{
 				mTimer = 0;
 				var pdir = point_direction(0, 0, hPoint, -vPoint);
-				phy_rotation += angle_difference(pdir, phy_rotation) * 0.1;
+				phy_rotation += angle_difference(pdir, phy_rotation) * 0.2;
 			}
 			else
 			{
@@ -43,7 +43,7 @@ switch playerInput
 				if mTimer >= room_speed
 				{
 					var pdir = point_direction(0, 0, hAxis, -vAxis);
-					phy_rotation += angle_difference(pdir, phy_rotation) * 0.1;
+					phy_rotation += angle_difference(pdir, phy_rotation) * 0.2;
 				}
 			}
 	
@@ -201,7 +201,6 @@ switch playerInput
 	
 		if hAxis != 0 || vAxis != 0
 		{
-			//if splitKeyboard { phy_rotation = point_direction(0, 0, hAxis, vAxis); }
 			isMoving = true;
 		}
 		else 
@@ -227,12 +226,12 @@ switch playerInput
 			if mTimer < room_speed
 			{
 				var pdir = -point_direction(phy_position_x, phy_position_y, mouse_x, mouse_y);
-				phy_rotation += angle_difference(pdir, phy_rotation) * 0.1;
+				phy_rotation += angle_difference(pdir, phy_rotation) * 0.2;
 			}
 			else
 			{
 				var pdir = point_direction(0, 0, hAxis, -vAxis);
-				phy_rotation += angle_difference(pdir, phy_rotation) * 0.1;
+				phy_rotation += angle_difference(pdir, phy_rotation) * 0.2;
 			}
 	
 			mxPrev = device_mouse_raw_x(0);
@@ -544,3 +543,4 @@ if shieldHealth < shieldMax && shieldCanCharge
 {
 	shieldHealth = lerp(shieldHealth, shieldMax, shieldChargeRate);
 }
+sA = 1 * shieldHealth/shieldMax;

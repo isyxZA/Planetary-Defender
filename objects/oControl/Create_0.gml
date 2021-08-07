@@ -12,6 +12,8 @@ levelWave = "";
 enemyWaveAlert = false;
 enemyWaveText = "";
 
+playerTracking = false;
+
 aColor = c_red;
 
 uiScale = 1;

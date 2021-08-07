@@ -3,9 +3,6 @@ if room == rmGame
 	switch global.gameMode
 	{
 		case "SOLO":
-			//var cw_t = gpu_get_colorwriteenable();
-			//cw_t[3] = false;
-			//gpu_set_colorwriteenable(cw_t);
 			if surface_exists(uiSurf_1a) 
 			{
 				//MAIN PANEL\\
@@ -36,7 +33,25 @@ if room == rmGame
 				draw_sprite_ext(sUI, 0, 400, 50, 0.5, 1.5, 0, c_white, 1);
 				draw_text(425, 62, "Burst");
 				//Commmunications Panel
-				if !enemyWaveAlert 
+				if global.gameOver
+				{
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_red, 0.7);
+					draw_text(250 - 1, 75 + 1, "SYSTEMS OFFLINE");
+					draw_set_color(c_yellow);
+					draw_text(250, 75, "SYSTEMS OFFLINE");
+					draw_set_color(c_white);
+				}
+				else if enemyWaveAlert 
+				{
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, aColor, 0.7);
+					draw_text(250 - 1, 75 + 1, enemyWaveText);
+					draw_set_color(c_yellow);
+					draw_text(250, 75, enemyWaveText);
+					draw_set_color(c_white);
+				}
+				else
 				{
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
 					draw_text(250, 16, "--CONSOLE--");
@@ -47,15 +62,6 @@ if room == rmGame
 					draw_text(250, 80, string(levelLevel));
 					draw_text(250, 96, levelWave);
 					draw_text(250, 140, string(inputP1));
-				}
-				else
-				{
-					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
-					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, aColor, 0.7);
-					draw_text(250 - 1, 75 + 1, enemyWaveText);
-					draw_set_color(c_yellow);
-					draw_text(250, 75, enemyWaveText);
-					draw_set_color(c_white);
 				}
 				//Hull Health
 				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
@@ -162,7 +168,7 @@ if room == rmGame
 				draw_text(8, (vsep1 * 6) + (vsep1a * 3), "Volley Size: " + string(mVolleyP1));
 				draw_text(8, (vsep1 * 6) + (vsep1a * 4), "Damage: " + string(mDamageP1));
 				draw_text(8, (vsep1 * 7) + (vsep1a * 3), "Duration: " + string(lTimeP1));
-				draw_text(8, (vsep1 * 7) + (vsep1a * 4), "Cooldown: " + string(lCooldownP1));
+				draw_text(8, (vsep1 * 7) + (vsep1a * 4), "Recharge: " + string(lCooldownP1));
 				draw_text(8, (vsep1 * 8) + (vsep1a * 3), "Fire Rate: " + string(tRateP1));
 				draw_text(8, (vsep1 * 8) + (vsep1a * 4), "Damage: " + string(tDamageP1));
 				draw_text(8, (vsep1 * 9) + (vsep1a * 3), "Max Active: " + string(mMaxP1));
@@ -177,8 +183,6 @@ if room == rmGame
 	            draw_clear(c_black);
 	            surface_reset_target();
 			}
-			//cw_t[3] = true;
-			//gpu_set_colorwriteenable(cw_t);
 			draw_set_halign(fa_center);
 			draw_set_valign(fa_middle);
 			draw_set_font(fnt12);
@@ -193,11 +197,17 @@ if room == rmGame
 			draw_text(uictrXP1, 52, "SCORE");
 			draw_text(uictrXP1, 68, string(scoreP1));
 			draw_set_color(c_white);
+			if global.gameOver
+			{
+				draw_set_font(fnt24);
+				draw_set_color(c_dkgrey);
+				draw_text(uictrXP1 - 2, (display_get_gui_height() * 0.375) + 2, "GAME OVER");
+				draw_set_color(c_yellow);
+				draw_text(uictrXP1, display_get_gui_height() * 0.375, "GAME OVER");
+			}
+			draw_set_color(c_white);
 			break;
 		case "COOP":
-			//var cw_t = gpu_get_colorwriteenable();
-			//cw_t[3] = false;
-			//gpu_set_colorwriteenable(cw_t);
 			if surface_exists(uiSurf_1a) 
 			{
 				//MAIN PANEL\\
@@ -228,18 +238,16 @@ if room == rmGame
 				draw_sprite_ext(sUI, 0, 400, 50, 0.5, 1.5, 0, c_white, 1);
 				draw_text(425, 62, "Burst");
 				//Commmunications Panel
-				if !enemyWaveAlert
+				if global.gameOver
 				{
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
-					draw_text(250, 16, "--CONSOLE--");
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_red, 0.7);
+					draw_text(250 - 1, 75 + 1, "SYSTEMS OFFLINE");
 					draw_set_color(c_yellow);
-					draw_text(250, 38, "Planet Status");
-					draw_text(250, 56, string(oPlanet.pHealth));
-					draw_text(250, 76, string(cam_w));
+					draw_text(250, 75, "SYSTEMS OFFLINE");
 					draw_set_color(c_white);
-					draw_text(250, 140, string(inputP1));
 				}
-				else
+				else if enemyWaveAlert 
 				{
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, aColor, 0.7);
@@ -247,6 +255,18 @@ if room == rmGame
 					draw_set_color(c_yellow);
 					draw_text(250, 75, enemyWaveText);
 					draw_set_color(c_white);
+				}
+				else
+				{
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_text(250, 16, "--CONSOLE--");
+					draw_set_color(c_yellow);
+					draw_text(250, 38, "Planet Status");
+					draw_text(250, 56, string(oPlanet.pHealth));
+					draw_set_color(c_white);
+					draw_text(250, 80, string(levelLevel));
+					draw_text(250, 96, levelWave);
+					draw_text(250, 140, string(inputP1));
 				}
 				//Hull Health
 				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
@@ -353,7 +373,7 @@ if room == rmGame
 				draw_text(8, (vsep1 * 6) + (vsep1a * 3), "Volley Size: " + string(mVolleyP1));
 				draw_text(8, (vsep1 * 6) + (vsep1a * 4), "Damage: " + string(mDamageP1));
 				draw_text(8, (vsep1 * 7) + (vsep1a * 3), "Duration: " + string(lTimeP1));
-				draw_text(8, (vsep1 * 7) + (vsep1a * 4), "Cooldown: " + string(lCooldownP1));
+				draw_text(8, (vsep1 * 7) + (vsep1a * 4), "Recharge: " + string(lCooldownP1));
 				draw_text(8, (vsep1 * 8) + (vsep1a * 3), "Fire Rate: " + string(tRateP1));
 				draw_text(8, (vsep1 * 8) + (vsep1a * 4), "Damage: " + string(tDamageP1));
 				draw_text(8, (vsep1 * 9) + (vsep1a * 3), "Max Active: " + string(mMaxP1));
@@ -368,8 +388,6 @@ if room == rmGame
 	            draw_clear(c_black);
 	            surface_reset_target();
 			}
-			//cw_t[3] = true;
-			//gpu_set_colorwriteenable(cw_t);
 			draw_set_halign(fa_center);
 			draw_set_valign(fa_middle);
 			draw_set_font(fnt12);
@@ -386,9 +404,6 @@ if room == rmGame
 			draw_set_color(c_white);
 			
 			//PLAYER TWO\\
-			//var cw_t = gpu_get_colorwriteenable();
-			//cw_t[3] = false;
-			//gpu_set_colorwriteenable(cw_t);
 			if surface_exists(uiSurf_2a) 
 			{
 				//MAIN PANEL\\
@@ -419,17 +434,16 @@ if room == rmGame
 				draw_sprite_ext(sUI, 0, 400, 50, 0.5, 1.5, 0, c_white, 1);
 				draw_text(425, 62, "Burst");
 				//Commmunications Panel
-				if !enemyWaveAlert
+				if global.gameOver
 				{
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
-					draw_text(250, 16, "--CONSOLE--");
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_red, 0.7);
+					draw_text(250 - 1, 75 + 1, "SYSTEMS OFFLINE");
 					draw_set_color(c_yellow);
-					draw_text(250, 38, "Planet Status");
-					draw_text(250, 56, string(oPlanet.pHealth));
+					draw_text(250, 75, "SYSTEMS OFFLINE");
 					draw_set_color(c_white);
-					draw_text(250, 140, string(inputP2));
 				}
-				else
+				else if enemyWaveAlert 
 				{
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, aColor, 0.7);
@@ -437,6 +451,18 @@ if room == rmGame
 					draw_set_color(c_yellow);
 					draw_text(250, 75, enemyWaveText);
 					draw_set_color(c_white);
+				}
+				else
+				{
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_text(250, 16, "--CONSOLE--");
+					draw_set_color(c_yellow);
+					draw_text(250, 38, "Planet Status");
+					draw_text(250, 56, string(oPlanet.pHealth));
+					draw_set_color(c_white);
+					draw_text(250, 80, string(levelLevel));
+					draw_text(250, 96, levelWave);
+					draw_text(250, 140, string(inputP2));
 				}
 				//Hull Health
 				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
@@ -543,7 +569,7 @@ if room == rmGame
 				draw_text(8, (vsep1 * 6) + (vsep1a * 3), "Volley Size: " + string(mVolleyP2));
 				draw_text(8, (vsep1 * 6) + (vsep1a * 4), "Damage: " + string(mDamageP2));
 				draw_text(8, (vsep1 * 7) + (vsep1a * 3), "Duration: " + string(lTimeP2));
-				draw_text(8, (vsep1 * 7) + (vsep1a * 4), "Cooldown: " + string(lCooldownP2));
+				draw_text(8, (vsep1 * 7) + (vsep1a * 4), "Recharge: " + string(lCooldownP2));
 				draw_text(8, (vsep1 * 8) + (vsep1a * 3), "Fire Rate: " + string(tRateP2));
 				draw_text(8, (vsep1 * 8) + (vsep1a * 4), "Damage: " + string(tDamageP2));
 				draw_text(8, (vsep1 * 9) + (vsep1a * 3), "Max Active: " + string(mMaxP2));
@@ -558,8 +584,6 @@ if room == rmGame
 	            draw_clear(c_black);
 	            surface_reset_target();
 			}
-			//cw_t[3] = true;
-			//gpu_set_colorwriteenable(cw_t);
 			draw_set_halign(fa_center);
 			draw_set_valign(fa_middle);
 			draw_set_font(fnt12);
@@ -574,6 +598,14 @@ if room == rmGame
 			draw_text(uictrXP2, 52, "SCORE");
 			draw_text(uictrXP2, 68, string(scoreP2));
 			draw_set_color(c_white);
+			if global.gameOver
+			{
+				draw_set_font(fnt24);
+				draw_set_color(c_dkgrey);
+				draw_text((display_get_gui_width() * 0.5) - 2, (display_get_gui_height() * 0.375) + 2, "GAME OVER");
+				draw_set_color(c_yellow);
+				draw_text((display_get_gui_width() * 0.5), display_get_gui_height() * 0.375, "GAME OVER");
+			}
 			break;
 	}
 }

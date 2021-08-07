@@ -38,11 +38,12 @@ if doTransition
 	draw_set_color(c_black);
 	draw_rectangle(0, 0, room_width, room_height, false);
 	draw_set_alpha(0.7);
+	draw_set_color(c_orange);
+	draw_rectangle(room_width-tCurX1, 145, room_width-tCurX2, 287, false);
+	draw_rectangle(room_width-tCurX1, 433, room_width-tCurX2, 575, false);
 	draw_set_color(c_white);
 	draw_rectangle(tCurX1, 0, tCurX2, 144, false);
-	draw_rectangle(room_width-tCurX1, 145, room_width-tCurX2, 287, false);
 	draw_rectangle(tCurX1, 288, tCurX2, 432, false);
-	draw_rectangle(room_width-tCurX1, 433, room_width-tCurX2, 575, false);
 	draw_rectangle(tCurX1, 576, tCurX2, 720, false);
 	draw_set_alpha(1);
 }

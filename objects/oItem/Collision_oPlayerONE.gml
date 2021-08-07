@@ -1,6 +1,6 @@
 effect_create_above(ef_star, phy_position_x, phy_position_y, 0.75, c_silver);
 effect_create_above(ef_ring, phy_position_x, phy_position_y, 1, iColor);
-SpawnFlare(x, y, 5, 2, c_white);
+SpawnFlare(x, y, sFlare01, 5, 2, c_white);
 var choice = Chance(0.5);
 switch iColor
 {

@@ -11,5 +11,6 @@ else if global.gameMode == "COOP"
 
 if room == rmGame 
 {
+	playerTracking = true;
 	instance_create_layer(0, 0, "Level", oLevels);
 }

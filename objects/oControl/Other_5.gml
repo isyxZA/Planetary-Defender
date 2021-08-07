@@ -9,6 +9,7 @@ myCamera = -1;
 
 if room == rmGame
 {
+	playerTracking = false;
 	switch global.gameMode
 	{
 		case "SOLO":

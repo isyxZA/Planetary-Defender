@@ -1,4 +1,5 @@
 global.gameMode = "SOLO";
+global.gameOver = false;
 global.splitKeyboard = false;
 
 global.canClick = true; 

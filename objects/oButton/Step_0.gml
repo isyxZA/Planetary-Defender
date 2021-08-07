@@ -20,7 +20,7 @@ if global.canClick
 					global.gameMode = "SOLO";
 					with oButton { instance_destroy(); }
 					global.canClick = false;
-					oControl.alarm[2] = room_speed * 2;
+					oControl.alarm[2] = room_speed;
 					oControl.alarm[5] = 1;
 					oControl.alarm[6] = 2;
 					oControl.uiOverlay = buttonoverlay.sololobby;
@@ -30,7 +30,7 @@ if global.canClick
 					global.gameMode = "COOP";
 					with oButton { instance_destroy(); }
 					global.canClick = false;
-					oControl.alarm[2] = room_speed * 2;
+					oControl.alarm[2] = room_speed;
 					oControl.alarm[5] = 1;
 					oControl.alarm[6] = 2;
 					oControl.uiOverlay = buttonoverlay.cooplobby;
@@ -40,13 +40,14 @@ if global.canClick
 					with oButton { instance_destroy(); }
 					room_goto(rmMenu);
                     break;
-                case "Resume":
+                case "Play Again":
 					with oButton { instance_destroy(); }
+					room_restart();
                     break;
                 case "Back":
 					with oButton { instance_destroy(); }
 					global.canClick = false;
-					oControl.alarm[2] = room_speed * 2;
+					oControl.alarm[2] = room_speed;
 					oControl.alarm[5] = 1;
 					oControl.uiOverlay = buttonoverlay.main;
 					switch activeOverlay
@@ -68,10 +69,6 @@ if global.canClick
 							break;
 					}
                     break;
-				case "Options":
-					with oButton { instance_destroy(); }
-					SetUI(buttonoverlay.options);
-					break;
 				case "Ready":
 					switch activeOverlay
 					{
@@ -87,8 +84,6 @@ if global.canClick
 							room_goto(rmGame);
 							break;
 					}
-					break;
-				case "Restart":
 					break;
                 case "Exit":
                     global.canClick = false;

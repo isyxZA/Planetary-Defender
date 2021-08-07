@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "sFlare",
-    "path": "sprites/sFlare/sFlare.yy",
+    "name": "sFlare01",
+    "path": "sprites/sFlare01/sFlare01.yy",
   },
   "solid": false,
   "visible": true,

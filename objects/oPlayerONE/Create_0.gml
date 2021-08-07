@@ -86,6 +86,8 @@ shieldMax = 10;
 shieldHealth = shieldMax;
 shieldChargeRate = 0.01;
 shieldCanCharge = true;
+sImage = 0;
+sA = 1 * shieldHealth/shieldMax;
 
 //Hull
 hHealth = 100;
