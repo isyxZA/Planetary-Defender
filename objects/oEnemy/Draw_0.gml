@@ -9,10 +9,20 @@ switch shape
 		break;
 	case "Triangle":
 		draw_primitive_begin(pr_linestrip);
-		draw_vertex_color(x + (p1x * scale), y + (p1y * scale), activeColor, 1);
-		draw_vertex_color(x + (p2x * scale), y + (p2y * scale), activeColor, 1);
-		draw_vertex_color(x + (p3x * scale), y + (p3y * scale), activeColor, 1);
-		draw_vertex_color(x + (p1x * scale), y + (p1y * scale), activeColor, 1);
+		if !isSpecial
+		{
+			draw_vertex_color(x + lengthdir_x(p1xStart, image_angle), y + lengthdir_y(p1yStart, image_angle), activeColor, 1);
+			draw_vertex_color(x + lengthdir_x(p2xStart, image_angle), y + lengthdir_y(p2yStart, image_angle), activeColor, 1);
+			draw_vertex_color(x + lengthdir_x(p3xStart, image_angle), y + lengthdir_y(p3yStart, image_angle), activeColor, 1);
+			draw_vertex_color(x + lengthdir_x(p1xStart, image_angle), y + lengthdir_y(p1yStart, image_angle), activeColor, 1);
+		}
+		else
+		{
+			draw_vertex_color(x + p1xStart, y + p1yStart, activeColor, 1);
+			draw_vertex_color(x + p2xStart, y + p2yStart, activeColor, 1);
+			draw_vertex_color(x + p3xStart, y + p3yStart, activeColor, 1);
+			draw_vertex_color(x + p1xStart, y + p1yStart, activeColor, 1);
+		}
 		draw_primitive_end();
 		break;
 }

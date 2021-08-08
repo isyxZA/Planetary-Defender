@@ -10,4 +10,6 @@ ds_list_clear(global.controllers);
 global.highScoreP1 = 0;
 global.highScoreP2 = 0;
 
+global.particleSystem = -1;
+
 #macro DROPRATE 0.3

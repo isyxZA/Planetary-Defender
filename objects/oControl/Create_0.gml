@@ -16,6 +16,8 @@ playerTracking = false;
 
 aColor = c_red;
 
+uiWidth = display_get_gui_width();
+uiHeight = display_get_gui_height();
 uiScale = 1;
 uiOverlay = buttonoverlay.main;
 

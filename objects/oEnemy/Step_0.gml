@@ -13,13 +13,17 @@ if canMove
 switch shape
 {
 	case "Circle":
-		if rCurrent >= r*1.5 { rTarget = r*-2; }
-		if rCurrent <= r*-1.5 { rTarget = r*2; }
-		rCurrent = lerp(rCurrent, rTarget, 0.015);
+		if !isSpecial
+		{
+			if rCurrent >= r*1.5 { rTarget = r*-2; }
+			if rCurrent <= r*-1.5 { rTarget = r*2; }
+			rCurrent = lerp(rCurrent, rTarget, 0.015);
+		}
 		break;
 	case "Box":
 		phy_rotation += 2;
 		break;
 	case "Triangle":
+		if !isSpecial { phy_rotation -= 1.5; }
 		break;
 }

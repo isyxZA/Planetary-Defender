@@ -131,6 +131,8 @@ function SetUI(overlay)
 	switch overlay
 	{
 		case buttonoverlay.main:
+			var bck0 = layer_background_get_id("BG0");
+		    layer_background_visible(bck0, false);
 			SpawnButton((room_width * 0.25) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Singleplayer", "MAIN");
 			SpawnButton((room_width * 0.5) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Multiplayer", "MAIN");
 			SpawnButton((room_width * 0.75) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Exit", "MAIN");
@@ -140,12 +142,18 @@ function SetUI(overlay)
 			}
 			break;
 		case buttonoverlay.sololobby:
+			var bck = layer_background_get_id("Background");
+			layer_background_visible(bck, false);
+			var bck0 = layer_background_get_id("BG0");
+		    layer_background_visible(bck0, true);
+			layer_hspeed(layer_get_id("BG0"), 0.2);
+			layer_vspeed(layer_get_id("BG0"), 0.1);
 			SpawnButton((room_width * 0.5) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Ready", "LOBBY");
 			SpawnButton((room_width * 0.75) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Back", "LOBBY");
 			SpawnButton((room_width * 0.25) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Exit", "LOBBY");
 			instance_create_layer(0, 0, "Level", oLobby);
 			//Spawn Player
-			oControl.spawnXP1 = room_width * 0.5;
+			oControl.spawnXP1 = room_width * 0.4;
 			oControl.spawnYP1 = room_height * 0.45;
 			oControl.alarm[0] = room_speed;
 			if audio_is_playing(sndMenuLoop)
@@ -155,6 +163,12 @@ function SetUI(overlay)
 			//Spawn input selection
 			break;
 		case buttonoverlay.cooplobby:
+			var bck = layer_background_get_id("Background");
+			layer_background_visible(bck, false);
+			var bck0 = layer_background_get_id("BG0");
+		    layer_background_visible(bck0, true);
+			layer_hspeed(layer_get_id("BG0"), 0.2);
+			layer_vspeed(layer_get_id("BG0"), 0.1);
 			SpawnButton((room_width * 0.5) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Ready", "LOBBYCOOP");
 			SpawnButton((room_width * 0.75) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Back", "LOBBYCOOP");
 			SpawnButton((room_width * 0.25) - (sprite_get_width(sButton) * 0.5), room_height * 0.8, 1, "Exit", "LOBBYCOOP");
@@ -173,7 +187,7 @@ function SetUI(overlay)
 			break;
 		case buttonoverlay.gamesolo:
 			//Create the UI surfaces
-			uictrXP1 = (display_get_gui_width() * 0.5);//UI X Center
+			uictrXP1 = (uiWidth * 0.5);//UI X Center
 			//Bottom Center Main Panel
 			uiW_1a = 500;
 			uiH_1a = 150;
@@ -181,8 +195,8 @@ function SetUI(overlay)
             surface_set_target(uiSurf_1a);
             draw_clear(c_black);
             surface_reset_target();
-			uiX_1a = (display_get_gui_width() * 0.5) - (uiW_1a * 0.5);
-			uiY_1a =  display_get_gui_height() - uiH_1a;
+			uiX_1a = (uiWidth * 0.5) - (uiW_1a * 0.5);
+			uiY_1a =  uiHeight - uiH_1a;
 			//Side Panel
 			uiW_1b = 100;
 			uiH_1b = 600;
@@ -191,14 +205,14 @@ function SetUI(overlay)
             draw_clear(c_black);
             surface_reset_target();
 			uiX_1b = 0;
-			uiY_1b =  display_get_gui_height() * 0.05;
-			uiH_1b = display_get_gui_height() - (uiY_1b * 2);
+			uiY_1b = uiHeight * 0.05;
+			uiH_1b = uiHeight - (uiY_1b * 2);
 			break;
 		case buttonoverlay.gamecoop:
 			//Create the UI surfaces
 			uiScale = 0.8;
 			//PLAYER ONE\\
-			uictrXP1 = (display_get_gui_width() * 0.25);//UI X Center
+			uictrXP1 = (uiWidth * 0.25);//UI X Center
 			//Bottom Center Main Panel
 			uiW_1a = 500;//Width
 			uiH_1a = 150;//Height
@@ -206,8 +220,8 @@ function SetUI(overlay)
             surface_set_target(uiSurf_1a);
             draw_clear(c_black);
             surface_reset_target();
-			uiX_1a = (display_get_gui_width() * 0.25) - ((uiW_1a * uiScale) * 0.5);//X Origin
-			uiY_1a =  display_get_gui_height() - (uiH_1a * uiScale);//Y Origin
+			uiX_1a = (uiWidth * 0.25) - ((uiW_1a * uiScale) * 0.5);//X Origin
+			uiY_1a =  uiHeight - (uiH_1a * uiScale);//Y Origin
 			//Side Panel
 			uiW_1b = 100;//Width
 			uiH_1b = 600;//Height
@@ -216,10 +230,10 @@ function SetUI(overlay)
             draw_clear(c_black);
             surface_reset_target();
 			uiX_1b = 0;//X Origin
-			uiY_1b =  display_get_gui_height() * 0.05;//Y Origin
-			uiH_1b = display_get_gui_height() - (uiY_1b * 2);//Adjust display height
+			uiY_1b = uiHeight * 0.05;//Y Origin
+			uiH_1b = uiHeight - (uiY_1b * 2);//Adjust display height
 			//PLAYER TWO\\
-			uictrXP2 = (display_get_gui_width() * 0.75);
+			uictrXP2 = (uiWidth * 0.75);
 			//Bottom Center Main Panel
 			uiW_2a = 500;//Width
 			uiH_2a = 150;//Height
@@ -227,8 +241,8 @@ function SetUI(overlay)
             surface_set_target(uiSurf_2a);
             draw_clear(c_black);
             surface_reset_target();
-			uiX_2a = (display_get_gui_width() * 0.75) - ((uiW_2a * uiScale) * 0.5);//X Origin
-			uiY_2a =  display_get_gui_height() - (uiH_2a * uiScale);//Y Origin
+			uiX_2a = (uiWidth * 0.75) - ((uiW_2a * uiScale) * 0.5);//X Origin
+			uiY_2a = uiHeight - (uiH_2a * uiScale);//Y Origin
 			//Side Panel
 			uiW_2b = 100;//Width
 			uiH_2b = 600;//Height
@@ -236,9 +250,9 @@ function SetUI(overlay)
             surface_set_target(uiSurf_2b);
             draw_clear(c_black);
             surface_reset_target();
-			uiX_2b = display_get_gui_width() - (uiW_2b * uiScale);//X Origin
-			uiY_2b = display_get_gui_height() * 0.05;//Y Origin
-			uiH_2b = display_get_gui_height() - (uiY_2b * 2);//Adjust display height
+			uiX_2b = uiWidth - (uiW_2b * uiScale);//X Origin
+			uiY_2b = uiHeight * 0.05;//Y Origin
+			uiH_2b = uiHeight - (uiY_2b * 2);//Adjust display height
 			break;
 		case buttonoverlay.options:
 			break;

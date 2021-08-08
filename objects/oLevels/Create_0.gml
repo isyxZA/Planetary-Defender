@@ -1,5 +1,5 @@
 gameLevel = 1;
-levelTimer = room_speed * 30;
+levelTimer = room_speed * 25;
 spawnType = spawntypes.randomcircle;
 spawnCycleMax = 12;
 spawnCycleCount = 0;
@@ -12,4 +12,4 @@ enemySize = irandom_range(20, 80);
 
 alarm[1] = room_speed * 2;
 alarm[2] = levelTimer;
-alarm[3] = room_speed * 30;
+alarm[3] = room_speed * 25;

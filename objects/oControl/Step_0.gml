@@ -63,6 +63,9 @@ if room == rmGame
 			
 				x = oPlayerONE.phy_position_x;
 				y = oPlayerONE.phy_position_y;
+				
+				var pd = point_distance(x, y, oPlanet.x, oPlanet.y) + 1024;
+				tw = max(targetWidth, min(4096, pd));
 			}
 			else
 			{
@@ -138,19 +141,23 @@ if room == rmGame
 				x = (oPlayerONE.phy_position_x + oPlayerTWO.phy_position_x) * 0.5; 
 				y = (oPlayerONE.phy_position_y + oPlayerTWO.phy_position_y) * 0.5;
 			
-				tw = max(targetWidth, min(2560, abs( oPlayerONE.x - oPlayerTWO.x) + 512), min(2560, (abs(oPlayerONE.y - oPlayerTWO.y) + 490) * viewRatio));
+				tw = max(targetWidth, min(2560, abs(oPlayerONE.x - oPlayerTWO.x) + 512), min(2560, (abs(oPlayerONE.y - oPlayerTWO.y) + 490) * viewRatio));
 			}
 			else if pone 
 			{  
 				x = oPlayerONE.phy_position_x; 
 				y = oPlayerONE.phy_position_y;
 				global.splitKeyboard = false;
+				var pd = point_distance(x, y, oPlanet.x, oPlanet.y) + 1024;
+				tw = max(targetWidth, min(4096, pd));
 			}
 			else if ptwo 
 			{ 
 				x = oPlayerTWO.phy_position_x; 
 				y = oPlayerTWO.phy_position_y;
 				global.splitKeyboard = false;
+				var pd = point_distance(x, y, oPlanet.x, oPlanet.y) + 1024;
+				tw = max(targetWidth, min(4096, pd));
 			}
 			else
 			{
@@ -199,6 +206,12 @@ if room == rmGame
 	cam_y = camera_get_view_y(myCamera);
 	cam_w = camera_get_view_width(myCamera);
 	cam_h = camera_get_view_height(myCamera);
+	
+	//Parallax Stars
+	layer_x("BG1", cam_x * 0.25);
+	layer_y("BG1", cam_y * 0.15);
+	layer_x("BG0", cam_x * 0.5);
+	layer_y("BG0", cam_y * 0.4);
 }
 else if room == rmMenu
 {

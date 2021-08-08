@@ -2,7 +2,7 @@
 if uiOverlay == buttonoverlay.sololobby || uiOverlay == buttonoverlay.cooplobby
 {
 	var ex;
-	if global.gameMode == "SOLO" { ex = 0.75; }
+	if global.gameMode == "SOLO" { ex = 0.6; }
 	else { ex = 0.5; }
 	with instance_create_layer(room_width * ex, room_height * 0.45, "Players", oEnemy)
 	{
@@ -16,19 +16,19 @@ if uiOverlay == buttonoverlay.sololobby || uiOverlay == buttonoverlay.cooplobby
 			case 0:
 				shape = "Circle";
 				mass =  0;
-				size = irandom_range(60, 80);
+				size = irandom_range(50, 80);
 				FixtureCreateCircle(size, mass, 0.8, 0.1, 0.2, 0.2);
 				break;
 			case 1:
 				shape = "Box";
 				mass = 0;
-				size = irandom_range(40, 70);
+				size = irandom_range(50, 80);
 				FixtureCreateBox(size, size, mass, 0.7, 0.1, 0.2, 0.2);
 				break;
 			case 2:
 				shape = "Triangle";
 				mass = 0;
-				size = irandom_range(30, 50);
+				size = irandom_range(50, 80);
 				FixtureCreateTriangle(size, size, mass, 0.5, 0.1, 0.2, 0.2);
 				break;
 		}

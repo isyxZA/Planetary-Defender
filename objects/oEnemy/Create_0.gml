@@ -6,6 +6,7 @@ eColor = c_white;
 bColor = c_silver;
 activeColor = c_white
 eHealth = 0;
+isSpecial = false;
 blink = false;
 
 tX = room_width * 0.5;

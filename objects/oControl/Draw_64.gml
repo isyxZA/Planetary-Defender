@@ -7,6 +7,9 @@ if room == rmGame
 			{
 				//MAIN PANEL\\
 	            surface_set_target(uiSurf_1a);
+				//var cw = gpu_get_colorwriteenable();
+				//cw[3] = false;
+				//gpu_set_colorwriteenable(cw);
 	            draw_clear_alpha(c_black, 0);
 				draw_set_halign(fa_center);
 				draw_set_valign(fa_middle);
@@ -46,6 +49,15 @@ if room == rmGame
 				{
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, aColor, 0.7);
+					var lsep = 3;
+					for (var i = 0; i < 49; ++i)
+					{
+						var lw;
+						if Chance(0.02) { draw_set_alpha(1); draw_set_color(c_red); lw = 2; }
+						else { draw_set_alpha(0.7); draw_set_color(c_dkgray); lw = 1; }
+						draw_line_width(155, 3 + (i * lsep), 344, 3 + (i * lsep), lw);
+					}
+					draw_set_alpha(1);
 					draw_text(250 - 1, 75 + 1, enemyWaveText);
 					draw_set_color(c_yellow);
 					draw_text(250, 75, enemyWaveText);
@@ -54,14 +66,24 @@ if room == rmGame
 				else
 				{
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
-					draw_text(250, 16, "--CONSOLE--");
+					var lsep = 3;
+					for (var i = 0; i < 49; ++i)
+					{
+						var lw;
+						if Chance(0.01) { draw_set_alpha(1); draw_set_color(c_green); lw = 2; }
+						else { draw_set_alpha(0.7); draw_set_color(c_dkgray); lw = 1; }
+						draw_line_width(155, 3 + (i * lsep), 344, 3 + (i * lsep), lw);
+					}
+					draw_set_alpha(1);
 					draw_set_color(c_yellow);
 					draw_text(250, 38, "Planet Status");
-					draw_text(250, 56, string(oPlanet.pHealth));
+					draw_text(250, 77, "Enemy Level");
+					draw_text(250, 116, "UFO Control");
 					draw_set_color(c_white);
-					draw_text(250, 80, string(levelLevel));
-					draw_text(250, 96, levelWave);
-					draw_text(250, 140, string(inputP1));
+					draw_text(250, 16, "-- CONSOLE --");
+					draw_text(250, 56, string(oPlanet.pHealth));
+					draw_text(250, 95, string(levelLevel));
+					draw_text(250, 134, string(inputP1));
 				}
 				//Hull Health
 				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
@@ -72,7 +94,7 @@ if room == rmGame
 				draw_sprite_ext(sUI, 0, 350, 25, 0.5, 1.5, 0, c_white, 1);
 				draw_text(375, 38, "Shield");
 				
-				draw_set_alpha(0.5);
+				draw_set_alpha(0.7);
 				draw_healthbar(452, 112, 497, 99, lBarP1, c_black, c_red, c_green, 0, false, false);
 				draw_healthbar(452, 149, 497, 137, mmBarP1, c_black, c_red, c_green, 0, false, false);
 				draw_healthbar(2, 112, 47, 99, tBarP1, c_black, c_red, c_green, 1, false, false);
@@ -84,6 +106,8 @@ if room == rmGame
 				draw_set_alpha(1);
 				
 				surface_reset_target();
+				//cw[3] = true;
+				//gpu_set_colorwriteenable(cw);
 			}
 			else
 			{
@@ -251,6 +275,15 @@ if room == rmGame
 				{
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, aColor, 0.7);
+					var lsep = 3;
+					for (var i = 0; i < 49; ++i)
+					{
+						var lw;
+						if Chance(0.02) { draw_set_alpha(1); draw_set_color(c_red); lw = 2; }
+						else { draw_set_alpha(0.7); draw_set_color(c_dkgray); lw = 1; }
+						draw_line_width(155, 3 + (i * lsep), 344, 3 + (i * lsep), lw);
+					}
+					draw_set_alpha(1);
 					draw_text(250 - 1, 75 + 1, enemyWaveText);
 					draw_set_color(c_yellow);
 					draw_text(250, 75, enemyWaveText);
@@ -259,14 +292,24 @@ if room == rmGame
 				else
 				{
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
-					draw_text(250, 16, "--CONSOLE--");
+					var lsep = 3;
+					for (var i = 0; i < 49; ++i)
+					{
+						var lw;
+						if Chance(0.01) { draw_set_alpha(1); draw_set_color(c_green); lw = 2; }
+						else { draw_set_alpha(0.7); draw_set_color(c_dkgray); lw = 1; }
+						draw_line_width(155, 3 + (i * lsep), 344, 3 + (i * lsep), lw);
+					}
+					draw_set_alpha(1);
 					draw_set_color(c_yellow);
 					draw_text(250, 38, "Planet Status");
-					draw_text(250, 56, string(oPlanet.pHealth));
+					draw_text(250, 77, "Enemy Level");
+					draw_text(250, 116, "UFO Control");
 					draw_set_color(c_white);
-					draw_text(250, 80, string(levelLevel));
-					draw_text(250, 96, levelWave);
-					draw_text(250, 140, string(inputP1));
+					draw_text(250, 16, "-- CONSOLE --");
+					draw_text(250, 56, string(oPlanet.pHealth));
+					draw_text(250, 95, string(levelLevel));
+					draw_text(250, 134, string(inputP1));
 				}
 				//Hull Health
 				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
@@ -277,7 +320,7 @@ if room == rmGame
 				draw_sprite_ext(sUI, 0, 350, 25, 0.5, 1.5, 0, c_white, 1);
 				draw_text(375, 38, "Shield");
 				
-				draw_set_alpha(0.5);
+				draw_set_alpha(0.7);
 				draw_healthbar(452, 112, 497, 99, lBarP1, c_black, c_red, c_green, 0, false, false);
 				draw_healthbar(452, 149, 497, 137, mmBarP1, c_black, c_red, c_green, 0, false, false);
 				draw_healthbar(2, 112, 47, 99, tBarP1, c_black, c_red, c_green, 1, false, false);
@@ -447,6 +490,15 @@ if room == rmGame
 				{
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, aColor, 0.7);
+					var lsep = 3;
+					for (var i = 0; i < 49; ++i)
+					{
+						var lw;
+						if Chance(0.02) { draw_set_alpha(1); draw_set_color(c_red); lw = 2; }
+						else { draw_set_alpha(0.7); draw_set_color(c_dkgray); lw = 1; }
+						draw_line_width(155, 3 + (i * lsep), 344, 3 + (i * lsep), lw);
+					}
+					draw_set_alpha(1);
 					draw_text(250 - 1, 75 + 1, enemyWaveText);
 					draw_set_color(c_yellow);
 					draw_text(250, 75, enemyWaveText);
@@ -455,14 +507,24 @@ if room == rmGame
 				else
 				{
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
-					draw_text(250, 16, "--CONSOLE--");
+					var lsep = 3;
+					for (var i = 0; i < 49; ++i)
+					{
+						var lw;
+						if Chance(0.01) { draw_set_alpha(1); draw_set_color(c_green); lw = 2; }
+						else { draw_set_alpha(0.7); draw_set_color(c_dkgray); lw = 1; }
+						draw_line_width(155, 3 + (i * lsep), 344, 3 + (i * lsep), lw);
+					}
+					draw_set_alpha(1);
 					draw_set_color(c_yellow);
 					draw_text(250, 38, "Planet Status");
-					draw_text(250, 56, string(oPlanet.pHealth));
+					draw_text(250, 77, "Enemy Level");
+					draw_text(250, 116, "UFO Control");
 					draw_set_color(c_white);
-					draw_text(250, 80, string(levelLevel));
-					draw_text(250, 96, levelWave);
-					draw_text(250, 140, string(inputP2));
+					draw_text(250, 16, "--CONSOLE--");
+					draw_text(250, 56, string(oPlanet.pHealth));
+					draw_text(250, 95, string(levelLevel));
+					draw_text(250, 134, string(inputP2));
 				}
 				//Hull Health
 				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
@@ -473,7 +535,7 @@ if room == rmGame
 				draw_sprite_ext(sUI, 0, 350, 25, 0.5, 1.5, 0, c_white, 1);
 				draw_text(375, 38, "Shield");
 				
-				draw_set_alpha(0.5);
+				draw_set_alpha(0.7);
 				draw_healthbar(452, 112, 497, 99, lBarP2, c_black, c_red, c_green, 0, false, false);
 				draw_healthbar(452, 149, 497, 137, mmBarP2, c_black, c_red, c_green, 0, false, false);
 				draw_healthbar(2, 112, 47, 99, tBarP2, c_black, c_red, c_green, 1, false, false);

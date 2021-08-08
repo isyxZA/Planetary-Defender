@@ -42,13 +42,16 @@ if global.canClick
                     break;
                 case "Play Again":
 					with oButton { instance_destroy(); }
+					part_system_clear(global.particleSystem);
 					room_restart();
                     break;
                 case "Back":
 					with oButton { instance_destroy(); }
+					part_system_clear(global.particleSystem);
 					global.canClick = false;
 					oControl.alarm[2] = room_speed;
 					oControl.alarm[5] = 1;
+					oControl.alarm[8] = room_speed;
 					oControl.uiOverlay = buttonoverlay.main;
 					switch activeOverlay
 					{
@@ -57,6 +60,7 @@ if global.canClick
 							with oPlayerONE { instance_destroy(); }
 							with oEnemy     { instance_destroy(); }
 							with oLobby     { instance_destroy(); }
+							if instance_exists(oBomb) { with oBomb { instance_destroy(); } }
 							SetUI(buttonoverlay.main);
 							break;
 						case "LOBBYCOOP":
@@ -65,6 +69,7 @@ if global.canClick
 							with oPlayerTWO { instance_destroy(); }
 							with oEnemy     { instance_destroy(); }
 							with oLobby     { instance_destroy(); }
+							if instance_exists(oBomb) { with oBomb { instance_destroy(); } }
 							SetUI(buttonoverlay.main);
 							break;
 					}

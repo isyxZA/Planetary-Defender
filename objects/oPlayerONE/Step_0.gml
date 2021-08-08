@@ -18,8 +18,6 @@ switch playerInput
 
 			if hAxis != 0 || vAxis != 0
 			{
-
-				//phy_rotation = point_direction(0, 0, hAxis, vAxis);
 				isMoving = true;
 			}
 			else
@@ -136,50 +134,6 @@ switch playerInput
 					++minesActive;
 					SpawnBomb(phy_position_x, phy_position_y, c_red, minesRadius, id);
 				}
-			}
-	
-			//Set camera zoom level
-			if gamepad_button_check_pressed(gamePad, gp_padu)
-			{ 
-			    if oControl.zoomLevel != 1
-				{
-			        oControl.zoomLevel -= 1;
-			        if oControl.zoomLevel < 1 { oControl.zoomLevel = 1; }
-					//Set target width according to zoom level
-					switch oControl.zoomLevel 
-					{
-					    case 1:
-					        oControl.targetWidth  = 960;
-					        break;
-					    case 2:
-					        oControl.targetWidth  = 1366;
-					        break;
-					    case 3:
-					        oControl.targetWidth  = 1600;
-					        break;
-					}
-			    }
-			} 
-			else if gamepad_button_check_pressed(gamePad, gp_padd)
-			{ 
-			    if oControl.zoomLevel != 3
-				{
-			        oControl.zoomLevel += 1;
-			        if oControl.zoomLevel > 3 { oControl.zoomLevel = 3; }
-					//Set target width according to zoom level
-					switch oControl.zoomLevel 
-					{
-					    case 1:
-					        oControl.targetWidth  = 960;
-					        break;
-					    case 2:
-					        oControl.targetWidth  = 1366;
-					        break;
-					    case 3:
-					        oControl.targetWidth  = 1600;
-					        break;
-					}
-			    }
 			}
 		}
 		else
@@ -362,50 +316,6 @@ switch playerInput
 				SpawnBomb(phy_position_x, phy_position_y, c_red, minesRadius, id);
 			}
 		}
-		
-		//Set camera zoom level
-		if mouse_wheel_up() || keyboard_check_pressed(vk_add) 
-		{ 
-			if oControl.zoomLevel != 1
-			{
-			    oControl.zoomLevel -= 1;
-			    if oControl.zoomLevel < 1 { oControl.zoomLevel = 1; }
-				//Set target width according to zoom level
-				switch oControl.zoomLevel 
-				{
-					case 1:
-					    oControl.targetWidth  = 960;
-					    break;
-					case 2:
-					    oControl.targetWidth  = 1366;
-					    break;
-					case 3:
-					    oControl.targetWidth  = 1600;
-					    break;
-				}
-			}
-		} 
-		else if mouse_wheel_down() || keyboard_check_pressed(vk_subtract) 
-		{ 
-			if oControl.zoomLevel != 3
-			{
-			    oControl.zoomLevel += 1;
-			    if oControl.zoomLevel > 3 { oControl.zoomLevel = 3; }
-				//Set target width according to zoom level
-				switch oControl.zoomLevel 
-				{
-					case 1:
-					    oControl.targetWidth  = 960;
-					    break;
-					case 2:
-					    oControl.targetWidth  = 1366;
-					    break;
-					case 3:
-					    oControl.targetWidth  = 1600;
-					    break;
-				}
-			}
-		}
 		break;
 }
 
@@ -444,6 +354,7 @@ else
 if isMoving
 {
 	//Speed control
+	phy_linear_damping = 1.5;
 	//Accelerate
 	if speedCurrent != speedMax 
 	{
@@ -459,6 +370,10 @@ if isMoving
 	vSpeed = (vAxis * spd);
 	//Move
 	physics_apply_force(phy_position_x, phy_position_y, hSpeed, vSpeed);
+}
+else
+{
+	phy_linear_damping = 50;
 }
 
 if shootPrimary

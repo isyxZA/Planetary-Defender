@@ -35,15 +35,17 @@ if room == rmGame
 
 if doTransition
 {
+	var rh = uiHeight/5;
 	draw_set_color(c_black);
-	draw_rectangle(0, 0, room_width, room_height, false);
-	draw_set_alpha(0.7);
+	draw_rectangle(0, 0, uiWidth, uiHeight, false);
+	draw_set_alpha(0.6);
 	draw_set_color(c_orange);
-	draw_rectangle(room_width-tCurX1, 145, room_width-tCurX2, 287, false);
-	draw_rectangle(room_width-tCurX1, 433, room_width-tCurX2, 575, false);
+	draw_rectangle(uiWidth-tCurX1, rh+1, uiHeight-tCurX2, (rh * 2) - 1, false);
+	draw_rectangle(uiWidth-tCurX1, (rh * 3) + 1, uiHeight-tCurX2, (rh * 4) - 1, false);
+	draw_set_color(c_dkgray);
+	draw_rectangle(tCurX1, 0, tCurX2, rh, false);
+	draw_rectangle(tCurX1, (rh * 2), tCurX2, (rh * 3), false);
+	draw_rectangle(tCurX1, (rh * 4), tCurX2, (rh * 5), false);
 	draw_set_color(c_white);
-	draw_rectangle(tCurX1, 0, tCurX2, 144, false);
-	draw_rectangle(tCurX1, 288, tCurX2, 432, false);
-	draw_rectangle(tCurX1, 576, tCurX2, 720, false);
 	draw_set_alpha(1);
 }

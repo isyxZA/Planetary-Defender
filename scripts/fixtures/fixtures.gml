@@ -51,6 +51,13 @@ function FixtureCreateTriangle(fwidth, fheight, mass, bounce, slide, ldamp, adam
 	p3y = (fheight * 0.5);
 	physics_fixture_add_point(fixture, p3x, p3y);
 	
+	p1xStart = (p1x * scale);
+	p1yStart = (p1y * scale);
+	p2xStart = (p2x * scale);
+	p2yStart = (p2y * scale);
+	p3xStart = (p3x * scale);
+	p3yStart = (p3y * scale);
+
 	physics_fixture_set_density(fixture, mass);
 	physics_fixture_set_restitution(fixture, bounce);
 	physics_fixture_set_friction(fixture, slide);

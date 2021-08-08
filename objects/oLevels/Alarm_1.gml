@@ -13,6 +13,7 @@ if !global.gameOver
 					var yy = (room_height * 0.5) + lengthdir_y(1500, rd);
 					with instance_create_layer(xx, yy, "Players", oEnemy)
 					{
+						isSpecial = false;
 						eHealth = oLevels.enemyHealth;
 						eColor = choose(c_aqua, c_blue, c_fuchsia, c_green, c_maroon, c_orange, c_purple, c_silver, c_teal, c_yellow);
 						activeColor = eColor;
@@ -61,6 +62,7 @@ if !global.gameOver
 						var yy = (room_height * 0.5) + lengthdir_y(1500, rd);
 						with instance_create_layer(xx, yy, "Players", oEnemy)
 						{
+							isSpecial = true;
 							eHealth = 1 + oLevels.gameLevel;
 							eColor = oLevels.enemyColor;
 							activeColor = eColor;
@@ -87,6 +89,7 @@ if !global.gameOver
 					var yy = (room_height * 0.5) + lengthdir_y(1500, rd);
 					with instance_create_layer(xx, yy, "Players", oEnemy)
 					{
+						isSpecial = true;
 						eHealth = 1 + oLevels.gameLevel;
 						eColor = oLevels.enemyColor;
 						activeColor = eColor;
@@ -136,6 +139,7 @@ if !global.gameOver
 						var yy = (room_height * 0.5) + lengthdir_y(1500, rd);
 						with instance_create_layer(xx, yy, "Players", oEnemy)
 						{
+							isSpecial = true;
 							eHealth = 1 + oLevels.gameLevel;
 							eColor = oLevels.enemyColor;
 							activeColor = eColor;
@@ -175,6 +179,7 @@ if !global.gameOver
 					var yy = (room_height * 0.5) + lengthdir_y(1500, rd);
 					with instance_create_layer(xx, yy, "Players", oEnemy)
 					{
+						isSpecial = true;
 						eHealth = 1 + oLevels.gameLevel;
 						eColor = oLevels.enemyColor;
 						activeColor = eColor;
