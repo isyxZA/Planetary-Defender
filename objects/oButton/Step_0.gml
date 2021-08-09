@@ -13,7 +13,10 @@ if global.canClick
 		
         if mouse_check_button_pressed(mb_left) 
 		{
-			//audio_play_sound(snd_Accept, 1, false);
+			if audio_system_is_available() && audio_sound_is_playable(sndClick)
+			{
+				audio_play_sound(sndClick, 1, false);
+			}
             switch txt 
 			{
                 case "Singleplayer":
@@ -61,6 +64,7 @@ if global.canClick
 							with oEnemy     { instance_destroy(); }
 							with oLobby     { instance_destroy(); }
 							if instance_exists(oBomb) { with oBomb { instance_destroy(); } }
+							if instance_exists(oItem) { with oItem { instance_destroy(); } }
 							SetUI(buttonoverlay.main);
 							break;
 						case "LOBBYCOOP":
@@ -70,6 +74,7 @@ if global.canClick
 							with oEnemy     { instance_destroy(); }
 							with oLobby     { instance_destroy(); }
 							if instance_exists(oBomb) { with oBomb { instance_destroy(); } }
+							if instance_exists(oItem) { with oItem { instance_destroy(); } }
 							SetUI(buttonoverlay.main);
 							break;
 					}

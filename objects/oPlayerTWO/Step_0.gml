@@ -108,7 +108,7 @@ switch playerInput
 					canLazer = false;
 					shootLazer = true;
 					//Spawn lazer
-					SpawnLazer(phy_position_x, phy_position_y, pColor, id);
+					SpawnLazer(phy_position_x, phy_position_y, phy_rotation, pColor, id);
 				}
 			}
 			//Fire homing missiles
@@ -337,7 +337,7 @@ switch playerInput
 				canLazer = false;
 				shootLazer = true;
 				//Spawn lazer
-				SpawnLazer(phy_position_x, phy_position_y, pColor, id);
+				SpawnLazer(phy_position_x, phy_position_y, phy_rotation, pColor, id);
 			}
 		}
 		
@@ -389,7 +389,6 @@ else
 if isMoving
 {
 	//Speed control
-	phy_linear_damping = 1.5;
 	//Accelerate
 	if speedCurrent != speedMax 
 	{
@@ -405,10 +404,6 @@ if isMoving
 	vSpeed = (vAxis * spd);
 	//Move
 	physics_apply_force(phy_position_x, phy_position_y, hSpeed, vSpeed);
-}
-else
-{
-	phy_linear_damping = 50;
 }
 
 if shootPrimary

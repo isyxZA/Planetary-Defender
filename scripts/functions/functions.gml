@@ -302,13 +302,15 @@ function SpawnBullet(xpos, ypos, color, angle, hforce, vforce, scale, damage, sp
 /// @description SpawnLazer(xpos, ypos, color, spawner)
 /// @param xpos
 /// @param ypos
+/// @param angle
 /// @param color
 /// @param spawner
-function SpawnLazer(xpos, ypos, color, spawner)
+function SpawnLazer(xpos, ypos, angle, color, spawner)
 {
 	var lzr = instance_create_layer(xpos, ypos, "Players", oLazer);
 	lzr.bColor = color;
 	lzr.owner  = spawner;
+	lzr.phy_rotation = angle;
 }
 
 /// @description SpawnBomb(xpos, ypos, color, radius, spawner)

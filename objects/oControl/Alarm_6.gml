@@ -10,7 +10,7 @@ if uiOverlay == buttonoverlay.sololobby || uiOverlay == buttonoverlay.cooplobby
 		eColor = choose(c_aqua, c_blue, c_fuchsia, c_green, c_maroon, c_orange, c_purple, c_silver, c_teal, c_yellow);
 		activeColor = eColor;
 		canMove = false;
-		var rr = choose(0, 1, 2);
+		var rr = choose(0, 1, 2, 3);
 		switch rr
 		{
 			case 0:
@@ -30,6 +30,12 @@ if uiOverlay == buttonoverlay.sololobby || uiOverlay == buttonoverlay.cooplobby
 				mass = 0;
 				size = irandom_range(50, 80);
 				FixtureCreateTriangle(size, size, mass, 0.5, 0.1, 0.2, 0.2);
+				break;
+			case 3:
+				shape = "Star";
+				mass = 0;
+				size = irandom_range(50, 80);
+				FixtureCreateStar(size, size, mass, 0.5, 0.1, 0.2, 0.2);
 				break;
 		}
 	}

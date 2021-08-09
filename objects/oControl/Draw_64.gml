@@ -116,7 +116,7 @@ if room == rmGame
 	            draw_clear(c_black);
 	            surface_reset_target();
 			}
-			if surface_exists(uiSurf_1a) 
+			if surface_exists(uiSurf_1b) 
 			{
 				//SIDE PANEL\\
 				surface_set_target(uiSurf_1b);
@@ -340,7 +340,7 @@ if room == rmGame
 	            draw_clear(c_black);
 	            surface_reset_target();
 			}
-			if surface_exists(uiSurf_1a) 
+			if surface_exists(uiSurf_1b) 
 			{
 				//SIDE PANEL\\
 				surface_set_target(uiSurf_1b);
@@ -555,7 +555,7 @@ if room == rmGame
 	            draw_clear(c_black);
 	            surface_reset_target();
 			}
-			if surface_exists(uiSurf_2a) 
+			if surface_exists(uiSurf_2b) 
 			{
 				//SIDE PANEL\\
 				surface_set_target(uiSurf_2b);

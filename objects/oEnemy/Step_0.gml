@@ -26,4 +26,7 @@ switch shape
 	case "Triangle":
 		if !isSpecial { phy_rotation -= 1.5; }
 		break;
+	case "Star":
+		if !isSpecial { phy_rotation += 1; }
+		break;
 }

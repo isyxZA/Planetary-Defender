@@ -1,1 +1,1 @@
-//gml_pragma("PNGCrush");
+gml_pragma("PNGCrush");

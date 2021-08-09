@@ -7,8 +7,8 @@ if room == rmMenu && drawActive
 		case buttonoverlay.sololobby:
 			var fw = room_width - 60;
 			var fh = room_height - 60;
-			var cw = fw / 10;
-			var ch = fh / 5;
+			var cw = fw / 20;
+			var ch = fh / 15;
 			var fc = c_dkgray;
 			//From left to right
 			for (var i = 0; i < (fw/cw); ++i)
@@ -88,13 +88,15 @@ if room == rmMenu && drawActive
 						break;
 				}
 			}
+			draw_sprite(sTarget, 0, room_width * 0.6, room_height * 0.45);
+			draw_text(room_width * 0.6, room_height * 0.55, "GEOMETROID \nDUMMY");
 			//draw_set_color(c_white);
 			break;
 		case buttonoverlay.cooplobby:
 			var fw = room_width - 60;
 			var fh = room_height - 60;
-			var cw = fw / 10;
-			var ch = fh / 5;
+			var cw = fw / 20;
+			var ch = fh / 15;
 			var fc = c_dkgray;
 			//From left to right
 			for (var i = 0; i < (fw/cw); ++i)
@@ -251,6 +253,8 @@ if room == rmMenu && drawActive
 				
 				
 			}
+			draw_sprite(sTarget, 0, room_width * 0.5, room_height * 0.45);
+			draw_text(room_width * 0.5, room_height * 0.55, "GEOMETROID \nDUMMY");
 			//draw_set_color(c_white);
 			break;
 	}

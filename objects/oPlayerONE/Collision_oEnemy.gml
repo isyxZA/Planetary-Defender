@@ -14,6 +14,10 @@ if canBeDamaged
 	if shieldHealth <= 0
 	{
 		hHealth -= 10;
+		if hHealth <= 0 && room == rmGame
+		{
+			instance_destroy();
+		}
 	}
 	else
 	{

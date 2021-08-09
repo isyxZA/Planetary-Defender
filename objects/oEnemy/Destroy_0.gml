@@ -12,6 +12,7 @@ if !global.gameOver
 		oControl.alarm[6] = room_speed * 4;
 	}
 }
+
 SpawnFlare(x, y, sFlare02, 1, 1, c_white);
 
 switch shape
@@ -28,5 +29,10 @@ switch shape
 		part_type_color1(oParticles.partLine, eColor);
 		part_particles_create(global.particleSystem, x, y, oParticles.partLine, 5);
 		break;
+	case "Star":
+		part_type_color1(oParticles.partStar, eColor);
+		part_particles_create(global.particleSystem, x, y, oParticles.partStar, 5);
+		break;
 }
+
 --oControl.enemyCount;

@@ -141,7 +141,7 @@ if room == rmGame
 				x = (oPlayerONE.phy_position_x + oPlayerTWO.phy_position_x) * 0.5; 
 				y = (oPlayerONE.phy_position_y + oPlayerTWO.phy_position_y) * 0.5;
 			
-				tw = max(targetWidth, min(2560, abs(oPlayerONE.x - oPlayerTWO.x) + 512), min(2560, (abs(oPlayerONE.y - oPlayerTWO.y) + 490) * viewRatio));
+				tw = max(targetWidth, min(4096, abs(oPlayerONE.x - oPlayerTWO.x) + 512), min(4096, (abs(oPlayerONE.y - oPlayerTWO.y) + 512) * viewRatio));
 			}
 			else if pone 
 			{  
