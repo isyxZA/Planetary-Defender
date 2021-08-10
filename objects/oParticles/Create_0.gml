@@ -19,7 +19,7 @@ part_type_orientation(partCircle, 0, 0, 0, 0, true);
 //This is the blend mode, either additive or normal
 part_type_blend(partCircle, true);
 //this is its lifespan in steps
-part_type_life(partCircle, 200, 220);
+part_type_life(partCircle, 300, 330);
 
 partSquare = part_type_create();
 //This defines the particles shape
@@ -39,7 +39,7 @@ part_type_orientation(partSquare, 0, 0, 0, 0, true);
 //This is the blend mode, either additive or normal
 part_type_blend(partSquare, true);
 //this is its lifespan in steps
-part_type_life(partSquare, 200, 220);
+part_type_life(partSquare, 300, 330);
 
 partStar = part_type_create();
 //This defines the particles shape
@@ -59,7 +59,7 @@ part_type_orientation(partStar, 0, 0, 0, 0, true);
 //This is the blend mode, either additive or normal
 part_type_blend(partStar, true);
 //this is its lifespan in steps
-part_type_life(partStar, 200, 220);
+part_type_life(partStar, 300, 330);
 
 partLine = part_type_create();
 //This defines the particles shape
@@ -79,4 +79,24 @@ part_type_orientation(partLine, 0, 0, 0, 0, true);
 //This is the blend mode, either additive or normal
 part_type_blend(partLine, true);
 //this is its lifespan in steps
-part_type_life(partLine, 200, 220);
+part_type_life(partLine, 300, 330);
+
+partExhaust = part_type_create();
+//This defines the particles shape
+part_type_shape(partExhaust, pt_shape_ring);
+//This is for the size
+part_type_size(partExhaust, 0, 0, 0.025, 0);
+//This sets its colour. There are three different codes for this
+part_type_color1(partExhaust, c_silver);
+//This is its alpha. There are three different codes for this
+part_type_alpha3(partExhaust, 0, 0.5, 0);
+//The particles speed
+part_type_speed(partExhaust, 0, 0, 0, 0);
+//The direction
+part_type_direction(partExhaust, 0, 0, 0, 0);
+//This changes the rotation of the particle
+part_type_orientation(partExhaust, 0, 0, 0, 0, true);
+//This is the blend mode, either additive or normal
+part_type_blend(partExhaust, true);
+//this is its lifespan in steps
+part_type_life(partExhaust, 18, 18);

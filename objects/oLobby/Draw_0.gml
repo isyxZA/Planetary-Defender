@@ -10,6 +10,7 @@ if room == rmMenu && drawActive
 			var cw = fw / 20;
 			var ch = fh / 15;
 			var fc = c_dkgray;
+			var fa = 1;
 			//From left to right
 			for (var i = 0; i < (fw/cw); ++i)
 			{
@@ -21,13 +22,15 @@ if room == rmMenu && drawActive
 					if fc == c_dkgray
 					{
 						fc = c_orange;
+						fa = 1;
 					}
 					else
 					{
 						fc = c_dkgray;
+						fa = 0.3
 					}
 					draw_set_color(fc);
-					draw_set_alpha(0.3);
+					draw_set_alpha(fa);
 					draw_rectangle(fx, fy, fx + cw, fy + ch, false);
 					draw_set_color(c_dkgray);
 					draw_set_alpha(1);
@@ -35,7 +38,7 @@ if room == rmMenu && drawActive
 				}
 			}
 			draw_set_color(c_black);
-			draw_set_alpha(0.2);
+			draw_set_alpha(0.5);
 			draw_rectangle(30, 30, room_width - 30, room_height - 30, false);
 			draw_set_color(c_white);
 			draw_set_alpha(1);
@@ -98,6 +101,7 @@ if room == rmMenu && drawActive
 			var cw = fw / 20;
 			var ch = fh / 15;
 			var fc = c_dkgray;
+			var fa = 1;
 			//From left to right
 			for (var i = 0; i < (fw/cw); ++i)
 			{
@@ -109,13 +113,15 @@ if room == rmMenu && drawActive
 					if fc == c_dkgray
 					{
 						fc = c_orange;
+						fa = 1;
 					}
 					else
 					{
 						fc = c_dkgray;
+						fa = 0.3;
 					}
 					draw_set_color(fc);
-					draw_set_alpha(0.3);
+					draw_set_alpha(fa);
 					draw_rectangle(fx, fy, fx + cw, fy + ch, false);
 					draw_set_color(c_dkgray);
 					draw_set_alpha(1);
@@ -123,7 +129,7 @@ if room == rmMenu && drawActive
 				}
 			}
 			draw_set_color(c_black);
-			draw_set_alpha(0.2);
+			draw_set_alpha(0.5);
 			draw_rectangle(30, 30, room_width - 30, room_height - 30, false);
 			draw_set_color(c_white);
 			draw_set_alpha(1);

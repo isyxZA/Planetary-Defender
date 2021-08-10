@@ -397,8 +397,8 @@ function SpawnCamera(xpos, ypos, view_width, view_height)
 															view_width, view_height, 0, oControl, 5, 5, 1024, 1024);
 			//Assign the camera to the active view
 			myCamera = view_camera[0];
-			zoomLevel = 2;
-			targetWidth = 1366;
+			zoomLevel = 0;
+			targetWidth = 1600;
 			break;
 	}
 }

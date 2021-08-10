@@ -248,6 +248,16 @@ if doTransition
 	else
 	{
 		if tCurX1 < room_width { tCurX1 = lerp(tCurX1, room_width*2, 0.02); }
-		else { doTransition = false; }
+		else 
+		{ 
+			//End of transition
+			doTransition = false; 
+			if startGame
+			{
+				startGame = false;
+				audio_stop_all();
+				room_goto(rmGame);
+			}
+		}
 	}
 }

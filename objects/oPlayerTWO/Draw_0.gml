@@ -23,3 +23,5 @@ draw_line_width(phy_position_x, phy_position_y, phy_position_x + lengthdir_x(8, 
 draw_set_color(c_white);
 draw_sprite_ext(sShield, sImage, phy_position_x, phy_position_y, 1, 1, 0, pColor, sA);
 draw_set_alpha(1);
+var s = (abs(hSpeed) + abs(vSpeed)) / 10;
+draw_text(x, y - 20, string(s));

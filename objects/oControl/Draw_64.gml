@@ -15,30 +15,30 @@ if room == rmGame
 				draw_set_valign(fa_middle);
 				draw_set_font(fnt12);
 				//Turret && Missile Bar
-				draw_sprite_ext(sButton, 0, 0, 75, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, 113, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 0, 75, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 0, 75, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, 113, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 0, 75, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(25, 87, "Turret");
 				draw_text(25, 125, "Missile");
 				//Lazer && Mines Bar
-				draw_sprite_ext(sButton, 0, 450, 75, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 450, 113, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 450, 75, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 450, 75, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 450, 113, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 450, 75, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(475, 87, "Lazer");
 				draw_text(475, 125, "Mines");
 				//Boost Bar
-				draw_sprite_ext(sButton, 0, 50, 50, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 50, 50, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 50, 50, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 50, 50, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(75, 62, "Boost");
 				//draw_text(75, 100, string(bBarP1));
 				//AOE Burst
-				draw_sprite_ext(sButton, 0, 400, 50, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 400, 50, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 400, 50, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 400, 50, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(425, 62, "Burst");
 				//Commmunications Panel
 				if global.gameOver
 				{
-					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, uiColor, 1);
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_red, 0.7);
 					draw_text(250 - 1, 75 + 1, "SYSTEMS OFFLINE");
 					draw_set_color(c_yellow);
@@ -47,7 +47,7 @@ if room == rmGame
 				}
 				else if enemyWaveAlert 
 				{
-					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, uiColor, 1);
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, aColor, 0.7);
 					var lsep = 3;
 					for (var i = 0; i < 49; ++i)
@@ -65,7 +65,7 @@ if room == rmGame
 				}
 				else
 				{
-					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, uiColor, 1);
 					var lsep = 3;
 					for (var i = 0; i < 49; ++i)
 					{
@@ -86,12 +86,12 @@ if room == rmGame
 					draw_text(250, 134, string(inputP1));
 				}
 				//Hull Health
-				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 100, 25, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 100, 25, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(125, 38, "Hull");
 				//Shield Level
-				draw_sprite_ext(sButton, 0, 350, 25, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 350, 25, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 350, 25, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 350, 25, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(375, 38, "Shield");
 				
 				draw_set_alpha(0.7);
@@ -121,7 +121,7 @@ if room == rmGame
 				//SIDE PANEL\\
 				surface_set_target(uiSurf_1b);
 	            draw_clear_alpha(c_black, 0);
-				draw_sprite_ext(sUI, 0, 0, 0, 1, 6, 0, c_white, 1);
+				draw_sprite_ext(sUI, 0, 0, 0, 1, 6, 0, uiColor, 1);
 				draw_set_halign(fa_center);
 				draw_set_valign(fa_middle);
 				draw_set_font(fnt12);
@@ -130,16 +130,16 @@ if room == rmGame
 				var vsep1a = 12;
 				var vsep1b = 13;
 
-				draw_sprite_ext(sButton, 0, 0, 0, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 2, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 3, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 4, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 5, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 6, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 7, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 8, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 9, 0.5, 0.35, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 0, 0, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 2, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 3, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 4, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 5, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 6, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 7, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 8, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 9, 0.5, 0.35, 0, uiColor, 1);
 				
 				draw_set_color(c_white);
 				draw_text(50 - 1, vsep1b, "Primary");
@@ -193,7 +193,7 @@ if room == rmGame
 				draw_text(8, (vsep1 * 6) + (vsep1a * 4), "Damage: " + string(mDamageP1));
 				draw_text(8, (vsep1 * 7) + (vsep1a * 3), "Duration: " + string(lTimeP1));
 				draw_text(8, (vsep1 * 7) + (vsep1a * 4), "Recharge: " + string(lCooldownP1));
-				draw_text(8, (vsep1 * 8) + (vsep1a * 3), "Fire Rate: " + string(tRateP1));
+				draw_text(8, (vsep1 * 8) + (vsep1a * 3), "Volley Size: " + string(tRateP1));
 				draw_text(8, (vsep1 * 8) + (vsep1a * 4), "Damage: " + string(tDamageP1));
 				draw_text(8, (vsep1 * 9) + (vsep1a * 3), "Max Active: " + string(mMaxP1));
 				draw_text(8, (vsep1 * 9) + (vsep1a * 4), "Radius: " + string(mRadiusP1));
@@ -241,30 +241,30 @@ if room == rmGame
 				draw_set_valign(fa_middle);
 				draw_set_font(fnt12);
 				//Turret && Missile Bar
-				draw_sprite_ext(sButton, 0, 0, 75, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, 113, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 0, 75, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 0, 75, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, 113, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 0, 75, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(25, 87, "Turret");
 				draw_text(25, 125, "Missile");
 				//Lazer && Mines Bar
-				draw_sprite_ext(sButton, 0, 450, 75, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 450, 113, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 450, 75, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 450, 75, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 450, 113, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 450, 75, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(475, 87, "Lazer");
 				draw_text(475, 125, "Mines");
 				//Boost Bar
-				draw_sprite_ext(sButton, 0, 50, 50, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 50, 50, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 50, 50, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 50, 50, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(75, 62, "Boost");
 				//draw_text(75, 100, string(bBarP1));
 				//AOE Burst
-				draw_sprite_ext(sButton, 0, 400, 50, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 400, 50, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 400, 50, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 400, 50, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(425, 62, "Burst");
 				//Commmunications Panel
 				if global.gameOver
 				{
-					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, uiColor, 1);
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_red, 0.7);
 					draw_text(250 - 1, 75 + 1, "SYSTEMS OFFLINE");
 					draw_set_color(c_yellow);
@@ -273,7 +273,7 @@ if room == rmGame
 				}
 				else if enemyWaveAlert 
 				{
-					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, uiColor, 1);
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, aColor, 0.7);
 					var lsep = 3;
 					for (var i = 0; i < 49; ++i)
@@ -291,7 +291,7 @@ if room == rmGame
 				}
 				else
 				{
-					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, uiColor, 1);
 					var lsep = 3;
 					for (var i = 0; i < 49; ++i)
 					{
@@ -312,12 +312,12 @@ if room == rmGame
 					draw_text(250, 134, string(inputP1));
 				}
 				//Hull Health
-				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 100, 25, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 100, 25, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(125, 38, "Hull");
 				//Shield Level
-				draw_sprite_ext(sButton, 0, 350, 25, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 350, 25, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 350, 25, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 350, 25, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(375, 38, "Shield");
 				
 				draw_set_alpha(0.7);
@@ -345,7 +345,7 @@ if room == rmGame
 				//SIDE PANEL\\
 				surface_set_target(uiSurf_1b);
 	            draw_clear_alpha(c_black, 0);
-				draw_sprite_ext(sUI, 0, 0, 0, 1, 6, 0, c_white, 1);
+				draw_sprite_ext(sUI, 0, 0, 0, 1, 6, 0, uiColor, 1);
 				draw_set_halign(fa_center);
 				draw_set_valign(fa_middle);
 				draw_set_font(fnt12);
@@ -354,16 +354,16 @@ if room == rmGame
 				var vsep1a = 12;
 				var vsep1b = 13;
 
-				draw_sprite_ext(sButton, 0, 0, 0, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 2, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 3, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 4, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 5, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 6, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 7, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 8, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 9, 0.5, 0.35, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 0, 0, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 2, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 3, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 4, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 5, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 6, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 7, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 8, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 9, 0.5, 0.35, 0, uiColor, 1);
 				
 				draw_set_color(c_white);
 				draw_text(50 - 1, vsep1b, "Primary");
@@ -417,7 +417,7 @@ if room == rmGame
 				draw_text(8, (vsep1 * 6) + (vsep1a * 4), "Damage: " + string(mDamageP1));
 				draw_text(8, (vsep1 * 7) + (vsep1a * 3), "Duration: " + string(lTimeP1));
 				draw_text(8, (vsep1 * 7) + (vsep1a * 4), "Recharge: " + string(lCooldownP1));
-				draw_text(8, (vsep1 * 8) + (vsep1a * 3), "Fire Rate: " + string(tRateP1));
+				draw_text(8, (vsep1 * 8) + (vsep1a * 3), "Volley Size: " + string(tRateP1));
 				draw_text(8, (vsep1 * 8) + (vsep1a * 4), "Damage: " + string(tDamageP1));
 				draw_text(8, (vsep1 * 9) + (vsep1a * 3), "Max Active: " + string(mMaxP1));
 				draw_text(8, (vsep1 * 9) + (vsep1a * 4), "Radius: " + string(mRadiusP1));
@@ -456,30 +456,30 @@ if room == rmGame
 				draw_set_valign(fa_middle);
 				draw_set_font(fnt12);
 				//Turret && Missile Bar
-				draw_sprite_ext(sButton, 0, 0, 75, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, 113, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 0, 75, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 0, 75, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, 113, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 0, 75, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(25, 87, "Turret");
 				draw_text(25, 125, "Missile");
 				//Lazer && Mines Bar
-				draw_sprite_ext(sButton, 0, 450, 75, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 450, 113, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 450, 75, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 450, 75, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 450, 113, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 450, 75, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(475, 87, "Lazer");
 				draw_text(475, 125, "Mines");
 				//Boost Bar
-				draw_sprite_ext(sButton, 0, 50, 50, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 50, 50, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 50, 50, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 50, 50, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(75, 62, "Boost");
 				//draw_text(75, 100, string(bBarP1));
 				//AOE Burst
-				draw_sprite_ext(sButton, 0, 400, 50, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 400, 50, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 400, 50, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 400, 50, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(425, 62, "Burst");
 				//Commmunications Panel
 				if global.gameOver
 				{
-					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, uiColor, 1);
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_red, 0.7);
 					draw_text(250 - 1, 75 + 1, "SYSTEMS OFFLINE");
 					draw_set_color(c_yellow);
@@ -488,7 +488,7 @@ if room == rmGame
 				}
 				else if enemyWaveAlert 
 				{
-					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, uiColor, 1);
 					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, aColor, 0.7);
 					var lsep = 3;
 					for (var i = 0; i < 49; ++i)
@@ -506,7 +506,7 @@ if room == rmGame
 				}
 				else
 				{
-					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, c_white, 1);
+					draw_sprite_ext(sUI, 0, 150, 0, 2, 1.5, 0, uiColor, 1);
 					var lsep = 3;
 					for (var i = 0; i < 49; ++i)
 					{
@@ -527,12 +527,12 @@ if room == rmGame
 					draw_text(250, 134, string(inputP2));
 				}
 				//Hull Health
-				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 100, 25, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 100, 25, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 100, 25, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(125, 38, "Hull");
 				//Shield Level
-				draw_sprite_ext(sButton, 0, 350, 25, 0.25, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sUI, 0, 350, 25, 0.5, 1.5, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 350, 25, 0.25, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sUI, 0, 350, 25, 0.5, 1.5, 0, uiColor, 1);
 				draw_text(375, 38, "Shield");
 				
 				draw_set_alpha(0.7);
@@ -560,7 +560,7 @@ if room == rmGame
 				//SIDE PANEL\\
 				surface_set_target(uiSurf_2b);
 	            draw_clear_alpha(c_black, 0);
-				draw_sprite_ext(sUI, 0, 0, 0, 1, 6, 0, c_white, 1);
+				draw_sprite_ext(sUI, 0, 0, 0, 1, 6, 0, uiColor, 1);
 				draw_set_halign(fa_center);
 				draw_set_valign(fa_middle);
 				draw_set_font(fnt12);
@@ -569,16 +569,16 @@ if room == rmGame
 				var vsep1a = 12;
 				var vsep1b = 13;
 
-				draw_sprite_ext(sButton, 0, 0, 0, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 2, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 3, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 4, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 5, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 6, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 7, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 8, 0.5, 0.35, 0, c_white, 1);
-				draw_sprite_ext(sButton, 0, 0, vsep1 * 9, 0.5, 0.35, 0, c_white, 1);
+				draw_sprite_ext(sButton, 0, 0, 0, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 2, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 3, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 4, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 5, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 6, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 7, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 8, 0.5, 0.35, 0, uiColor, 1);
+				draw_sprite_ext(sButton, 0, 0, vsep1 * 9, 0.5, 0.35, 0, uiColor, 1);
 				
 				draw_set_color(c_white);
 				draw_text(50 - 1, vsep1b, "Primary");
@@ -632,7 +632,7 @@ if room == rmGame
 				draw_text(8, (vsep1 * 6) + (vsep1a * 4), "Damage: " + string(mDamageP2));
 				draw_text(8, (vsep1 * 7) + (vsep1a * 3), "Duration: " + string(lTimeP2));
 				draw_text(8, (vsep1 * 7) + (vsep1a * 4), "Recharge: " + string(lCooldownP2));
-				draw_text(8, (vsep1 * 8) + (vsep1a * 3), "Fire Rate: " + string(tRateP2));
+				draw_text(8, (vsep1 * 8) + (vsep1a * 3), "Volley Size: " + string(tRateP2));
 				draw_text(8, (vsep1 * 8) + (vsep1a * 4), "Damage: " + string(tDamageP2));
 				draw_text(8, (vsep1 * 9) + (vsep1a * 3), "Max Active: " + string(mMaxP2));
 				draw_text(8, (vsep1 * 9) + (vsep1a * 4), "Radius: " + string(mRadiusP2));

@@ -369,6 +369,26 @@ if isMoving
 	vSpeed = (vAxis * spd);
 	//Move
 	physics_apply_force(phy_position_x, phy_position_y, hSpeed, vSpeed);
+	
+	if part_emitter_exists(global.particleSystem, p1Emitter)
+	{
+		if (abs(hSpeed) + abs(vSpeed)) / 10 > 1
+		{
+		part_emitter_region(global.particleSystem, p1Emitter, x - 1, x + 1, y - 1, y + 1, ps_shape_line, ps_distr_linear);
+		part_emitter_stream(global.particleSystem, p1Emitter, oParticles.partExhaust, -15);
+		}
+		else
+		{
+			part_emitter_stream(global.particleSystem, p1Emitter, oParticles.partExhaust, 0);
+		}
+	}
+}
+else
+{
+	if playerInput == "KEYBOARD"
+	{
+		part_emitter_stream(global.particleSystem, p1Emitter, oParticles.partExhaust, 0);
+	}
 }
 
 if shootPrimary

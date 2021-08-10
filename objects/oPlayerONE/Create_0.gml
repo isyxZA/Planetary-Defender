@@ -109,6 +109,8 @@ alarm[0] = room_speed * 0.1;
 
 pColor = c_green;
 
+p1Emitter = part_emitter_create(global.particleSystem);
+
 //Feed stats to UI control
 //Primary Weapon Stats
 oControl.pRateP1   = primaryRate;

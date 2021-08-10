@@ -80,18 +80,20 @@ if global.canClick
 					}
                     break;
 				case "Ready":
+					oControl.startGame = true;
+					oControl.alarm[5] = 1;
 					switch activeOverlay
 					{
 						case "LOBBY":
 							with oButton    { instance_destroy(); }
 							with oPlayerONE { instance_destroy(); }
-							room_goto(rmGame);
+							//room_goto(rmGame);
 							break;
 						case "LOBBYCOOP":
 							with oButton    { instance_destroy(); }
 							with oPlayerONE { instance_destroy(); }
 							with oPlayerTWO { instance_destroy(); }
-							room_goto(rmGame);
+							//room_goto(rmGame);
 							break;
 					}
 					break;

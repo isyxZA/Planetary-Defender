@@ -1,3 +1,5 @@
+part_emitter_destroy(global.particleSystem, p2Emitter);
+
 if instance_exists(oLazer)
 {
 	with oLazer

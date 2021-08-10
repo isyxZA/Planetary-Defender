@@ -4,16 +4,16 @@
 //Adjust enemy difficulty by level
 if global.gameMode == "SOLO"
 {
-	++enemyHealth;
+	enemyHealth += 2;
 }
 else
 {
-	enemyHealth += 2;
+	enemyHealth += 4;
 }
 
 
 //Adjust special waves spawn amount
-if spawnCycleMax < 48
+if spawnCycleMax < 62
 {
 	++spawnCycleMax;
 }

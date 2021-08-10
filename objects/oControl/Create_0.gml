@@ -2,6 +2,8 @@ randomize();
 surface_depth_disable(true);
 game_set_speed(60, gamespeed_fps);
 
+startGame = false;
+
 enemyCount = 0;
 
 playMusic = false;
@@ -20,6 +22,7 @@ uiWidth = display_get_gui_width();
 uiHeight = display_get_gui_height();
 uiScale = 1;
 uiOverlay = buttonoverlay.main;
+uiColor = c_black;
 
 doTransition = false;
 flipTransition = false;

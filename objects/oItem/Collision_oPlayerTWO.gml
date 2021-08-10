@@ -7,13 +7,13 @@ switch iColor
 	case c_aqua://Primary
 		if choice 
 		{ 
-			other.primaryDamage += 2; 
+			other.primaryDamage += 5; 
 			oControl.pDamageP2 = other.primaryDamage; 
 			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "PRIMARY DMG ++"; tColor = other.iColor; }
 		}
 		else 
 		{ 
-			if other.primaryRate > 0.02
+			if other.primaryRate > 0.05
 			{
 				other.primaryRate -= 0.01;
 			} 
@@ -24,15 +24,15 @@ switch iColor
 	case c_blue://Secondary
 		if choice 
 		{ 
-			other.secondaryDamage += 2; 
+			other.secondaryDamage += 5; 
 			oControl.sDamageP2 = other.secondaryDamage; 
 			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "SECONDARY DMG ++"; tColor = other.iColor; }
 		}
 		else 
 		{ 
-			if other.secondaryRate > 0.02
+			if other.secondaryRate > 0.1
 			{
-				other.secondaryRate -= 0.01;
+				other.secondaryRate -= 0.02;
 			}
 			oControl.sRateP2 = other.secondaryRate; 
 			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "SECONDARY RATE ++"; tColor = other.iColor; }
@@ -134,12 +134,9 @@ switch iColor
 		}
 		else 
 		{ 
-			if other.turretRate > 1
-			{
-				other.turretRate -= 1; 
-			} 
-			oControl.tRateP2 = other.turretRate; 
-			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "TURRET RATE ++"; tColor = other.iColor; }
+			other.turretVolley += 2; 
+			oControl.tRateP2 = other.turretVolley; 
+			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "TURRET VOLLEY ++"; tColor = other.iColor; }
 		}
 		break;
 	case c_yellow://Mines

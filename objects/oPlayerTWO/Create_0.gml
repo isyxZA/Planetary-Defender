@@ -56,7 +56,7 @@ canMissile = true;
 missileVolley = 4;
 missileCurVolley = 0;
 missileDamage = 20;
-missileCooldown = room_speed * 10;
+missileCooldown = room_speed * 8;
 missileCurTime = missileCooldown;
 
 //Lazer Weapon
@@ -73,7 +73,7 @@ turretVolley = 24;
 turretCurVolley = 0;
 turretRate = room_speed * 0.2;
 turretDamage = 5;
-turretCooldown = room_speed * 10;
+turretCooldown = room_speed * 8;
 turretCurTime = turretCooldown;
 
 //Mines Weapon
@@ -108,6 +108,8 @@ aImage = 0;
 alarm[0] = room_speed * 0.1;
 
 pColor = c_blue;
+
+p2Emitter = part_emitter_create(global.particleSystem);
 
 //Feed stats to UI control
 //Primary Weapon Stats

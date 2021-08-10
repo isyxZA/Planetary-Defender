@@ -16,5 +16,7 @@ enum spawntypes
 	syncedlines,
 	staggeredlines,
 	syncedstars,
-	staggeredstars
+	staggeredstars,
+	syncedhuge,
+	staggeredhuge
 }
