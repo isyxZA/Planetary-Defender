@@ -564,3 +564,6 @@ if shieldHealth < shieldMax && shieldCanCharge
 	shieldHealth = lerp(shieldHealth, shieldMax, shieldChargeRate);
 }
 sA = 1 * shieldHealth/shieldMax;
+
+lPosition += 5;
+if floor(lPosition) == 360 { lPosition = 0; } 

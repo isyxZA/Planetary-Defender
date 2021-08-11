@@ -1,6 +1,6 @@
 {
   "option_html5_browser_title": "Planetary Defender",
-  "option_html5_version": "0.2.0.0",
+  "option_html5_version": "0.3.0.0",
   "option_html5_foldername": "Planetary Defender",
   "option_html5_outputname": "index.html",
   "option_html5_splash_png": "${base_options_dir}/html5/splash.png",

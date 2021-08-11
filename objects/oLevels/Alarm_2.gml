@@ -4,11 +4,11 @@
 //Adjust enemy difficulty by level
 if global.gameMode == "SOLO"
 {
-	enemyHealth += 2;
+	enemyHealth += 3;
 }
 else
 {
-	enemyHealth += 4;
+	enemyHealth += 6;
 }
 
 

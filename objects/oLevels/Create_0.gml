@@ -1,6 +1,7 @@
 gameLevel = 1;
 levelTimer = room_speed * 15;
 spawnType = spawntypes.randomcircle;
+spawnShape = "";
 spawnCycleMax = 12;
 spawnCycleCount = 0;
 spawnPauseCount = 0;

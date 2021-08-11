@@ -38,14 +38,21 @@ if doTransition
 	var rh = uiHeight/5;
 	draw_set_color(c_black);
 	draw_rectangle(0, 0, uiWidth, uiHeight, false);
-	draw_set_alpha(0.6);
-	draw_set_color(c_orange);
+	draw_set_alpha(0.7);
+	draw_set_color(c_steelblue);
 	draw_rectangle(uiWidth-tCurX1, rh+1, uiHeight-tCurX2, (rh * 2) - 1, false);
 	draw_rectangle(uiWidth-tCurX1, (rh * 3) + 1, uiHeight-tCurX2, (rh * 4) - 1, false);
-	draw_set_color(c_dkgray);
+	draw_set_color(c_fuelyellow);
 	draw_rectangle(tCurX1, 0, tCurX2, rh, false);
-	draw_rectangle(tCurX1, (rh * 2), tCurX2, (rh * 3), false);
 	draw_rectangle(tCurX1, (rh * 4), tCurX2, (rh * 5), false);
+	draw_set_color(c_ashgray);
+	draw_rectangle(tCurX1, (rh * 2), tCurX2, (rh * 3), false);
+	draw_set_color(c_black);
+	draw_rectangle(uiWidth-tCurX1, rh+1, uiHeight-tCurX2, (rh * 2) - 1, true);
+	draw_rectangle(uiWidth-tCurX1, (rh * 3) + 1, uiHeight-tCurX2, (rh * 4) - 1, true);
+	draw_rectangle(tCurX1, (rh * 2), tCurX2, (rh * 3), true);
+	draw_rectangle(tCurX1, 0, tCurX2, rh, true);
+	draw_rectangle(tCurX1, (rh * 4), tCurX2, (rh * 5), true);
 	draw_set_color(c_white);
 	draw_set_alpha(1);
 }

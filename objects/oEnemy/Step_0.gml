@@ -21,7 +21,7 @@ switch shape
 		}
 		break;
 	case "Box":
-		phy_rotation += 2;
+		if !isSpecial { phy_rotation += 2; }
 		break;
 	case "Triangle":
 		if !isSpecial { phy_rotation -= 1.5; }

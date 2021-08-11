@@ -22,7 +22,7 @@ switch room
 				alarm[0] = room_speed;
 				x = spawnXP1;
 				y = spawnYP1;
-				SpawnCamera(spawnXP1, spawnYP1, 0, 0);
+				SpawnCamera(spawnXP1, spawnYP1, 960, 540);
 				uiOverlay = buttonoverlay.gamesolo;
 				SetUI(uiOverlay);
 				break;

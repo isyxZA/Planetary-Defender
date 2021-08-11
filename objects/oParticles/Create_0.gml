@@ -81,6 +81,26 @@ part_type_blend(partLine, true);
 //this is its lifespan in steps
 part_type_life(partLine, 300, 330);
 
+partCow = part_type_create();
+//This defines the particles shape
+part_type_sprite(partCow, sCow, false, false, false);
+//This is for the size
+part_type_size(partCow, 2, 2, -0.01, 0);
+//This sets its colour. There are three different codes for this
+part_type_color1(partCow, c_white);
+//This is its alpha. There are three different codes for this
+part_type_alpha2(partCow, 1, 0.5);
+//The particles speed
+part_type_speed(partCow, 3, 4, -0.02, 0);
+//The direction
+part_type_direction(partCow, 0, 359, 0, 1);
+//This changes the rotation of the particle
+part_type_orientation(partCow, 0, 359, 1, 0, true);
+//This is the blend mode, either additive or normal
+part_type_blend(partCow, false);
+//this is its lifespan in steps
+part_type_life(partCow, 400, 440);
+
 partExhaust = part_type_create();
 //This defines the particles shape
 part_type_shape(partExhaust, pt_shape_ring);
@@ -99,4 +119,4 @@ part_type_orientation(partExhaust, 0, 0, 0, 0, true);
 //This is the blend mode, either additive or normal
 part_type_blend(partExhaust, true);
 //this is its lifespan in steps
-part_type_life(partExhaust, 18, 18);
+part_type_life(partExhaust, 20, 20);

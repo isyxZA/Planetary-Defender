@@ -11,52 +11,34 @@ if !global.gameOver
 					var rd = random(360);
 					var xx = (room_width * 0.5) + lengthdir_x(1400, rd);
 					var yy = (room_height * 0.5) + lengthdir_y(1400, rd);
+					spawnShape = choose("Circle", "Box", "Triangle", "Star");
 					with instance_create_layer(xx, yy, "Players", oEnemy)
 					{
 						isSpecial = false;
 						eHealth = oLevels.enemyHealth;
 						eColor = choose(c_aqua, c_blue, c_fuchsia, c_green, c_maroon, c_orange, c_purple, c_silver, c_teal, c_yellow);
 						activeColor = eColor;
-						var rr = choose(0, 1, 2, 3);
-						switch rr
+						shape = oLevels.spawnShape
+						mass =  oLevels.enemyMass;
+						size = irandom_range(32, 96);
+						switch shape
 						{
-							case 0:
-								shape = "Circle";
-								mass =  oLevels.enemyMass;
-								size = irandom_range(32, 80);
+							case "Circle":
 								FixtureCreateCircle(size, mass, 1, 0.1, 0.2, 0.2);
-								var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
-								targetX = lengthdir_x(size*mass, dd);
-								targetY = lengthdir_y(size*mass, dd);
 								break;
-							case 1:
-								shape = "Box";
-								mass = oLevels.enemyMass;
-								size = irandom_range(32, 76);
+							case "Box":
 								FixtureCreateBox(size, size, mass, 1, 0.1, 0.2, 0.2);
-								var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
-								targetX = lengthdir_x(size*mass, dd);
-								targetY = lengthdir_y(size*mass, dd);
 								break;
-							case 2:
-								shape = "Triangle";
-								mass = oLevels.enemyMass;
-								size = irandom_range(24, 96);
+							case "Triangle":
 								FixtureCreateTriangle(size, size, mass, 1, 0.1, 0.2, 0.2);
-								var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
-								targetX = lengthdir_x(size*mass, dd);
-								targetY = lengthdir_y(size*mass, dd);
 								break;
-							case 3:
-								shape = "Star";
-								mass = oLevels.enemyMass;
-								size = irandom_range(48, 96);
+							case "Star":
 								FixtureCreateStar(size, size, mass, 1, 0.1, 0.2, 0.2);
-								var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
-								targetX = lengthdir_x(size*mass, dd);
-								targetY = lengthdir_y(size*mass, dd);
 								break;
 						}
+						var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
+						targetX = lengthdir_x(size*mass, dd);
+						targetY = lengthdir_y(size*mass, dd);
 					}
 					if global.gameMode == "SOLO" { alarm[1] = max(room_speed*0.1, room_speed-gameLevel); }
 					else { alarm[1] = max(room_speed, (room_speed * 0.5)-gameLevel); }
@@ -74,10 +56,24 @@ if !global.gameOver
 							eHealth = 1 + oLevels.gameLevel;
 							eColor = oLevels.enemyColor;
 							activeColor = eColor;
-							shape = "Circle";
+							shape = oLevels.spawnShape;
 							mass = oLevels.enemyMass;
 							size = oLevels.enemySize;
-							FixtureCreateCircle(size, mass, 0.8, 0.1, 0.2, 0.2);
+							switch shape
+							{
+								case "Circle":
+									FixtureCreateCircle(size, mass, 1, 0.1, 0.2, 0.2);
+									break;
+								case "Box":
+									FixtureCreateBox(size, size, mass, 1, 0.1, 0.2, 0.2);
+									break;
+								case "Triangle":
+									FixtureCreateTriangle(size, size, mass, 1, 0.1, 0.2, 0.2);
+									break;
+								case "Star":
+									FixtureCreateStar(size, size, mass, 1, 0.1, 0.2, 0.2);
+									break;
+							}
 							var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
 							targetX = lengthdir_x(size*mass, dd);
 							targetY = lengthdir_y(size*mass, dd);
@@ -101,10 +97,24 @@ if !global.gameOver
 						eHealth = 1 + oLevels.gameLevel;
 						eColor = oLevels.enemyColor;
 						activeColor = eColor;
-						shape = "Circle";
+						shape = oLevels.spawnShape;
 						mass = oLevels.enemyMass;
 						size = oLevels.enemySize;
-						FixtureCreateCircle(size, mass, 0.8, 0.1, 0.2, 0.2);
+						switch shape
+						{
+							case "Circle":
+								FixtureCreateCircle(size, mass, 1, 0.1, 0.2, 0.2);
+								break;
+							case "Box":
+								FixtureCreateBox(size, size, mass, 1, 0.1, 0.2, 0.2);
+								break;
+							case "Triangle":
+								FixtureCreateTriangle(size, size, mass, 1, 0.1, 0.2, 0.2);
+								break;
+							case "Star":
+								FixtureCreateStar(size, size, mass, 1, 0.1, 0.2, 0.2);
+								break;
+						}
 						var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
 						targetX = lengthdir_x(size*mass, dd);
 						targetY = lengthdir_y(size*mass, dd);
@@ -151,10 +161,24 @@ if !global.gameOver
 							eHealth = 1 + oLevels.gameLevel;
 							eColor = oLevels.enemyColor;
 							activeColor = eColor;
-							shape = "Triangle";
+							shape = oLevels.spawnShape;
 							mass = oLevels.enemyMass;
 							size = oLevels.enemySize;
-							FixtureCreateTriangle(size, size, mass, 0.5, 0.1, 0.2, 0.2);
+							switch shape
+							{
+								case "Circle":
+									FixtureCreateCircle(size, mass, 1, 0.1, 0.2, 0.2);
+									break;
+								case "Box":
+									FixtureCreateBox(size, size, mass, 1, 0.1, 0.2, 0.2);
+									break;
+								case "Triangle":
+									FixtureCreateTriangle(size, size, mass, 1, 0.1, 0.2, 0.2);
+									break;
+								case "Star":
+									FixtureCreateStar(size, size, mass, 1, 0.1, 0.2, 0.2);
+									break;
+							}
 							var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
 							targetX = lengthdir_x(size*mass, dd);
 							targetY = lengthdir_y(size*mass, dd);
@@ -191,15 +215,30 @@ if !global.gameOver
 						eHealth = 1 + oLevels.gameLevel;
 						eColor = oLevels.enemyColor;
 						activeColor = eColor;
-						shape = "Triangle";
-						mass = 0.2;
+						shape = oLevels.spawnShape;
+						mass = 0.3;
 						size = oLevels.enemySize;
-						FixtureCreateTriangle(size, size, mass, 0.5, 0.1, 0.2, 0.2);
+						switch shape
+						{
+							case "Circle":
+								FixtureCreateCircle(size, mass, 1, 0.1, 0.2, 0.2);
+								break;
+							case "Box":
+								FixtureCreateBox(size, size, mass, 1, 0.1, 0.2, 0.2);
+								break;
+							case "Triangle":
+								FixtureCreateTriangle(size, size, mass, 1, 0.1, 0.2, 0.2);
+								break;
+							case "Star":
+								FixtureCreateStar(size, size, mass, 1, 0.1, 0.2, 0.2);
+								break;
+						}
 						var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
 						targetX = lengthdir_x(size*mass, dd);
 						targetY = lengthdir_y(size*mass, dd);
 						alarm[0] = room_speed;
 					}
+					
 					if spawnCycleCount >= spawnCycleMax
 					{ 
 						spawnType = spawntypes.randomcircle;
@@ -209,7 +248,7 @@ if !global.gameOver
 					}
 					else 
 					{ 
-						alarm[1] = room_speed; 
+						alarm[1] = room_speed * 0.5; 
 					}
 					break;
 				case spawntypes.syncedstars:
@@ -240,10 +279,24 @@ if !global.gameOver
 							eHealth = 1 + oLevels.gameLevel;
 							eColor = oLevels.enemyColor;
 							activeColor = eColor;
-							shape = "Star";
+							shape = oLevels.spawnShape;
 							mass = oLevels.enemyMass;
 							size = oLevels.enemySize;
-							FixtureCreateStar(size, size, mass, 0.5, 0.1, 0.2, 0.2);
+							switch shape
+							{
+								case "Circle":
+									FixtureCreateCircle(size, mass, 1, 0.1, 0.2, 0.2);
+									break;
+								case "Box":
+									FixtureCreateBox(size, size, mass, 1, 0.1, 0.2, 0.2);
+									break;
+								case "Triangle":
+									FixtureCreateTriangle(size, size, mass, 1, 0.1, 0.2, 0.2);
+									break;
+								case "Star":
+									FixtureCreateStar(size, size, mass, 1, 0.1, 0.2, 0.2);
+									break;
+							}
 							var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
 							targetX = lengthdir_x(size*mass, dd);
 							targetY = lengthdir_y(size*mass, dd);
@@ -255,7 +308,7 @@ if !global.gameOver
 						spawnType = spawntypes.randomcircle;
 						spawnCycleCount = 0;
 						alarm[3] = room_speed * 10; 
-						alarm[1] = room_speed * 2;
+						alarm[1] = room_speed * 3;
 					}
 					else 
 					{ 
@@ -280,10 +333,24 @@ if !global.gameOver
 						eHealth = 1 + oLevels.gameLevel;
 						eColor = oLevels.enemyColor;
 						activeColor = eColor;
-						shape = "Star";
-						mass = 0.2;
+						shape = oLevels.spawnShape;
+						mass = 0.3;
 						size = oLevels.enemySize;
-						FixtureCreateStar(size, size, mass, 0.5, 0.1, 0.2, 0.2);
+						switch shape
+						{
+							case "Circle":
+								FixtureCreateCircle(size, mass, 1, 0.1, 0.2, 0.2);
+								break;
+							case "Box":
+								FixtureCreateBox(size, size, mass, 1, 0.1, 0.2, 0.2);
+								break;
+							case "Triangle":
+								FixtureCreateTriangle(size, size, mass, 1, 0.1, 0.2, 0.2);
+								break;
+							case "Star":
+								FixtureCreateStar(size, size, mass, 1, 0.1, 0.2, 0.2);
+								break;
+						}
 						var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
 						targetX = lengthdir_x(size*mass, dd);
 						targetY = lengthdir_y(size*mass, dd);
@@ -298,7 +365,7 @@ if !global.gameOver
 					}
 					else 
 					{ 
-						alarm[1] = room_speed; 
+						alarm[1] = room_speed * 0.5; 
 					}
 					break;
 				case spawntypes.syncedhuge:
@@ -317,45 +384,33 @@ if !global.gameOver
 							size = 300;
 							eColor = oLevels.enemyColor;
 							activeColor = eColor;
+							shape = oLevels.spawnShape
 							alarm[0] = room_speed;
 							var rr = choose(0, 1, 2, 3);
-							switch rr
+							switch shape
 							{
-								case 0:
-									shape = "Circle";
+								case "Circle":
 									FixtureCreateCircle(size, mass, 1, 0.1, 0, 0.2);
-									var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
-									targetX = lengthdir_x(size*mass, dd);
-									targetY = lengthdir_y(size*mass, dd);
 									break;
-								case 1:
-									shape = "Box";
+								case "Box":
 									FixtureCreateBox(size, size, mass, 1, 0.1, 0, 0.2);
-									var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
-									targetX = lengthdir_x(size*mass, dd);
-									targetY = lengthdir_y(size*mass, dd);
 									break;
-								case 2:
-									shape = "Triangle";
+								case "Triangle":
 									FixtureCreateTriangle(size, size, mass, 1, 0.1, 0, 0.2);
-									var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
-									targetX = lengthdir_x(size*mass, dd);
-									targetY = lengthdir_y(size*mass, dd);
 									break;
-								case 3:
-									shape = "Star";
+								case "Star":
 									FixtureCreateStar(size, size, mass, 1, 0.1, 0, 0.2);
-									var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
-									targetX = lengthdir_x(size*mass, dd);
-									targetY = lengthdir_y(size*mass, dd);
 									break;
 							}
+							var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
+							targetX = lengthdir_x(size*mass, dd);
+							targetY = lengthdir_y(size*mass, dd);
 						}
 					}
 					spawnType = spawntypes.randomcircle;
 					spawnCycleCount = 0;
 					alarm[3] = room_speed * 10;
-					alarm[1] = room_speed * 3;
+					alarm[1] = room_speed;
 					break;
 				case spawntypes.staggeredhuge:
 					++spawnCycleCount;
@@ -368,43 +423,31 @@ if !global.gameOver
 						isSpecial = false;
 						isHuge = true;
 						eHealth = 200 + (oLevels.enemyHealth * 2);
-						mass = 0.5;
+						mass = 0.4;
 						size = 300;
 						eColor = oLevels.enemyColor;
 						activeColor = eColor;
+						shape = oLevels.spawnShape
 						alarm[0] = room_speed;
 						var rr = choose(0, 1, 2, 3);
-						switch rr
+						switch shape
 						{
-							case 0:
-								shape = "Circle";
-								FixtureCreateCircle(size, mass, 1, 0.1, 0.2, 0.2);
-								var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
-								targetX = lengthdir_x(size*mass, dd);
-								targetY = lengthdir_y(size*mass, dd);
+							case "Circle":
+								FixtureCreateCircle(size, mass, 1, 0.1, 0, 0.2);
 								break;
-							case 1:
-								shape = "Box";
-								FixtureCreateBox(size, size, mass, 1, 0.1, 0.2, 0.2);
-								var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
-								targetX = lengthdir_x(size*mass, dd);
-								targetY = lengthdir_y(size*mass, dd);
+							case "Box":
+								FixtureCreateBox(size, size, mass, 1, 0.1, 0, 0.2);
 								break;
-							case 2:
-								shape = "Triangle";
-								FixtureCreateTriangle(size, size, mass, 1, 0.1, 0.2, 0.2);
-								var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
-								targetX = lengthdir_x(size*mass, dd);
-								targetY = lengthdir_y(size*mass, dd);
+							case "Triangle":
+								FixtureCreateTriangle(size, size, mass, 1, 0.1, 0, 0.2);
 								break;
-							case 3:
-								shape = "Star";
-								FixtureCreateStar(size, size, mass, 1, 0.1, 0.2, 0.2);
-								var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
-								targetX = lengthdir_x(size*mass, dd);
-								targetY = lengthdir_y(size*mass, dd);
+							case "Star":
+								FixtureCreateStar(size, size, mass, 1, 0.1, 0, 0.2);
 								break;
 						}
+						var dd = point_direction(phy_position_x, phy_position_y, room_width * 0.5, room_height * 0.5);
+						targetX = lengthdir_x(size*mass, dd);
+						targetY = lengthdir_y(size*mass, dd);
 					}
 	
 					if spawnCycleCount >= 3
@@ -412,11 +455,11 @@ if !global.gameOver
 						spawnType = spawntypes.randomcircle;
 						spawnCycleCount = 0;
 						alarm[3] = room_speed * 10; 
-						alarm[1] = room_speed * 3;
+						alarm[1] = room_speed;
 					}
 					else 
 					{ 
-						alarm[1] = room_speed * 0.1; 
+						alarm[1] = room_speed * 0.5; 
 					}
 					break;
 			}

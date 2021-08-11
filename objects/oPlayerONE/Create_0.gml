@@ -109,6 +109,11 @@ alarm[0] = room_speed * 0.1;
 
 pColor = c_green;
 
+lColor1 = c_orange;
+lColor2 = c_white;
+lColor3 = c_yellow;
+lPosition = 0;
+
 p1Emitter = part_emitter_create(global.particleSystem);
 
 //Feed stats to UI control

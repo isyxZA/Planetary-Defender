@@ -51,6 +51,7 @@
     {"id":{"name":"sndItem","path":"sounds/sndItem/sndItem.yy",},"order":6,},
     {"id":{"name":"functions","path":"scripts/functions/functions.yy",},"order":0,},
     {"id":{"name":"oLobby","path":"objects/oLobby/oLobby.yy",},"order":2,},
+    {"id":{"name":"sCow","path":"sprites/sCow/sCow.yy",},"order":16,},
     {"id":{"name":"sTarget","path":"sprites/sTarget/sTarget.yy",},"order":15,},
     {"id":{"name":"rmMenu","path":"rooms/rmMenu/rmMenu.yy",},"order":0,},
   ],

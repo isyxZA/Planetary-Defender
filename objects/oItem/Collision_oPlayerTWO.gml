@@ -7,7 +7,7 @@ switch iColor
 	case c_aqua://Primary
 		if choice 
 		{ 
-			other.primaryDamage += 5; 
+			other.primaryDamage += 2; 
 			oControl.pDamageP2 = other.primaryDamage; 
 			with instance_create_layer(x, y, "Buttons", oAlerts) { txt = "PRIMARY DMG ++"; tColor = other.iColor; }
 		}

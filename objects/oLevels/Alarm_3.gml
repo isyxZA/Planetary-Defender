@@ -8,21 +8,22 @@ if !global.gameOver
 		enemySize = irandom_range(30, 60);
 		spawnType = choose(spawntypes.syncedcircle, 
 							spawntypes.staggeredcircle, 
+							spawntypes.syncedcircle, 
+							spawntypes.staggeredcircle,
+							spawntypes.syncedlines,
 							spawntypes.syncedlines,
 							spawntypes.staggeredlines, 
+							spawntypes.syncedstars,
 							spawntypes.syncedstars,
 							spawntypes.staggeredstars,
 							spawntypes.syncedhuge,
 							spawntypes.staggeredhuge);
 		spawnCycleCount = 0;
-		
+		spawnShape = choose("Circle", "Box", "Triangle", "Star");
 		switch spawnType
 		{
 			case spawntypes.staggeredlines:
 			case spawntypes.staggeredstars:
-				spawnPauseCount = 1;
-				oControl.alarm[3] = room_speed;
-				break;
 			case spawntypes.staggeredhuge:
 			case spawntypes.syncedhuge:
 				spawnPauseCount = 0;
@@ -32,7 +33,6 @@ if !global.gameOver
 				spawnPauseCount = 5;
 				oControl.alarm[3] = room_speed * 4;
 				break;
-			
 		}
 	}
 	else
