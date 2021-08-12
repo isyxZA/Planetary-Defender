@@ -402,8 +402,8 @@ if shootPrimary
         var pty = lengthdir_y(10000, image_angle);
 		var psx = phy_position_x+(ptx*0.002);
 		var psy = phy_position_y+(pty*0.002);
-		var pbc = c_red;
-		SpawnBullet(psx, psy, pbc, -phy_rotation, ptx, pty, 0.6, primaryDamage, id);
+		//var pbc = c_red;
+		SpawnBullet(psx, psy, pColor, -phy_rotation, ptx, pty, 0.6, primaryDamage, id);
 		if audio_system_is_available() && audio_sound_is_playable(sndBullet)
 		{
 			audio_play_sound(sndBullet, 0, false);

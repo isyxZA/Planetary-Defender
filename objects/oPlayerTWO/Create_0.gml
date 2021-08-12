@@ -107,7 +107,7 @@ canBeDamaged = true;
 aImage = 0;
 alarm[0] = room_speed * 0.1;
 
-pColor = c_blue;
+pColor = c_steelblue;
 
 lColor1 = c_orange;
 lColor2 = c_white;

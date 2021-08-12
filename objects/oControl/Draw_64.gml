@@ -69,7 +69,7 @@ if room == rmGame
 					for (var i = 0; i < 49; ++i)
 					{
 						var lw;
-						if Chance(0.01) { draw_set_alpha(1); draw_set_color(c_green); lw = 2; }
+						if Chance(0.01) { draw_set_alpha(1); draw_set_color(c_steelblue); lw = 2; }
 						else { draw_set_alpha(0.7); draw_set_color(c_dkgray); lw = 1; }
 						draw_line_width(155, 3 + (i * lsep), 344, 3 + (i * lsep), lw);
 					}
@@ -296,7 +296,7 @@ if room == rmGame
 					for (var i = 0; i < 49; ++i)
 					{
 						var lw;
-						if Chance(0.01) { draw_set_alpha(1); draw_set_color(c_green); lw = 2; }
+						if Chance(0.01) { draw_set_alpha(1); draw_set_color(c_steelblue); lw = 2; }
 						else { draw_set_alpha(0.7); draw_set_color(c_dkgray); lw = 1; }
 						draw_line_width(155, 3 + (i * lsep), 344, 3 + (i * lsep), lw);
 					}
@@ -514,7 +514,7 @@ if room == rmGame
 					for (var i = 0; i < 49; ++i)
 					{
 						var lw;
-						if Chance(0.01) { draw_set_alpha(1); draw_set_color(c_green); lw = 2; }
+						if Chance(0.01) { draw_set_alpha(1); draw_set_color(c_steelblue); lw = 2; }
 						else { draw_set_alpha(0.7); draw_set_color(c_dkgray); lw = 1; }
 						draw_line_width(155, 3 + (i * lsep), 344, 3 + (i * lsep), lw);
 					}

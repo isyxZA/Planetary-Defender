@@ -248,7 +248,7 @@ if !global.gameOver
 					}
 					else 
 					{ 
-						alarm[1] = room_speed * 0.5; 
+						alarm[1] = room_speed; 
 					}
 					break;
 				case spawntypes.syncedstars:
@@ -365,7 +365,7 @@ if !global.gameOver
 					}
 					else 
 					{ 
-						alarm[1] = room_speed * 0.5; 
+						alarm[1] = room_speed; 
 					}
 					break;
 				case spawntypes.syncedhuge:
