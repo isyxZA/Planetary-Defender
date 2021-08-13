@@ -416,6 +416,26 @@ function EaseQuart(time, start, change, duration)
 	return -change * 0.5 * (power(time - 2, 4) - 2) + start;
 }
 
+/// @description EaseQuint(time, start, change, duration)
+function EaseQuint(time, start, change, duration)
+{
+	time /= duration * 0.5;
+
+	if (time < 1)
+	{
+	    return change * 0.5 * power(time, 5) + start;
+	}
+
+	return change * 0.5 * (power(time - 2, 5) + 2) + start;
+}
+
+/// @description EaseSine(time, start, change, duration)
+function EaseSine(time, start, change, duration)
+{
+	return change * 0.5 * (1 - cos(pi * time / duration)) + start;
+}
+
+/*
 /// @description EaseExpo(time, start, change, duration)
 function EaseExpo(time, start, change, duration)
 {
@@ -442,25 +462,6 @@ function EaseQuad(time, start, change, duration)
 	}
 
 	return (-change * 0.5) * (--time * (time - 2) - 1) + start;
-}
-
-/// @description EaseQuint(time, start, change, duration)
-function EaseQuint(time, start, change, duration)
-{
-	time /= duration * 0.5;
-
-	if (time < 1)
-	{
-	    return change * 0.5 * power(time, 5) + start;
-	}
-
-	return change * 0.5 * (power(time - 2, 5) + 2) + start;
-}
-
-/// @description EaseSine(time, start, change, duration)
-function EaseSine(time, start, change, duration)
-{
-	return change * 0.5 * (1 - cos(pi * time / duration)) + start;
 }
 
 /// @description EaseQuint(time, start, change, duration)
@@ -504,3 +505,4 @@ function EaseElastic(time, start, change, duration)
     
 	return _a * power(2, -10 * (--time)) * sin((time * duration - _s) * (2 * pi) / _p) * 0.5 + change + start;
 }
+*/

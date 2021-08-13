@@ -1,5 +1,7 @@
-/// @description Insert description here
+/// @description Initialize the particle systsem
+
 global.particleSystem = part_system_create_layer("Level", true);
+part_system_depth(global.particleSystem, 550);
 
 partCircle = part_type_create();
 //This defines the particles shape

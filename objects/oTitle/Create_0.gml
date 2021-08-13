@@ -26,4 +26,21 @@ yscale1 = 0;
 yscale2 = 0;
 yscale3 = 0;
 
+x_anchor = room_width * 0.5;
+y_anchor = 0;
+
+p1x = 0;
+p1y = 0;
+
+p2x = 0;
+p2y = 0;
+
+p3x = 0;
+p3y = 0;
+
+
 rot = 0;
+
+p1r = 0;
+p2r = 0;
+p3r = 0;

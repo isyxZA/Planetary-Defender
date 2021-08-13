@@ -20,6 +20,7 @@
     {"id":{"name":"oTitle","path":"objects/oTitle/oTitle.yy",},"order":19,},
     {"id":{"name":"sBullet","path":"sprites/sBullet/sBullet.yy",},"order":13,},
     {"id":{"name":"fnt12","path":"fonts/fnt12/fnt12.yy",},"order":1,},
+    {"id":{"name":"sSparkle","path":"sprites/sSparkle/sSparkle.yy",},"order":20,},
     {"id":{"name":"oAlerts","path":"objects/oAlerts/oAlerts.yy",},"order":6,},
     {"id":{"name":"sTitle0","path":"sprites/sTitle0/sTitle0.yy",},"order":0,},
     {"id":{"name":"pragmas","path":"scripts/pragmas/pragmas.yy",},"order":4,},

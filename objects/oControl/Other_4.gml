@@ -8,8 +8,10 @@ switch room
 		SpawnCamera(0, 0, 1280, 720);
 		uiOverlay = buttonoverlay.main;
 		SetUI(uiOverlay);
+		alarm[9] = -1;
 		break;
 	case rmGame:
+		alarm[9] = random_range(room_speed * 1, room_speed * 2);
 		playMusic = true;
 		global.gameOver = false;
 		playerTracking = false;
